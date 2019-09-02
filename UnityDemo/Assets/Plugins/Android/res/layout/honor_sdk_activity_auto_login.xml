@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/honor_sdk_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/honor_sdk_white_background_border"
+    android:padding="10dp">
+
+    <include
+        android:id="@+id/honor_sdk_tool_bar"
+        layout="@layout/honor_sdk_activity_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_gravity="top|center"
+        android:visibility="gone"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|bottom"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/honor_sdk_nick_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/honor_sdk_welcome_login"
+            android:textColor="@color/honor_sdk_black_color"
+            android:textSize="@dimen/honor_sdk_font_16" />
+
+        <TextView
+            android:id="@+id/honor_sdk_switch_timer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="3s"
+            android:textColor="@color/honor_sdk_red_color"
+            android:textSize="@dimen/honor_sdk_font_16" />
+
+        <Button
+            android:id="@+id/honor_sdk_switch_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/honor_sdk_switch_account_border"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textSize="@dimen/honor_sdk_font_16"
+            android:text="@string/honor_sdk_switch_account"
+            android:textColor="@color/honor_sdk_black_color" />
+
+
+    </LinearLayout>
+
+</FrameLayout>

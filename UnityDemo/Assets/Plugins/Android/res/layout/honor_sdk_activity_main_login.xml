@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/honor_sdk_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/honor_sdk_white_background_border"
+    android:padding="10dp">
+
+    <include
+        android:id="@+id/honor_sdk_tool_bar"
+        layout="@layout/honor_sdk_activity_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_gravity="top|center"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|bottom"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/honor_sdk_icon_logo" />
+
+        <LinearLayout
+            android:id="@+id/honor_sdk_phone_container"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/honor_sdk_gray_stroke_border"
+            android:orientation="horizontal">
+
+            <com.honor.sdk.ui.view.ItemSelectView
+                android:textSize="@dimen/honor_sdk_font_16"
+                android:id="@+id/honor_sdk_phone_prefix"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/honor_sdk_gray_stroke_border"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"></com.honor.sdk.ui.view.ItemSelectView>
+
+            <RelativeLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/honor_sdk_phone_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/honor_sdk_icon_delete"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:background="@color/honor_sdk_white_color"
+                    android:id="@+id/honor_sdk_phone_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@id/honor_sdk_phone_delete"
+                    android:hint="@string/honor_sdk_phone_input_tip"
+                    android:inputType="number"
+                    android:letterSpacing="0.2"
+                    android:maxLength="11"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/honor_sdk_text_cursor"
+                    android:textSize="@dimen/honor_sdk_font_16" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/honor_sdk_phone_next"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/honor_sdk_button_border"
+            android:text="@string/honor_sdk_next_step"
+            android:textColor="@color/honor_sdk_black_color"
+            android:textSize="@dimen/honor_sdk_font_16" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <View
+
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/honor_sdk_gray_color"></View>
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:text="@string/honor_sdk_other_platorm_login"
+                android:textColor="@color/honor_sdk_gray_color"
+                android:textSize="@dimen/honor_sdk_font_12" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/honor_sdk_gray_color"></View>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/honor_sdk_tip_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/honor_sdk_icon_tourist" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/honor_sdk_tourist"
+                    android:textColor="@color/honor_sdk_black_color"
+                    android:textSize="@dimen/honor_sdk_font_12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/honor_sdk_qq_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/honor_sdk_icon_qq" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/honor_sdk_qq"
+                    android:textColor="@color/honor_sdk_black_color"
+                    android:textSize="@dimen/honor_sdk_font_12" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/honor_sdk_wechat_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:textColor="@color/honor_sdk_black_color">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/honor_sdk_icon_wechat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:drawablePadding="0dp"
+                    android:gravity="center"
+                    android:text="@string/honor_sdk_wechat"
+                    android:textColor="@color/honor_sdk_black_color"
+                    android:textSize="@dimen/honor_sdk_font_12" />
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,146 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.honor.unity.bridge">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--google支付权限-->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <application android:name="com.honor.platform.HpApplication"
+		android:label="@string/app_name"
+		>
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <activity android:name="com.honor.bridge.unity.HonorUnityActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <meta-data
+                android:name="unityplayer.ForwardNativeEventsToDalvik"
+                android:value="true" />
+            <meta-data
+                android:name="unityplayer.UnityActivity"
+                android:value="true" />
+				  <intent-filter>
+            <action android:name="android.intent.action.MAIN"></action>
+            <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+
+
+		<meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name="com.facebook.CustomTabMainActivity" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter><action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.honor.sdk.ui.activity.mainland.LoginMainActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.mainland.LoginCodeActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.mainland.LoginPasswordActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.WebViewActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.mainland.AutoLoginActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.mainland.HistoryAccountActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.mainland.TipAccountActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.AgreementActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.oversea.OverseaThirdActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+        <activity
+            android:name="com.honor.sdk.ui.activity.oversea.OverseaBindActivity"
+            android:configChanges="orientation|screenSize|keyboard|uiMode|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="behind"
+            android:theme="@style/HonorSdkTheme" />
+
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleInstance"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1104611233" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name=".wxapi.AppRegister"
+            android:permission="com.tencent.mm.plugin.permission.SEND">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

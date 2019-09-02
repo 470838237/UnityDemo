@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="15dp">
+    <ImageView
+        android:layout_width="15dp"
+        android:src="@drawable/honor_sdk_icon_back"
+        android:id="@+id/honor_sdk_iv_back"
+        android:scaleType="fitCenter"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:src="@drawable/honor_sdk_icon_close"
+        android:layout_gravity="right"
+        android:scaleType="fitCenter"
+        android:layout_width="15dp"
+        android:id="@+id/honor_sdk_iv_close"
+        android:layout_height="match_parent" />
+
+</FrameLayout>

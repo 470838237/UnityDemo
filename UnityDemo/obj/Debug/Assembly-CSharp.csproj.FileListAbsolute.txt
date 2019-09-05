@@ -29,3 +29,6 @@ C:\Users\usera\Documents\UnityDemo\Temp\bin\Debug\UnityEngine.VR.xml
 C:\Users\usera\Documents\UnityDemo\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\usera\Documents\UnityDemo\obj\Debug\Assembly-CSharp.dll
 C:\Users\usera\Documents\UnityDemo\obj\Debug\Assembly-CSharp.pdb
+C:\Users\usera\Documents\UnityProject\UnityDemo\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\usera\Documents\UnityProject\UnityDemo\obj\Debug\Assembly-CSharp.dll
+C:\Users\usera\Documents\UnityProject\UnityDemo\obj\Debug\Assembly-CSharp.pdb

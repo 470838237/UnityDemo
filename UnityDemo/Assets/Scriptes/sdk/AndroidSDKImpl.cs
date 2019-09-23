@@ -266,5 +266,16 @@ namespace honorsdk
             base.SendGuideFinish();
             currentActivity.Call("sendGuideFinish");
         }
+
+        public override void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener)
+        {
+            base.GetABTestVer(getABTestVerListener);
+            currentActivity.Call("getABTestVer");
+        }
+        public override void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
+        {
+            base.GetMobileAdapter(getMobileAdapterListener);
+            currentActivity.Call("getMobileAdapter");
+        }
     }
 }

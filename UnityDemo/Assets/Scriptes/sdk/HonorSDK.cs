@@ -12,121 +12,181 @@ namespace honorsdk
 
     public class Result
     {
-
+        //错误码
         public int code { set; get; }
+        //处理结果
         public bool success { set; get; }
+        //处理失败的信息
         public string message { set; get; }
     }
 
     public class UserInfo : Result
     {
+        //用户唯一表示
         public string uid { set; get; }
+        //用户token，用于验证用户合法性
         public string accessToken { set; get; }
+        //用户昵称
         public string nickName { set; get; }
 
     }
 
     public class ResultBind : Result
     {
+        //用户昵称
         public string nickName { set; get; }
     }
 
 
     public class AppInfo : Result
     {
+        //IOS平台标识
+        const string PLATFORM_IOS = "0";
+        //Android平台标识
+        const string PLATFORM_ANDROID = "1";
+        //包名
         public string appId { set; get; }
+        //设备id
         public string deviceId { set; get; }
+        //应用版本号
         public string version { set; get; }
+        //平台标识
         public string platform { set; get; }
+        //应用名称
         public string appName { set; get; }
     }
 
     public class NotchScreenInfo : Result
     {
+        //刘海屏宽度 单位px
         public int width { set; get; }
+        //刘海屏高度 单位px
         public int height { set; get; }
     }
 
     public class MemoryInfo : Result
     {
-        public int availMem { set; get; }
-        public int totalMem { set; get; }
+        //可用内存大小 单位Byte
+        public long availMem { set; get; }
+        //总内存大小 单位Byte
+        public long totalMem { set; get; }
     }
 
 
     public class BatteryInfo : Result
     {
+        //当前电量(0-100)
         public int level { set; get; }
+        //总电量(100)
         public int scale { set; get; }
     }
     public class CpuGpuInfo : Result
     {
-
+        //Gpu型号
         public string gpu { set; get; }
+        //cpu型号 JSONArray类型字符串,数组成员为字符串类型  
+        //由于各个手机获取cpu型号的接口不一致,该接口返回了常用的接口,开发者根据业务逻辑筛选
         public string cpu { set; get; }
+        //Cpu核心数量
         public int cpuNum { set; get; }
+        //Cpu最大频率
         public int cpuFreq { set; get; }
 
     }
 
     public class ResultVideoRecord : Result
     {
+        //语音存放链接
         public string url { set; get; }
+        //语音时长 单位 s
         public long time { set; get; }
     }
 
     public class GameRoleInfo
     {
+        //创建角色节点
         public const int TYPE_CREATE_ROLE = 1;
+        //进入游戏节点
         public const int TYPE_ENTER_GAME = 2;
+        //角色升级节点
         public const int TYPE_ROLE_LEVEL = 3;
+        //角色ID
         public string roleId { set; get; }
+        //角色名称
         public string roleName { set; get; }
+        //服务器id
         public string serverId { set; get; }
+        //角色等级
         public int roleLevel { set; get; }
+        //角色vip等级
         public string roleVip { set; get; }
+        //角色其他信息
         public string extra { set; get; }
+        //角色上传的节点类型
         public int type { set; get; }
+        //角色最后更新时间
         public int lastUpdate { set; get; }
 
     }
     public class OrderInfo
     {
+        //服务器id
         public string serverId { set; get; }
+        //角色id
         public string roleId { set; get; }
+        //角色名称
         public string roleName { set; get; }
+        //角色等级
         public int roleLevel { set; get; }
+        //商品id
         public string goodsId { set; get; }
+        //商品数量 不传时默认为1
         public int count { set; get; }
+        //透传参数，游戏传入的值，将在查询订单信息时原样返回
         public string extra { set; get; }
     }
 
     public class ResultPay : Result
     {
+        //平台订单号
         public string orderId { set; get; }
     }
     public class NoticeInfo
     {
+        //公告类型(0普通1活动2更新3跑马灯4登录5登出)
         public int type { set; get; }
+        //模式(0文本1海报)
         public int mode { set; get; }
+        //公告标题
         public string title { set; get; }
+        //文本公告内容
         public string content { set; get; }
+        //海报公告图片地址
         public string image { set; get; }
+        //海报公告跳转地址
         public string link { set; get; }
+        //公告排序 返回值越小越优先
         public int sort { set; get; }
+        //公告重要程度(1重要0一般)
         public int important { set; get; }
+        //公告状态(1启用0禁用)
         public int status { set; get; }
+        //公告开始时间
         public long startTime { set; get; }
+        //公告结束时间
         public long endTime { set; get; }
     }
 
     public class NoticeList : Result
     {
+        //公告列表
         public List<NoticeInfo> notices = new List<NoticeInfo>();
     }
     public class ServerInfo
     {
+        //服务器id
         public string serverId { set; get; }
+        //
         public string serverName { set; get; }
         public int status { set; get; }
         public string label { set; get; }
@@ -148,55 +208,87 @@ namespace honorsdk
 
     public class GoodsInfo
     {
+        //商品id
         public string goodsId { set; get; }
+        //商品名称
         public string goodsName { set; get; }
+        //商品描述
         public string description { set; get; }
+        //商品图标资源地址
         public string url { set; get; }
+        //商品价格（实际付款价格）
         public double price { set; get; }
+        //商品展示价（游戏可显示为商品原价之类）
         public string priceDisplay { set; get; }
+        //币种例:"CNY", "USD", "TWD"
         public string currency { set; get; }
+        //游戏币数量
         public int count { set; get; }
+        //发放倍率（比如首次购买得双倍游戏币）
         public string ratio { set; get; }
+        //赠品 返回json字符串
         public string gift { set; get; }
+        // 商品类别（比如商城1：store1 / 商城2：store2 / 商城3：store3）
         public string category { set; get; }
+        //功能标记：coin金币类商品 / card卡类商品 / prop道具类商品
         public string tag { set; get; }
+        //每日限购次数
         public int limitByDay { set; get; }
+        //商品生效时间
         public long startTime { set; get; }
+        //商品失效时间
         public long endTime { set; get; }
     }
 
     public enum Api
     {
-        SWITCH_ACCOUNT=0,
+        //切换账号
+        SWITCH_ACCOUNT = 0,
+        //注销
         LOGOUT,
+        //绑定
         BIND,
+        //解绑
         UNBIND,
+        //退出
         EXIT
     }
 
-public class GoodsList : Result
+    public class GoodsList : Result
     {
+        //商品列表
         public List<GoodsInfo> goods = new List<GoodsInfo>();
     }
 
     public class ResultGetDynamic : Result
     {
+        //热更总大小 单位Byte
         public long totalSize { set; get; }
+        //下载热更文件存储路径
         public string dynamicResPath { set; get; }
     }
     public class ResultDownload : Result
     {
+        //下载总大小 单位Byte
         public long totalSize { set; get; }
+        //已下载总大小 单位Byte
         public long currentSize { set; get; }
     }
     public class ResultGetForce : Result
     {
+        //跳转应用商店返回强更大小
+        public const int JUMP_APP_STORE = 1;
+        //强更大小 单位Byte
         public long totalSize { set; get; }
     }
     public class ResultObbDownload {
+        //需要下载总大小 单位Byte
         public long totalSize { set; get; }
+        //已下载大小 单位Byte
         public long currentSize { set; get; }
+        //obb下载过程返回的状态信息
         public string state { set; get; }
+        //true表示状态发送变化返回状态信息,false表示没有状态变化时返回下载信息
         public bool stateChanged { set; get; }
         public const string STATE_COMPLETED = "state_completed";
         public const string STATE_IDLE = "state_idle";
@@ -222,15 +314,30 @@ public class GoodsList : Result
 
     public class ResultExpand : Result
     {
+        //成功时返回处理结果
         public string originResult { set; get; }
     }
 
     public class ResultGetHeadsetState : Result
     {
+        //插入耳机时状态
         public const int HEADSET_OPEN = 1;
+        //取消插入耳机时状态
         public const int HEADSET_CLOSE = 0;
+        //耳机状态
         public int headsetState { set; get; }
     }
+    public class ResultGetABTestVer : Result
+    {
+        //ABTest方案
+        public int plan { set; get; }
+    }
+    public class ResultGetMobileAdapter : Result
+    {
+        //机型适配文档内容
+        public string content { set; get; }
+    }
+
     public delegate void OnFinish<T>(T result);
     public delegate void OnReceiveMsg(string head, string body);
 
@@ -299,6 +406,8 @@ public class GoodsList : Result
         const string BIND_SUCCESS = "bind_success";
         const string BIND_FAILED = "bind_failed";
         const string GET_HEADSET_STATE_SUCCESS = "get_headset_state_success";
+        const string GET_AB_TEST_FINISH = "get_ab_test_ver_finish";
+        const string GET_MOBILE_ADAPTER_SUCCESS = "get_mobile_adapter_success";
 
         private OnFinish<Result> initListener;
         private OnFinish<UserInfo> loginListener;
@@ -325,9 +434,10 @@ public class GoodsList : Result
         private OnFinish<ResultObbDownload> downObbUpdateListener;
         private OnFinish<ResultBind> startBindListener;
         private OnFinish<ResultGetHeadsetState> getHeadsetStateListener;
+        private OnFinish<ResultGetABTestVer> getABTestVerListener;
+        private OnFinish<ResultGetMobileAdapter> getMobileAdapterListener;
         private Dictionary<string, OnFinish<ResultExpand>> expandListeners = new Dictionary<string, OnFinish<ResultExpand>>();
-
-
+        
 
         protected void OnReceive(string head, string body)
         {
@@ -466,6 +576,12 @@ public class GoodsList : Result
                     break;
                 case GET_HEADSET_STATE_SUCCESS:
                     GetHeadsetStateFinish(true,body);
+                    break;
+                case GET_AB_TEST_FINISH:
+                    GetABTestVerFinish(true,body);
+                    break;
+                case GET_MOBILE_ADAPTER_SUCCESS:
+                    GetMobileAdapterFinish(true, body);
                     break;
                 default:
                     if (expandListeners.ContainsKey(head))
@@ -707,7 +823,38 @@ public class GoodsList : Result
         {
         }
 
+        public virtual void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener)
+        {
+            this.getABTestVerListener = getABTestVerListener;
+        }
+        public virtual void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
+        {
+            this.getMobileAdapterListener = getMobileAdapterListener;
+        }
+
+        
+
         /*---------------------------------------------------------------------------------------------------------*/
+
+        private void GetABTestVerFinish(bool success, string body)
+        {
+            ResultGetABTestVer result = new ResultGetABTestVer();
+            result.success = success;
+            int plan;
+            bool parseResult = int.TryParse(body,out plan);
+            if (parseResult)
+            {
+                result.plan = plan;
+            }
+            getABTestVerListener(result);
+        }
+        private void GetMobileAdapterFinish(bool success, string body)
+        {
+            ResultGetMobileAdapter result = new ResultGetMobileAdapter();
+            result.success = success;
+            result.content = body;
+            getMobileAdapterListener(result);
+        }
 
 
         private void GetHeadsetStateFinish(bool success,string body)
@@ -1104,8 +1251,8 @@ public class GoodsList : Result
             if (success)
             {
                 JSONNode node = JSONNode.Parse(body);
-                info.totalMem = node["totalMem"].AsInt;
-                info.availMem = node["availMem"].AsInt;
+                info.totalMem = node["totalMem"].AsLong;
+                info.availMem = node["availMem"].AsLong;
             }
             getMemroyInfoListener(info);
         }

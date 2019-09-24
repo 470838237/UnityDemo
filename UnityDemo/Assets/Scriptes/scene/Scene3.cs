@@ -209,7 +209,7 @@ public class Scene3 : BaseScene
 
     private void getGoodsList()
     {
-        HonorSDK.GetInstance().GetGoodsList(Scene2.currentServerId, "", "", delegate (GoodsList result)
+        HonorSDK.GetInstance().GetGoodsList(delegate (GoodsList result)
          {
              Debug.Log("HonorSDK:GetGoodsList.success = " + result.success);
              if (result.success)
@@ -242,7 +242,7 @@ public class Scene3 : BaseScene
              {
                  Debug.Log("HonorSDK:GetGoodsList.message = " + result.message);
              }
-         });
+         }, Scene2.currentServerId, "", "");
 
     }
 

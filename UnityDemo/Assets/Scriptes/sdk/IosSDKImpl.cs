@@ -160,10 +160,10 @@ namespace honorsdk
             base.Exit(exitListener);          
         }
 
-        public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener,string serverId, string language, string type)
+        public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener,string serverId, string language,string country, string type)
         {
-            base.GetNoticeList(getNoticeListListener,serverId, language, type);
-            getNoticeList(serverId, language, type);
+            base.GetNoticeList(getNoticeListListener,serverId, language, country,type);
+            getNoticeList(serverId, language, country, type);
         }
 
         public override void GetServerList(OnFinish<ServerList> getServerListListener)
@@ -258,9 +258,9 @@ namespace honorsdk
             base.GetABTestVer(getABTestVerListener);
             getABTestVer();
         }
-        public override void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
+        public override void GetMobileAdapter(string url,OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
         {
-            base.GetMobileAdapter(getMobileAdapterListener);          
+            base.GetMobileAdapter(url,getMobileAdapterListener);          
         }
 
 
@@ -283,7 +283,7 @@ namespace honorsdk
         [DllImport("__Internal")]
         private static extern void getGoodsList(string serverId, string category, string currency);
         [DllImport("__Internal")]
-        private static extern void getNoticeList(string serverId, string language, string type);
+        private static extern void getNoticeList(string serverId, string language,string country, string type);
         [DllImport("__Internal")]
         private static extern void translateContent(string srcContent, string targetLan);
         [DllImport("__Internal")]

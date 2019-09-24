@@ -169,10 +169,10 @@ namespace honorsdk
             currentActivity.Call("exit");
         }
 
-        public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener, string serverId, string language, string type)
+        public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener, string serverId, string language, string country, string type)
         {
-            base.GetNoticeList(getNoticeListListener,serverId, language, type);
-            currentActivity.Call("getNoticeList", serverId, language, type);
+            base.GetNoticeList(getNoticeListListener,serverId, language, country, type);
+            currentActivity.Call("getNoticeList", serverId, language, country, type);
         }
 
         public override void GetServerList(OnFinish<ServerList> getServerListListener)
@@ -272,10 +272,10 @@ namespace honorsdk
             base.GetABTestVer(getABTestVerListener);
             currentActivity.Call("getABTestVer");
         }
-        public override void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
+        public override void GetMobileAdapter(string url,OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
         {
-            base.GetMobileAdapter(getMobileAdapterListener);
-            currentActivity.Call("getMobileAdapter");
+            base.GetMobileAdapter(url,getMobileAdapterListener);
+            currentActivity.Call("getMobileAdapter", url);
         }
     }
 }

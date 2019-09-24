@@ -19,6 +19,18 @@ namespace honorsdk
         //处理失败的信息
         public string message { set; get; }
     }
+    public class ResultInit : Result
+    {
+        private Dictionary<string, string> customParams;
+        public ResultInit(Dictionary<string, string> customParams)
+        {
+            this.customParams = customParams;
+        }
+        public  string getCustomParameter(string key)
+        {
+            return customParams[key];
+        }
+    }
 
     public class UserInfo : Result
     {
@@ -462,7 +474,7 @@ namespace honorsdk
         //获取手机适配文档成功
         const string GET_MOBILE_ADAPTER_SUCCESS = "get_mobile_adapter_success";
 
-        private OnFinish<Result> initListener;
+        private OnFinish<ResultInit> initListener;
         private OnFinish<UserInfo> loginListener;
         private OnFinish<AppInfo> appInfoListener;
         private OnFinish<NotchScreenInfo> getNotchInfoListener;
@@ -648,8 +660,8 @@ namespace honorsdk
         /// 初始化，此接口必须最先调用
         /// </summary>
         /// <param name="gameObject">游戏对象</param>
-        /// <param name="initListener">返回初始化结果<see cref="Result"/></param>
-        public void Init(HonorSDKGameObject gameObject, OnFinish<Result> initListener)
+        /// <param name="initListener">返回初始化结果<see cref="ResultInit"/></param>
+        public void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener)
         {
             this.initListener = initListener;
             gameObject.SetOnReceiveListener(new OnReceiveMsg(this.OnReceive));
@@ -911,7 +923,7 @@ namespace honorsdk
         /// <param name="language">公告语言类型(可选) 例:中文zh,英语en</param>
         /// <param name="type">公告类型(可选) (0普通1活动2更新3跑马灯4登录5登出)</param>
         /// <param name="getNoticeListListener"></param>
-        public virtual void GetNoticeList(OnFinish<NoticeList> getNoticeListListener,string serverId="", string language = "", string type = "")
+        public virtual void GetNoticeList(OnFinish<NoticeList> getNoticeListListener,string serverId="", string language = "",string country = "", string type = "")
         {
             this.getNoticeListListener = getNoticeListListener;
         }
@@ -1059,7 +1071,7 @@ namespace honorsdk
         /// 获取手机适配文档
         /// </summary>
         /// <param name="getMobileAdapterListener">返回手机适配文档<see cref="ResultGetMobileAdapter"/></param>
-        public virtual void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
+        public virtual void GetMobileAdapter(string url,OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
         {
             this.getMobileAdapterListener = getMobileAdapterListener;
         }
@@ -1417,10 +1429,16 @@ namespace honorsdk
 
         private void InitFinish(bool success, string body)
         {
-            Result result = new Result();
+            Dictionary<string, string> customParams = new Dictionary<string, string>();
+            ResultInit result = new ResultInit(customParams);
             result.success = success;
             if (!success)
                 result.message = body;
+            JSONNode node = JSONNode.Parse(body);        
+            foreach(KeyValuePair<string, JSONNode> item in node.AsObject)
+            {
+                customParams[item.Key] = item.Value.Value;
+            }
             initListener(result);
         }
 

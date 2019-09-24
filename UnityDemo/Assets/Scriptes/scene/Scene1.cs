@@ -23,7 +23,7 @@ public class Scene1 : BaseScene
 
     private void Init()
     {
-        HonorSDK.GetInstance().Init(LoadTest.Instance.sdkObj, delegate (Result initResult)
+        HonorSDK.GetInstance().Init(LoadTest.Instance.sdkObj, delegate (ResultInit initResult)
         {
             Debug.Log("HonorSDK:Init.success = " + initResult.success
                 + ",message =" + initResult.message
@@ -117,7 +117,7 @@ public class Scene1 : BaseScene
 
     private void GetNoticeList()
     {
-        HonorSDK.GetInstance().GetNoticeList("", "", "", delegate (NoticeList result)
+        HonorSDK.GetInstance().GetNoticeList( delegate (NoticeList result)
         {
             Debug.Log("HonorSDK:GetNoticeList.success = " + result.success);
             if (result.success)
@@ -137,7 +137,6 @@ public class Scene1 : BaseScene
                             + ",title =" + notice.title
                             + ",type =" + notice.type
                         );
-
                 }
 
             }
@@ -145,7 +144,7 @@ public class Scene1 : BaseScene
             {
                 Debug.Log("HonorSDK:GetNoticeList.message = " + result.message);
             }
-        });
+        },"", "", "", "");
     }
 
 

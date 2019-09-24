@@ -160,9 +160,9 @@ namespace honorsdk
             base.Exit(exitListener);          
         }
 
-        public override void GetNoticeList(string serverId, string language, String type, OnFinish<NoticeList> getNoticeListListener)
+        public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener,string serverId, string language, string type)
         {
-            base.GetNoticeList(serverId, language, type, getNoticeListListener);
+            base.GetNoticeList(getNoticeListListener,serverId, language, type);
             getNoticeList(serverId, language, type);
         }
 
@@ -172,9 +172,9 @@ namespace honorsdk
             getServerList();
         }
 
-        public override void GetGoodsList(string serverId, string category, string currency, OnFinish<GoodsList> getGoodsListListener)
+        public override void GetGoodsList(OnFinish<GoodsList> getGoodsListListener,string serverId, string category, string currency)
         {
-            base.GetGoodsList(serverId, category, currency,getGoodsListListener);
+            base.GetGoodsList(getGoodsListListener, serverId, category, currency);
             getGoodsList(serverId, category, currency);
         }
 
@@ -260,8 +260,7 @@ namespace honorsdk
         }
         public override void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
         {
-            base.GetMobileAdapter(getMobileAdapterListener);
-            
+            base.GetMobileAdapter(getMobileAdapterListener);          
         }
 
 

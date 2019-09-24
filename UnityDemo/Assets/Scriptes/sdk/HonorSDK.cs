@@ -98,7 +98,7 @@ namespace honorsdk
     {
         //语音存放链接
         public string url { set; get; }
-        //语音时长 单位 s
+        //语音时长 单位秒
         public long time { set; get; }
     }
 
@@ -186,21 +186,30 @@ namespace honorsdk
     {
         //服务器id
         public string serverId { set; get; }
-        //
+        //服务器名称
         public string serverName { set; get; }
+        //服务器状态（1正常/2维护）
         public int status { set; get; }
+        //显示标签（new新服/recommend推荐/hot火爆/full爆满），多个标签逗号分隔
         public string label { set; get; }
+        //服务器地址（例如：123.123.123.123:1234或https://server1.game.com/play）
         public string address { set; get; }
+        //功能标记(有的项目会有自己的特殊功能主机，可以自行标记，例如：login=登录服)
         public string tag { set; get; }
+        //自动开服时间（秒级时间戳）
         public long openTime { set; get; }
+        //自动关服时间（秒级时间戳）
         public long closeTime { set; get; }
+        //角色列表信息
         public List<GameRoleInfo> roles = new List<GameRoleInfo>();
     }
 
 
     public class ServerList : Result
     {
+        //当前服务器时间（秒级时间戳），用于和客户端同步开关服时间
         public long time { set; get; }
+        //是否测试人员，非测试人员没有该字段;如果是测试人员则tester=1
         public int tester { set; get; }
         public List<ServerInfo> servers = new List<ServerInfo>();
     }
@@ -364,49 +373,93 @@ namespace honorsdk
         }
 
         const string SET_GAME_OBJECT_NAME_SUCCESS = "set_game_object_name_success";
+        //初始化成功
         const string INIT_SUCCESS = "init_success";
+        //初始化失败
         const string INIT_FAILED = "init_failed";
+        //登录成功
         const string LOGIN_SUCCESS = "login_success";
+        //登录失败
         const string LOGIN_FAILED = "login_failed";
+        //获取应用信息
         const string GET_APP_INFO = "get_app_info";
+        //获取刘海屏信息
         const string GET_NOTCH_SCREEN_INFO = "get_notch_screen_info_success";
+        //获取国家码
         const string GET_COUNTRY_CODE = "get_country_code";
+        //获取手机内存信息
         const string GET_MEMORY = "get_memory";
+        //获取手机电量信息
         const string CURRENT_BATTERY = "current_battery";
+        //翻译成功
         const string TRANSLATE_SUCCESS = "translate_success";
+        //翻译失败
         const string TRANSLATE_FAILED = "translate_failed";
+        //获取cpu gpu信息
         const string GET_CPU_GPU_INFO = "get_cpu_gpu_info";
+        //录音成功
         const string RECORD_VIDEO_SUCCESS = "record_video_success";
+        //录音失败
         const string RECORD_VIDEO_FAILED = "record_video_failed";
+        //播放录音
         const string START_PLAY_VIDEO = "play_video";
+        //切换账号成功
         const string SWITCH_ACCOUNT_SUCCESS = "switch_account_success";
+        //切换账号失败
         const string SWITCH_ACCOUNT_FAILED = "switch_account_failed";
+        //注销成功
         const string LOGOUT_SUCCESS = "logout_success";
+        //注销失败
         const string LOGOUT_FAILED = "logout_failed";
+        //支付成功
         const string PAY_SUCCESS = "pay_success";
+        //支付失败
         const string PAY_FAILED = "pay_failed";
+        //退出成功
         const string EXIT_SUCCESS = "exit_success";
+        //退出失败
         const string EXIT_FAILED = "exit_failed";
+        //获取公告列表成功
         const string GET_NOTICE_SUCCESS = "get_notice_success";
+        //获取公告列表失败
         const string GET_NOTICE_FAILED = "get_notice_failed";
+        //获取服务器列表成功
         const string GET_SERVER_LIST_SUCCESS = "get_server_list_success";
+        //获取服务器列表失败
         const string GET_SERVER_LIST_FAILED = "get_server_list_failed";
+        //获取商品列表成功
         const string GET_GOODS_LIST_SUCCESS = "get_goods_list_success";
+        //获取商品列表失败
         const string GET_GOODS_LIST_FAILED = "get_goods_list_failed";
+        //获取热更信息成功
         const string GET_DYNAMIC_UPDATE_SUCCESS = "get_dynamic_update_success";
+        //获取热更信息事变
         const string GET_DYNAMIC_UPDATE_FAILED = "get_dynamic_update_failed";
+        //下载热更成功
         const string DOWN_DYNAMIC_UPDATE_SUCCESS = "down_dynamic_update_success";
+        //下载热更失败
         const string DOWN_DYNAMIC_UPDATE_FAILED = "down_dynamic_update_failed";
+        //获取强更信息成功
         const string GET_FORCE_UPDATE_SUCCESS = "get_force_update_success";
+        //获取强更信息失败
         const string GET_FORCE_UPDATE_FAILED = "get_force_update_failed";
+        //下载强更信息成功
         const string DOWN_FORCE_UPDATE_SUCCESS = "down_force_update_success";
+        //下载强更信息失败
         const string DOWN_FORCE_UPDATE_FAILED = "down_force_update_failed";
+        //Obb下载成功
         const string DOWN_OBB_UPDATE_SUCCESS = "down_obb_update_success";
+        //obb下载状态发送变化
         const string DOWN_OBB_STATE_CHANGED = "down_obb_state_changed";
+        //账号绑定成功
         const string BIND_SUCCESS = "bind_success";
+        //账号绑定失败
         const string BIND_FAILED = "bind_failed";
+        //获取耳机状态成功
         const string GET_HEADSET_STATE_SUCCESS = "get_headset_state_success";
+        //获取ABTest成功
         const string GET_AB_TEST_FINISH = "get_ab_test_ver_finish";
+        //获取手机适配文档成功
         const string GET_MOBILE_ADAPTER_SUCCESS = "get_mobile_adapter_success";
 
         private OnFinish<Result> initListener;
@@ -591,7 +644,11 @@ namespace honorsdk
                   break;
             }
         }
-
+        /// <summary>
+        /// 初始化，此接口必须最先调用
+        /// </summary>
+        /// <param name="gameObject">游戏对象</param>
+        /// <param name="initListener">返回初始化结果<see cref="Result"/></param>
         public void Init(HonorSDKGameObject gameObject, OnFinish<Result> initListener)
         {
             this.initListener = initListener;
@@ -606,7 +663,10 @@ namespace honorsdk
         {
 
         }
-
+        /// <summary>
+        /// 获取应用信息
+        /// </summary>
+        /// <param name="appInfoListener">返回应用信息<see cref="AppInfo"/></param>
         public virtual void GetAppInfo(OnFinish<AppInfo> appInfoListener)
         {
             this.appInfoListener = appInfoListener;
@@ -616,103 +676,194 @@ namespace honorsdk
         {
 
         }
-
+        /// <summary>
+        /// 获取刘海屏信息
+        /// </summary>
+        /// <param name="getNotchInfoListener">返回刘海屏信息<see cref="NotchScreenInfo"/></param>
         public virtual void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener)
         {
             this.getNotchInfoListener = getNotchInfoListener;
 
         }
-
+        /// <summary>
+        /// 获取国家码 
+        /// </summary>
+        /// <param name="getCountryCodeListener">返回国家码例:中国CN，美国US</param>
         public virtual void GetCountryCode(OnFinish<string> getCountryCodeListener)
         {
             this.getCountryCodeListener = getCountryCodeListener;
         }
    
+        /// <summary>
+        /// 上报异常日志
+        /// </summary>
+        /// <param name="errorMsg">异常日志内容</param>
+        /// <param name="type">异常日志分类,不传递时默认分类为default</param>
         public virtual void ReportError(string errorMsg,string type = "")
         {
 
         }
+
+        /// <summary>
+        /// 设置剪切板
+        /// </summary>
+        /// <param name="content">设置剪切板内容</param>
         public virtual void SetClipboard(string content)
         {
 
         }
-
+        /// <summary>
+        /// 获取手机内存信息
+        /// </summary>
+        /// <param name="getMemroyInfoListener">返回手机内存信息<see cref="MemoryInfo"/></param>
         public virtual void GetMemory(OnFinish<MemoryInfo> getMemroyInfoListener)
         {
             this.getMemroyInfoListener = getMemroyInfoListener;
         }
 
-
+        /// <summary>
+        /// 获取手机电量信息
+        /// </summary>
+        /// <param name="getBatteryInfoListener">返回手机电量信息<see cref="BatteryInfo"/></param>
         public virtual void GetBattery(OnFinish<BatteryInfo> getBatteryInfoListener)
         {
             this.getBatteryInfoListener = getBatteryInfoListener;
         }
 
+        /// <summary>
+        /// 翻译
+        /// </summary>
+        /// <param name="srcContent">待翻译文本内容</param>
+        /// <param name="targetLan">目标语言码</param>
+        /// <param name="translateContentListener">成功返回翻译后文本，失败返回原文本</param>
         public virtual void TranslateContent(string srcContent, string targetLan, OnFinish<string> translateContentListener)
         {
             this.translateContentListener = translateContentListener;
         }
 
+        /// <summary>
+        /// 获取cpu gpu信息
+        /// </summary>
+        /// <param name="getCpuAndGpuListener">返回cpu gpu信息<see cref="CpuGpuInfo"/></param>
         public virtual void GetCpuAndGpu(OnFinish<CpuGpuInfo> getCpuAndGpuListener)
         {
             this.getCpuAndGpuListener = getCpuAndGpuListener;
 
         }
 
+        /// <summary>
+        /// 本地通知
+        /// </summary>
+        /// <param name="content">通知内容</param>
+        /// <param name="delay">延迟时间推送 单位秒</param>
+        /// <param name="id">本地通知唯一标识,清除推送时用到</param>
         public virtual void PushNotification(string content, int delay, int id)
         {
 
         }
-
+        /// <summary>
+        /// 清除本地通知
+        /// </summary>
+        /// <param name="id">本地通知唯一标识，和PushNotification方法参数id对应</param>
         public virtual void CleanNotification(int id)
         {
 
         }
+        /// <summary>
+        /// 清除全部本地通知
+        /// </summary>
         public virtual void CleanAllNotification()
         {
 
         }
+        /// <summary>
+        /// 远程推送,如需使用该功能需单独申请参数
+        /// </summary>
+        /// <param name="ip">远程推送服务器ip</param>
+        /// <param name="port">远程推送服务器端口</param>
+        /// <param name="gameRoleId">角色id</param>
         public virtual void UdpPush(string ip, string port, string gameRoleId)
         {
 
         }
+
+        /// <summary>
+        /// 开始录音，如需使用该功能需单独申请参数
+        /// </summary>
+        /// <param name="serverURL">录音完毕后语音存储服务器url</param>
+        /// <param name="bit">语音录音品质，低品质1，中品质2，高品质3</param>
+        /// <param name="recordMaxTime">录音最大时长，超过该时长自动结束录音,单位毫秒</param>
         public virtual void StartRecordVideo(string serverURL, string bit, long recordMaxTime)
         {
 
         }
+        /// <summary>
+        /// 结束录音
+        /// </summary>
+        /// <param name="stopRecordVideoListener">返回录音结果<see cref="ResultVideoRecord"/></param>
         public virtual void StopRecordVideo(OnFinish<ResultVideoRecord> stopRecordVideoListener)
         {
             this.stopRecordVideoListener = stopRecordVideoListener;
         }
+        /// <summary>
+        /// 播放录音
+        /// </summary>
+        /// <param name="videoUrl">录音存放url</param>
+        /// <param name="playVideoListener">返回播放录音结果<see cref="Result"/></param>
         public virtual void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener)
         {
             this.playVideoListener = playVideoListener;
         }
 
+        /// <summary>
+        /// 账号登录
+        /// </summary>
+        /// <param name="loginListener">返回账号登录结果<see cref="UserInfo"/></param>
         public virtual void Login(OnFinish<UserInfo> loginListener)
         {
             this.loginListener = loginListener;
         }
+
+        /// <summary>
+        /// 账号切换
+        /// </summary>
+        /// <param name="switchAccountListener">返回账号切换结果<see cref="UserInfo"/></param>
         public virtual void SwitchAccount(OnFinish<UserInfo> switchAccountListener)
         {
             this.switchAccountListener = switchAccountListener;
         }
 
+        /// <summary>
+        /// 账号绑定
+        /// </summary>
+        /// <param name="startBindListener">返回账号绑定结果<see cref="ResultBind"/></param>
         public virtual void StartBind(OnFinish<ResultBind> startBindListener)
         {
             this.startBindListener = startBindListener;
         }
 
-
+        /// <summary>
+        /// 账号注销
+        /// </summary>
+        /// <param name="logoutListener">返回账号注销结果<see cref="Result"/></param>
         public virtual void Logout(OnFinish<Result> logoutListener)
         {
             this.logoutListener = logoutListener;
         }
+        /// <summary>
+        /// 渠道是否有退出框
+        /// </summary>
+        /// <returns>true表示渠道有退出框，false表示渠道没有退出框此时游戏需要创建退出框</returns>
         public virtual bool HasExitDialog()
         {
             return false;
         }
 
+        /// <summary>
+        /// 上报角色信息
+        /// </summary>
+        /// <param name="gameRoleInfo">角色信息</param>
+        /// <returns></returns>
         public virtual string UploadGameRoleInfo(GameRoleInfo gameRoleInfo)
         {
             JSONClass json = new JSONClass();
@@ -724,6 +875,13 @@ namespace honorsdk
             json.Add("extra", gameRoleInfo.extra);
             return json.ToString();
         }
+
+        /// <summary>
+        /// 支付
+        /// </summary>
+        /// <param name="orderInfo">订单信息</param>
+        /// <param name="payListener">返回支付结果<see cref="ResultPay"/></param>
+        /// <returns></returns>
         public virtual string Pay(OrderInfo orderInfo, OnFinish<ResultPay> payListener)
         {
             this.payListener = payListener;
@@ -737,74 +895,135 @@ namespace honorsdk
             return json.ToString();
         }
 
+        /// <summary>
+        /// 退出游戏
+        /// </summary>
+        /// <param name="exitListener">返回退出结果<see cref="Result"/></param>
         public virtual void Exit(OnFinish<Result> exitListener)
         {
             this.exitListener = exitListener;
         }
-        public virtual void GetNoticeList(string serverId, string language, String type, OnFinish<NoticeList> getNoticeListListener)
+
+        /// <summary>
+        /// 获取公告列表
+        /// </summary>
+        /// <param name="serverId">服务器id(可选)</param>
+        /// <param name="language">公告语言类型(可选) 例:中文zh,英语en</param>
+        /// <param name="type">公告类型(可选) (0普通1活动2更新3跑马灯4登录5登出)</param>
+        /// <param name="getNoticeListListener"></param>
+        public virtual void GetNoticeList(OnFinish<NoticeList> getNoticeListListener,string serverId="", string language = "", string type = "")
         {
             this.getNoticeListListener = getNoticeListListener;
         }
 
+        /// <summary>
+        /// 获取服务器列表
+        /// </summary>
+        /// <param name="getServerListListener">返回服务器列表<see cref="ServerList"/></param>
         public virtual void GetServerList(OnFinish<ServerList> getServerListListener)
         {
             this.getServerListListener = getServerListListener;
         }
-
-        public virtual void GetGoodsList(string serverId, string category, string currency, OnFinish<GoodsList> getGoodsListListener)
+        /// <summary>
+        /// 获取商品列表
+        /// </summary>
+        /// <param name="serverId">服务器id</param>
+        /// <param name="category">商品类型(可选)，逗号分隔，留空或不传表示所有类型)</param>
+        /// <param name="currency">币种过滤(可选)（将只返回符合币种条件的商品）</param>
+        /// <param name="getGoodsListListener">返回商品列表<see cref="GoodsList"/></param>
+        public virtual void GetGoodsList(OnFinish<GoodsList> getGoodsListListener,string serverId, string category = "", string currency="")
         {
             this.getGoodsListListener = getGoodsListListener;
         }
-
+        /// <summary>
+        /// 获取热更信息
+        /// </summary>
+        /// <param name="type">热更目录</param>
+        /// <param name="getDynamicUpdateListener">返回热更信息<see cref="ResultGetDynamic"/></param>
         public virtual void GetDynamicUpdate(string type, OnFinish<ResultGetDynamic> getDynamicUpdateListener)
         {           
             this.getDynamicUpdateListener = getDynamicUpdateListener;
         }
+        /// <summary>
+        /// 下载热更
+        /// </summary>
+        /// <param name="downDynamicUpdateListener">返回下载热更结果<see cref="ResultDownload"/></param>
         public virtual void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener)
         {
             this.downDynamicUpdateListener = downDynamicUpdateListener;
         }
 
+        /// <summary>
+        /// 删除所有热更资源
+        /// </summary>
         public virtual void RepairUpdateRes()
         {
 
         }
-
+        /// <summary>
+        /// 获取强更信息
+        /// </summary>
+        /// <param name="getForceUpdateListener">返回强更信息<see cref="ResultGetForce"/></param>
         public virtual void GetForceUpdate(OnFinish<ResultGetForce> getForceUpdateListener)
         {
             this.getForceUpdateListener = getForceUpdateListener;
         }
 
+        /// <summary>
+        /// 强更下载
+        /// </summary>
+        /// <param name="downForceUpdateListener">返回强更下载结果<see cref="ResultDownload"/></param>
         public virtual void DownForceUpdate(OnFinish<ResultDownload> downForceUpdateListener)
         {
             this.downForceUpdateListener =  downForceUpdateListener;
         }
-
+        /// <summary>
+        /// 是否需要obb下载，Android包上架google商店且包体大于100M才需要使用到obb下载功能
+        /// </summary>
+        /// <returns>true必须要下载，false需要下载</returns>
         public virtual bool HasObbUpdate()
         {
             return false;
         }
-
+        /// <summary>
+        /// 下载obb
+        /// </summary>
+        /// <param name="downObbUpdateListener">返回obb下载结果<see cref="ResultObbDownload"/></param>
         public virtual void DownObbUpdate(OnFinish<ResultObbDownload> downObbUpdateListener)
         {
             this.downObbUpdateListener = downObbUpdateListener;
         }
-
+        /// <summary>
+        /// obb下载中断时调用此方法继续下载
+        /// </summary>
         public virtual void ContinueUpdateObb()
         {
 
         }
+        /// <summary>
+        /// obb下载完成后重新加载obb
+        /// </summary>
         public virtual void ReloadObb()
         {
 
         }
-
+        /// <summary>
+        /// 获取渠道是否支持接口
+        /// </summary>
+        /// <param name="api">接口类型</param>
+        /// <returns>返回true标识支持，false标识不支持</returns>
         public virtual bool IsSupportApi(Api api)
         {
             return true;
         }
 
-
+        /// <summary>
+        /// 扩展方法 需要与Android联调
+        /// </summary>
+        /// <param name="functionName">扩展方法名称</param>
+        /// <param name="jsonParameter">扩展方法所需参数(可选)</param>
+        /// <param name="headName">处理标识确保(可选),不与已存在的HeadName冲突</param>
+        /// <param name="expandFunctionListener">返回处理结果(可选) <see cref="ResultExpand"/></param>
         public virtual void ExpandFunction(string functionName, string jsonParameter="",string headName = "",OnFinish<ResultExpand> expandFunctionListener = null)
         {
             if (headName != null && headName != ""&& !expandListeners.ContainsKey(headName))
@@ -813,20 +1032,33 @@ namespace honorsdk
             }
 
         }
-
+        /// <summary>
+        /// 获取耳机插入状态
+        /// </summary>
+        /// <param name="notifyWhenHeadsetChanged">当耳机状态发送改变时回调通知</param>
+        /// <param name="getHeadsetStateListener">返回耳机插入状态<see cref="ResultGetHeadsetState"/></param>
         public virtual void GetHeadsetState(bool notifyWhenHeadsetChanged,OnFinish<ResultGetHeadsetState> getHeadsetStateListener)
         {
             this.getHeadsetStateListener = getHeadsetStateListener;
         }
-
+        /// <summary>
+        /// 新手引导完调用
+        /// </summary>
         public virtual void SendGuideFinish()
         {
         }
-
+        /// <summary>
+        /// 获取ABTest
+        /// </summary>
+        /// <param name="getABTestVerListener">返回获取ABTest<see cref="ResultGetABTestVer"/></param>
         public virtual void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener)
         {
             this.getABTestVerListener = getABTestVerListener;
         }
+        /// <summary>
+        /// 获取手机适配文档
+        /// </summary>
+        /// <param name="getMobileAdapterListener">返回手机适配文档<see cref="ResultGetMobileAdapter"/></param>
         public virtual void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
         {
             this.getMobileAdapterListener = getMobileAdapterListener;

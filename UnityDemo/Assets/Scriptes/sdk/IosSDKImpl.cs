@@ -1,266 +1,216 @@
-﻿using honorsdk.SimpleJSON;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using UnityEngine;
+﻿using System.Runtime.InteropServices;
 
-namespace honorsdk
-{
-    class IosSDKImpl : HonorSDK
-    {
+namespace HonorSDK {
 
-        public IosSDKImpl()
-        {
-            
+    /// <summary>
+    /// 类说明：游戏调用IOS的接口
+    /// </summary>
+    class IosSdkImpl : HonorSDKImpl {
+
+        public IosSdkImpl() {
+
         }
-        protected override void Init()
-        {       
+        protected override void Init() {
             initConfig();
         }
 
 
-        protected override void SetGameObjectName(string gameObjectName)
-        {
+        protected override void SetGameObjectName(string gameObjectName) {
             setGameObjectName(gameObjectName);
         }
 
-        public override void Login(OnFinish<UserInfo> loginListener)
-        {
+        public override void Login(OnFinish<UserInfo> loginListener) {
             base.Login(loginListener);
             login();
         }
 
-        public override void GetAppInfo(OnFinish<AppInfo> appInfoListener)
-        {
+        public override void GetAppInfo(OnFinish<AppInfo> appInfoListener) {
             base.GetAppInfo(appInfoListener);
             getAppInfo();
         }
-        public override void GameStepInfo(string step, string type)
-        {
+        public override void GameStepInfo(string step, string type) {
             base.GameStepInfo(step, type);
             monitorGameStep(step, type);
         }
 
-        public override void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener)
-        {
+        public override void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener) {
             base.GetNotchScreenInfo(getNotchInfoListener);
             getNotchScreenInfo();
         }
 
-        public override void GetCountryCode(OnFinish<string> getCountryCodeListener)
-        {
-            base.GetCountryCode(getCountryCodeListener);
-            getCountryCode();
+        public override void GetCountryAndLanguage(OnFinish<Locale> getCountryCodeListener) {
+            base.GetCountryAndLanguage(getCountryCodeListener);
+            getCountryAndLanguage();
         }
 
-        public override void ReportError(string errorMsg, string type)
-        {
+        public override void ReportError(string errorMsg, string type) {
             base.ReportError(errorMsg);
             reportError(errorMsg, type);
         }
 
-        public override void GetMemory(OnFinish<MemoryInfo> getMemroyInfoListener)
-        {
+        public override void GetMemory(OnFinish<MemoryInfo> getMemroyInfoListener) {
             base.GetMemory(getMemroyInfoListener);
             getMemory();
         }
-        public override void GetBattery(OnFinish<BatteryInfo> getBatteryInfoListener)
-        {
+        public override void GetBattery(OnFinish<BatteryInfo> getBatteryInfoListener) {
             base.GetBattery(getBatteryInfoListener);
             getBattery();
         }
-        public override void TranslateContent(string srcContent, string targetLan, OnFinish<string> translateContentListener)
-        {
+        public override void TranslateContent(string srcContent, string targetLan, OnFinish<ResultTranslate> translateContentListener) {
             base.TranslateContent(srcContent, targetLan, translateContentListener);
             translateContent(srcContent, targetLan);
         }
-        public override void GetCpuAndGpu(OnFinish<CpuGpuInfo> getCpuAndGpuListener)
-        {
-            base.GetCpuAndGpu(getCpuAndGpuListener);            
+        public override void GetCpuAndGpu(OnFinish<CpuGpuInfo> getCpuAndGpuListener) {
+            base.GetCpuAndGpu(getCpuAndGpuListener);
         }
-        public override void PushNotification(string content, int delay, int id)
-        {
+        public override void PushNotification(string content, int delay, int id) {
             base.PushNotification(content, delay, id);
             pushNotification(content, delay, id);
         }
 
-        public override void CleanNotification(int id)
-        {
+        public override void CleanNotification(int id) {
             base.CleanNotification(id);
             cleanNotification(id);
         }
-        public override void CleanAllNotification()
-        {
+        public override void CleanAllNotification() {
             base.CleanAllNotification();
             cleanAllNotification();
         }
 
-        public override void UdpPush(string ip, string port, string gameRoleId)
-        {
-            base.UdpPush(ip, port, gameRoleId);          
+        public override void UdpPush(string ip, string port, string gameRoleId) {
+            base.UdpPush(ip, port, gameRoleId);
         }
 
-        public override void StartRecordVideo(string serverURL, string bit, long recordMaxTime)
-        {
+        public override void StartRecordVideo(string serverURL, string bit, long recordMaxTime) {
             base.StartRecordVideo(serverURL, bit, recordMaxTime);
             startRecordVideo(serverURL, bit, recordMaxTime);
         }
-        public override void StopRecordVideo(OnFinish<ResultVideoRecord> stopRecordVideoListener)
-        {
+        public override void StopRecordVideo(OnFinish<ResultVideoRecord> stopRecordVideoListener) {
             base.StopRecordVideo(stopRecordVideoListener);
             stopRecordVideo();
         }
-        public override void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener)
-        {
+        public override void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener) {
             base.PlayVideo(videoUrl, playVideoListener);
             playVideo(videoUrl);
         }
 
-        public override void SwitchAccount(OnFinish<UserInfo> switchAccountListener)
-        {
+        public override void SwitchAccount(OnFinish<UserInfo> switchAccountListener) {
             base.SwitchAccount(switchAccountListener);
             switchAccount();
         }
 
-        public override void StartBind(OnFinish<ResultBind> startBindListener)
-        {
+        public override void StartBind(OnFinish<ResultBind> startBindListener) {
             base.StartBind(startBindListener);
             startBind();
         }
 
-        public override void Logout(OnFinish<Result> logoutListener)
-        {
+        public override void Logout(OnFinish<Result> logoutListener) {
             base.Logout(logoutListener);
             logout();
         }
 
-        public override bool HasExitDialog()
-        {            
+        public override bool HasExitDialog() {
             return false;
         }
 
-        public override string UploadGameRoleInfo(GameRoleInfo gameRoleInfo)
-        {
+        public override string UploadGameRoleInfo(GameRoleInfo gameRoleInfo) {
             string gameRoleInfoStr = base.UploadGameRoleInfo(gameRoleInfo);
             uploadGameRoleInfo(gameRoleInfoStr);
             return gameRoleInfoStr;
         }
 
-        public override string Pay(OrderInfo orderInfo, OnFinish<ResultPay> payListener)
-        {
+        public override string Pay(OrderInfo orderInfo, OnFinish<ResultPay> payListener) {
             string orderInfoStr = base.Pay(orderInfo, payListener);
             pay(orderInfoStr);
             return orderInfoStr;
         }
 
-        public override void Exit(OnFinish<Result> exitListener)
-        {
-            base.Exit(exitListener);          
+        public override void Exit(OnFinish<Result> exitListener) {
+            base.Exit(exitListener);
         }
 
-        public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener,string serverId, string language,string country, string type)
-        {
-            base.GetNoticeList(getNoticeListListener,serverId, language, country,type);
+        public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener, string serverId, string language, string country, string type) {
+            base.GetNoticeList(getNoticeListListener, serverId, language, country, type);
             getNoticeList(serverId, language, country, type);
         }
 
-        public override void GetServerList(OnFinish<ServerList> getServerListListener)
-        {
+        public override void GetServerList(OnFinish<ServerList> getServerListListener) {
             base.GetServerList(getServerListListener);
             getServerList();
         }
 
-        public override void GetGoodsList(OnFinish<GoodsList> getGoodsListListener,string serverId, string category, string currency)
-        {
+        public override void GetGoodsList(OnFinish<GoodsList> getGoodsListListener, string serverId, string category, string currency) {
             base.GetGoodsList(getGoodsListListener, serverId, category, currency);
             getGoodsList(serverId, category, currency);
         }
 
-        public override void GetDynamicUpdate(string type, OnFinish<ResultGetDynamic> getDynamicUpdateListener)
-        {
+        public override void GetDynamicUpdate(string type, OnFinish<ResultGetDynamic> getDynamicUpdateListener) {
             base.GetDynamicUpdate(type, getDynamicUpdateListener);
             getDynamicUpdate(type);
         }
 
-        public override void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener)
-        {
+        public override void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener) {
             base.DownDynamicUpdate(downDynamicUpdateListener);
             downDynamicUpdate();
         }
 
-        public override void RepairUpdateRes()
-        {
+        public override void RepairUpdateRes() {
             base.RepairUpdateRes();
             repairUpdateRes();
         }
-        public override void GetForceUpdate(OnFinish<ResultGetForce> getForceUpdateListener)
-        {
+        public override void GetForceUpdate(OnFinish<ResultGetForce> getForceUpdateListener) {
             base.GetForceUpdate(getForceUpdateListener);
             getForceUpdate();
         }
 
-        public override void DownForceUpdate(OnFinish<ResultDownload> downForceUpdateListener)
-        {
+        public override void DownForceUpdate(OnFinish<ResultDownload> downForceUpdateListener) {
             base.DownForceUpdate(downForceUpdateListener);
             downForceUpdate();
         }
 
-        public override bool HasObbUpdate()
-        {
+        public override bool HasObbUpdate() {
             base.HasObbUpdate();
             return false;
         }
-        public override void DownObbUpdate(OnFinish<ResultObbDownload> downObbUpdateListener)
-        {
-            base.DownObbUpdate(downObbUpdateListener);           
+        public override void DownObbUpdate(OnFinish<ResultObbDownload> downObbUpdateListener) {
+            base.DownObbUpdate(downObbUpdateListener);
         }
 
-        public override void ContinueUpdateObb()
-        {
-            base.ContinueUpdateObb();            
+        public override void ContinueUpdateObb() {
+            base.ContinueUpdateObb();
         }
 
-        public override void ReloadObb()
-        {
-            base.ReloadObb();           
+        public override void ReloadObb() {
+            base.ReloadObb();
         }
 
-        public override void SetClipboard(string content)
-        {
-            base.SetClipboard(content);          
+        public override void SetClipboard(string content) {
+            base.SetClipboard(content);
         }
-        public override bool IsSupportApi(Api api)
-        {
-           base.IsSupportApi(api);
-           return true;
+        public override bool IsSupportApi(Api api) {
+            base.IsSupportApi(api);
+            return true;
         }
-        public override void ExpandFunction(string functionName, string jsonParameter, string headName , OnFinish<ResultExpand> expandFunctionListener)
-        {
-            base.ExpandFunction(functionName,jsonParameter, headName, expandFunctionListener);
+        public override void ExpandFunction(string functionName, string jsonParameter, string headName, OnFinish<ResultExpand> expandFunctionListener) {
+            base.ExpandFunction(functionName, jsonParameter, headName, expandFunctionListener);
             expandFunction(functionName, jsonParameter);
         }
-        public override void GetHeadsetState(bool notifyWhenHeadsetChanged, OnFinish<ResultGetHeadsetState> getHeadsetStateListener)
-        {
+        public override void GetHeadsetState(bool notifyWhenHeadsetChanged, OnFinish<ResultGetHeadsetState> getHeadsetStateListener) {
             base.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
             getHeadsetState(notifyWhenHeadsetChanged);
         }
 
-        public override void SendGuideFinish()
-        {
+        public override void SendGuideFinish() {
             base.SendGuideFinish();
             sendGuideFinish();
         }
 
-        public override void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener)
-        {
+        public override void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener) {
             base.GetABTestVer(getABTestVerListener);
             getABTestVer();
         }
-        public override void GetMobileAdapter(string url,OnFinish<ResultGetMobileAdapter> getMobileAdapterListener)
-        {
-            base.GetMobileAdapter(url,getMobileAdapterListener);          
+        public override void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener) {
+            base.GetMobileAdapter(getMobileAdapterListener);
         }
 
 
@@ -283,7 +233,7 @@ namespace honorsdk
         [DllImport("__Internal")]
         private static extern void getGoodsList(string serverId, string category, string currency);
         [DllImport("__Internal")]
-        private static extern void getNoticeList(string serverId, string language,string country, string type);
+        private static extern void getNoticeList(string serverId, string language, string country, string type);
         [DllImport("__Internal")]
         private static extern void translateContent(string srcContent, string targetLan);
         [DllImport("__Internal")]
@@ -305,7 +255,7 @@ namespace honorsdk
         [DllImport("__Internal")]
         private static extern void getMemory();
         [DllImport("__Internal")]
-        private static extern void getCountryCode();
+        private static extern void getCountryAndLanguage();
         [DllImport("__Internal")]
         private static extern void reportError(string errorMsg, string type);
         [DllImport("__Internal")]
@@ -336,8 +286,6 @@ namespace honorsdk
         private static extern void sendGuideFinish();
         [DllImport("__Internal")]
         private static extern void getABTestVer();
-
-
     }
 }
 

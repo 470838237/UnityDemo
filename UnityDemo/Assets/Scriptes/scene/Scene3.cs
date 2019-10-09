@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using honorsdk;
+using HonorSDK;
 using UnityEngine.UI;
 
 
@@ -22,7 +22,7 @@ public class Scene3 : BaseScene
 
     void OnEnable()
     {
-        HonorSDK.GetInstance().GetServerList(delegate(ServerList list)
+        HonorSDKImpl.GetInstance().GetServerList(delegate(ServerList list)
         {
          
         });
@@ -36,7 +36,7 @@ public class Scene3 : BaseScene
         
         exitView.onClick.AddListener(delegate ()
         {
-            if (HonorSDK.GetInstance().HasExitDialog())
+            if (HonorSDKImpl.GetInstance().HasExitDialog())
             {
                 Exit();
             }
@@ -78,14 +78,14 @@ public class Scene3 : BaseScene
 
     private void Bind()
     {
-        bool isSupportApi = HonorSDK.GetInstance().IsSupportApi(Api.BIND);
+        bool isSupportApi = HonorSDKImpl.GetInstance().IsSupportApi(Api.BIND);
         if (!isSupportApi)
         {
             Debug.Log("HonorSDK:StartBind.IsSupportApi = " + isSupportApi);
             return;
         }
 
-        HonorSDK.GetInstance().StartBind(delegate (ResultBind result)
+        HonorSDKImpl.GetInstance().StartBind(delegate (ResultBind result)
         {
             Debug.Log("HonorSDK:StartBind.success = " + result.success);
             if (result.success)
@@ -103,7 +103,7 @@ public class Scene3 : BaseScene
 
     public static void Exit()
     {
-        HonorSDK.GetInstance().Exit(delegate (Result result)
+        HonorSDKImpl.GetInstance().Exit(delegate (Result result)
         {
             Debug.Log("HonorSDK:Exit.success = " + result.success);
             if (!result.success)
@@ -113,14 +113,14 @@ public class Scene3 : BaseScene
 
     private void SwitchAccount()
     {
-        bool isSupportApi = HonorSDK.GetInstance().IsSupportApi(Api.SWITCH_ACCOUNT);
+        bool isSupportApi = HonorSDKImpl.GetInstance().IsSupportApi(Api.SWITCH_ACCOUNT);
         if (!isSupportApi)
         {
             Debug.Log("HonorSDK:SwitchAccount.IsSupportApi = " + isSupportApi);
             return;
         }
         //判断是否支持切换账号
-        HonorSDK.GetInstance().SwitchAccount(delegate (UserInfo userInfo)
+        HonorSDKImpl.GetInstance().SwitchAccount(delegate (UserInfo userInfo)
         {
             Debug.Log("HonorSDK:SwitchAccount.success = " + userInfo.success);
             if (userInfo.success)
@@ -142,13 +142,13 @@ public class Scene3 : BaseScene
 
     private void Logout()
     {
-        bool isSupportApi = HonorSDK.GetInstance().IsSupportApi(Api.LOGOUT);
+        bool isSupportApi = HonorSDKImpl.GetInstance().IsSupportApi(Api.LOGOUT);
         if (!isSupportApi)
         {
             Debug.Log("HonorSDK:Logout.IsSupportApi = " + isSupportApi);
             return;
         }
-        HonorSDK.GetInstance().Logout(delegate (Result result)
+        HonorSDKImpl.GetInstance().Logout(delegate (Result result)
         {
             Debug.Log("HonorSDK:Logout.success = " + result.success);
             if (result.success)
@@ -176,7 +176,7 @@ public class Scene3 : BaseScene
         orderInfo.roleLevel = 1;
         orderInfo.roleId = "1";
         orderInfo.goodsId = currentGoodsId;
-        HonorSDK.GetInstance().Pay(orderInfo, delegate (ResultPay result)
+        HonorSDKImpl.GetInstance().Pay(orderInfo, delegate (ResultPay result)
         {
             Debug.Log("HonorSDK:Pay.success = " + result.success);
 
@@ -204,12 +204,12 @@ public class Scene3 : BaseScene
         gameRoleInfo.type = GameRoleInfo.TYPE_ENTER_GAME;
         gameRoleInfo.extra = "";
         gameRoleInfo.lastUpdate = (int)CurrentTimeMillis();
-        HonorSDK.GetInstance().UploadGameRoleInfo(gameRoleInfo);
+        HonorSDKImpl.GetInstance().UploadGameRoleInfo(gameRoleInfo);
     }
 
     private void getGoodsList()
     {
-        HonorSDK.GetInstance().GetGoodsList(delegate (GoodsList result)
+        HonorSDKImpl.GetInstance().GetGoodsList(delegate (GoodsList result)
          {
              Debug.Log("HonorSDK:GetGoodsList.success = " + result.success);
              if (result.success)
@@ -242,7 +242,7 @@ public class Scene3 : BaseScene
              {
                  Debug.Log("HonorSDK:GetGoodsList.message = " + result.message);
              }
-         }, Scene2.currentServerId, "", "");
+         },Scene2.currentServerId, "", "");
 
     }
 

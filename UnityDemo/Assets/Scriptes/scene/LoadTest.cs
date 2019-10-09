@@ -16,7 +16,7 @@ public class LoadTest : MonoBehaviour {
 
     private Transform root;
 
-    public honorsdk.HonorSDKGameObject sdkObj;
+    public HonorSDK.HonorSDKGameObject sdkObj;
 
     private BaseScene curScene;
 

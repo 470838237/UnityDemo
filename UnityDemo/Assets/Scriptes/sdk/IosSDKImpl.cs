@@ -213,7 +213,15 @@ namespace HonorSDK {
             base.GetMobileAdapter(getMobileAdapterListener);
         }
 
+        public override void StartNewGame(OnFinish<UserInfo> startNewGameListener)
+        {
+            base.StartNewGame(startNewGameListener);
+            startNewGame();
+        }
 
+
+        [DllImport("__Internal")]
+        private static extern void startNewGame();
         [DllImport("__Internal")]
         private static extern void initConfig();
         [DllImport("__Internal")]

@@ -227,5 +227,17 @@ namespace HonorSDK {
             base.GetMobileAdapter(getMobileAdapterListener);
             currentActivity.Call("getMobileAdapter");
         }
+
+        public override string GetResFilePath()
+        {
+            base.GetResFilePath();
+            return currentActivity.Call<string>("getResFilePath");        
+        }
+
+        public override void StartNewGame(OnFinish<UserInfo> startNewGameListener)
+        {
+            base.StartNewGame(startNewGameListener);
+            currentActivity.Call("startNewGame");        
+        }
     }
 }

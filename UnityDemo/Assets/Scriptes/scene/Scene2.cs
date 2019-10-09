@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using honorsdk;
+using HonorSDK;
 using UnityEngine.UI;
 
 public class Scene2 : BaseScene
@@ -65,7 +65,7 @@ public class Scene2 : BaseScene
 
     public void GetServerList()
     {
-        HonorSDK.GetInstance().GetServerList(delegate (ServerList result)
+        HonorSDKImpl.GetInstance().GetServerList(delegate (ServerList result)
         {
 
             Debug.Log("HonorSDK:GetServerList.success = " + result.success);

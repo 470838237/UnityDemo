@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using honorsdk;
+using HonorSDK;
 using UnityEngine.SceneManagement;
 
 public class Scene1 : BaseScene
@@ -23,12 +23,19 @@ public class Scene1 : BaseScene
 
     private void Init()
     {
-        HonorSDK.GetInstance().Init(LoadTest.Instance.sdkObj, delegate (ResultInit initResult)
+        HonorSDKImpl.GetInstance().Init(LoadTest.Instance.sdkObj, delegate (ResultInit initResult)
         {
             Debug.Log("HonorSDK:Init.success = " + initResult.success
                 + ",message =" + initResult.message
                 );
             InitFinish();
+
+
+            string url = initResult.getCustomParameter("mobileAdapterKey");
+
+            HonorSDKImpl.GetInstance().GetMobileAdapter(url);
+
+
         });
     }
 
@@ -45,10 +52,14 @@ public class Scene1 : BaseScene
         GetDynamicUpdate();
         GetNoticeList();
     }
-
+    private void GetABTest()
+    {
+        HonorSDKImpl.GetInstance().GetABTestVer(delegate(ResultGetABTestVer result) {
+        });
+    }
     private void GetAppInfo()
     {
-        HonorSDK.GetInstance().GetAppInfo(delegate (AppInfo appInfo)
+        HonorSDKImpl.GetInstance().GetAppInfo(delegate (AppInfo appInfo)
         {
             Debug.Log("HonorSDK:GetAppInfo.deviceId = " + appInfo.deviceId
                + ",appName =" + appInfo.appName
@@ -60,7 +71,15 @@ public class Scene1 : BaseScene
     }
     private void GetBattery()
     {
-        HonorSDK.GetInstance().GetBattery(delegate (BatteryInfo batteryInfo)
+
+     
+
+        
+
+
+
+
+        HonorSDKImpl.GetInstance().GetBattery(delegate (BatteryInfo batteryInfo)
         {
             Debug.Log("HonorSDK:GetBattery.scale = " + batteryInfo.scale
                + ",level =" + batteryInfo.level
@@ -70,12 +89,12 @@ public class Scene1 : BaseScene
 
     private void GameStepInfo()
     {
-        HonorSDK.GetInstance().GameStepInfo("-10086","");
+        HonorSDKImpl.GetInstance().GameStepInfo("-10086","");
     }
 
     private void GetCountryCode()
     {
-        HonorSDK.GetInstance().GetCountryCode(delegate (string countryCode)
+        HonorSDKImpl.GetInstance().GetCountryAndLanguage(delegate (Locale countryCode)
         {
             Debug.Log("HonorSDK:GetCountryCode.countryCode = " + countryCode
                );
@@ -85,7 +104,7 @@ public class Scene1 : BaseScene
 
     private void GetCpuAndGpu()
     {
-        HonorSDK.GetInstance().GetCpuAndGpu(delegate (CpuGpuInfo cpuGpuInfo)
+        HonorSDKImpl.GetInstance().GetCpuAndGpu(delegate (CpuGpuInfo cpuGpuInfo)
         {
             Debug.Log("HonorSDK:GetCpuAndGpu.cpu = " + cpuGpuInfo.cpu
                 + ",cpuFreq =" + cpuGpuInfo.cpuFreq
@@ -97,7 +116,7 @@ public class Scene1 : BaseScene
 
     private void GetMemory()
     {
-        HonorSDK.GetInstance().GetMemory(delegate (MemoryInfo memoryInfo)
+        HonorSDKImpl.GetInstance().GetMemory(delegate (MemoryInfo memoryInfo)
         {
             Debug.Log("HonorSDK:GetMemory.availMem = " + memoryInfo.availMem
                + ",totalMem =" + memoryInfo.totalMem
@@ -107,17 +126,17 @@ public class Scene1 : BaseScene
 
     private void ReportError()
     {
-        HonorSDK.GetInstance().ReportError("HonorSDK:Test ReportError");
+        HonorSDKImpl.GetInstance().ReportError("HonorSDK:Test ReportError");
     }
 
     private void PushNotification()
     {
-        HonorSDK.GetInstance().PushNotification("HonorSDK:Test PushNotification", 10, 10086);
+        HonorSDKImpl.GetInstance().PushNotification("HonorSDK:Test PushNotification", 10, 10086);
     }
 
     private void GetNoticeList()
     {
-        HonorSDK.GetInstance().GetNoticeList( delegate (NoticeList result)
+        HonorSDKImpl.GetInstance().GetNoticeList(delegate (NoticeList result)
         {
             Debug.Log("HonorSDK:GetNoticeList.success = " + result.success);
             if (result.success)
@@ -153,7 +172,7 @@ public class Scene1 : BaseScene
     private void GetForceUpdate()
     {
 
-        HonorSDK.GetInstance().GetForceUpdate(delegate(ResultGetForce result)
+        HonorSDKImpl.GetInstance().GetForceUpdate(delegate(ResultGetForce result)
         {
             Debug.Log("HonorSDK:GetForceUpdate.success = " + result.success);
             if (result.success)
@@ -178,7 +197,7 @@ public class Scene1 : BaseScene
 
     private void DownForceUpdate()
     {
-        HonorSDK.GetInstance().DownForceUpdate(delegate (ResultDownload result)
+        HonorSDKImpl.GetInstance().DownForceUpdate(delegate (ResultDownload result)
         {
             Debug.Log("HonorSDK:DownForceUpdate.success = " + result.success);
             if (result.success)
@@ -197,7 +216,7 @@ public class Scene1 : BaseScene
 
     private void GetObbUpdate()
     {
-        bool hasObbUpdtae = HonorSDK.GetInstance().HasObbUpdate();
+        bool hasObbUpdtae = HonorSDKImpl.GetInstance().HasObbUpdate();
         Debug.Log("HonorSDK:HasObbUpdate.hasObbUpdtae = " + hasObbUpdtae);
         if (hasObbUpdtae)
         {
@@ -211,7 +230,7 @@ public class Scene1 : BaseScene
 
     private void DownObbUpdate()
     {
-        HonorSDK.GetInstance().DownObbUpdate(delegate(ResultObbDownload result)
+        HonorSDKImpl.GetInstance().DownObbUpdate(delegate(ResultObbDownload result)
         {
             Debug.Log("HonorSDK:DownObbUpdate.stateChanged = " + result.stateChanged);
             if (result.stateChanged)
@@ -219,11 +238,11 @@ public class Scene1 : BaseScene
                 Debug.Log("HonorSDK:DownObbUpdate.state = " + result.state);
                 if (ResultObbDownload.STATE_COMPLETED.Equals(result.state))
                 {
-                    HonorSDK.GetInstance().ReloadObb();
+                    HonorSDKImpl.GetInstance().ReloadObb();
                 }
                 else
                 {
-                    HonorSDK.GetInstance().ContinueUpdateObb();
+                    HonorSDKImpl.GetInstance().ContinueUpdateObb();
                 }
             }
             else
@@ -239,7 +258,7 @@ public class Scene1 : BaseScene
 
     private void GetDynamicUpdate()
     {
-        HonorSDK.GetInstance().GetDynamicUpdate("GameRes", delegate (ResultGetDynamic result)
+        HonorSDKImpl.GetInstance().GetDynamicUpdate("GameRes", delegate (ResultGetDynamic result)
         {
             Debug.Log("HonorSDK:GetDynamicUpdate.success = " + result.success);
             if (result.success)
@@ -266,7 +285,7 @@ public class Scene1 : BaseScene
 
     private void DownDynamicUpdate()
     {
-        HonorSDK.GetInstance().DownDynamicUpdate(delegate(ResultDownload result)
+        HonorSDKImpl.GetInstance().DownDynamicUpdate(delegate(ResultDownload result)
         {
             Debug.Log("HonorSDK:DownDynamicUpdate.success = " + result.success);
             if (result.success)
@@ -291,8 +310,8 @@ public class Scene1 : BaseScene
 
     public void Login()
     {
-        
-        HonorSDK.GetInstance().Login(delegate (UserInfo userInfo)
+
+        HonorSDKImpl.GetInstance().Login(delegate (UserInfo userInfo)
         {
             Debug.Log("HonorSDK:Login.success = " + userInfo.success);
             if (userInfo.success)

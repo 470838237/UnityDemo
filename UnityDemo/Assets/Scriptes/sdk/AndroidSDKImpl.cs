@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace HonorSDK {
@@ -228,16 +229,80 @@ namespace HonorSDK {
             currentActivity.Call("getMobileAdapter");
         }
 
-        public override string GetResFilePath()
-        {
-            base.GetResFilePath();
-            return currentActivity.Call<string>("getResFilePath");        
-        }
 
         public override void StartNewGame(OnFinish<UserInfo> startNewGameListener)
         {
             base.StartNewGame(startNewGameListener);
             currentActivity.Call("startNewGame");        
+        }
+
+        public override DiskInfo GetDiskInfo()
+        {
+            base.GetDiskInfo();
+            string result =  currentActivity.Call<string>("getDiskInfo");
+            DiskInfo info = new DiskInfo();
+            JSONNode node = JSONNode.Parse(result);
+            info.totalSize = node["totalSize"].AsLong;
+            info.availSize = node["availSize"].AsLong;
+            return info;
+        }
+
+        public override string GetResFilePath()
+        {
+            base.GetResFilePath();
+            return currentActivity.Call<string>("getResFilePath");
+        }
+
+
+        public override Dictionary<string, long> GetAllResCrc()
+        {
+            base.GetAllResCrc();
+            string result = currentActivity.Call<string>("getAllResCrc");
+            string[] results = result.Split(new string[]{ "," }, StringSplitOptions.None);
+            Dictionary<string, long> crcs = new Dictionary<string, long>();
+            for (int i = 0; i < results.Length; i += 2)
+            {
+                long crc;
+                if (!long.TryParse(results[i + 1], out crc))
+                    crc = 0;
+                crcs.Add(results[i], crc);
+            }
+            return crcs;
+        }
+
+        public override long GetResCrc(string path)
+        {
+            base.GetResCrc(path);
+            return currentActivity.Call<long>("getResCrc");          
+        }
+
+        public override void PauseDownload()
+        {
+            base.PauseDownload();
+            currentActivity.Call("pauseDownload");
+        }
+        public override void ResumeDownload()
+        {
+            base.ResumeDownload();
+            currentActivity.Call("resumeDownload");
+        }
+
+        public override void RequestDownload(int[] seqIds, string[] paths, int[] offsets, int[] lengths, uint[] crcs, int[] fileIds)
+        {
+            base.RequestDownload(seqIds, paths, offsets, lengths, crcs, fileIds);
+            currentActivity.Call("requestDownload", seqIds, paths, offsets, lengths, crcs, fileIds);
+        }
+
+        public override void RegisterDownloadListener(OnFinish<DownloadInfo> downloadListener)
+        {
+            base.RegisterDownloadListener(downloadListener);
+            currentActivity.Call("registerDownloadListener");
+        }
+
+        public override string GetGameResUrl()
+        {
+            base.GetGameResUrl();
+            return currentActivity.Call<string>("getGameResUrl");
         }
     }
 }

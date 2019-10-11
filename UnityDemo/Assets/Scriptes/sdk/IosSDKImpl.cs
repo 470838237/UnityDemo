@@ -5,7 +5,7 @@ namespace HonorSDK {
     /// <summary>
     /// 类说明：游戏调用IOS的接口
     /// </summary>
-    class IosSdkImpl : HonorSDKImpl {
+    class IosSdkImpl : SDKManager {
 
         public IosSdkImpl() {
 
@@ -56,13 +56,6 @@ namespace HonorSDK {
             base.GetBattery(getBatteryInfoListener);
             getBattery();
         }
-        public override void TranslateContent(string srcContent, string targetLan, OnFinish<ResultTranslate> translateContentListener) {
-            base.TranslateContent(srcContent, targetLan, translateContentListener);
-            translateContent(srcContent, targetLan);
-        }
-        public override void GetCpuAndGpu(OnFinish<CpuGpuInfo> getCpuAndGpuListener) {
-            base.GetCpuAndGpu(getCpuAndGpuListener);
-        }
         public override void PushNotification(string content, int delay, int id) {
             base.PushNotification(content, delay, id);
             pushNotification(content, delay, id);
@@ -76,24 +69,7 @@ namespace HonorSDK {
             base.CleanAllNotification();
             cleanAllNotification();
         }
-
-        public override void UdpPush(string ip, string port, string gameRoleId) {
-            base.UdpPush(ip, port, gameRoleId);
-        }
-
-        public override void StartRecordVideo(string serverURL, string bit, long recordMaxTime) {
-            base.StartRecordVideo(serverURL, bit, recordMaxTime);
-            startRecordVideo(serverURL, bit, recordMaxTime);
-        }
-        public override void StopRecordVideo(OnFinish<ResultVideoRecord> stopRecordVideoListener) {
-            base.StopRecordVideo(stopRecordVideoListener);
-            stopRecordVideo();
-        }
-        public override void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener) {
-            base.PlayVideo(videoUrl, playVideoListener);
-            playVideo(videoUrl);
-        }
-
+   
         public override void SwitchAccount(OnFinish<UserInfo> switchAccountListener) {
             base.SwitchAccount(switchAccountListener);
             switchAccount();
@@ -143,47 +119,6 @@ namespace HonorSDK {
             base.GetGoodsList(getGoodsListListener, serverId, category, currency);
             getGoodsList(serverId, category, currency);
         }
-
-        public override void GetDynamicUpdate(string roorDir, OnFinish<ResultGetDynamic> getDynamicUpdateListener) {
-            base.GetDynamicUpdate(roorDir, getDynamicUpdateListener);
-            getDynamicUpdate(roorDir);
-        }
-
-        public override void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener) {
-            base.DownDynamicUpdate(downDynamicUpdateListener);
-            downDynamicUpdate();
-        }
-
-        public override void RepairUpdateRes() {
-            base.RepairUpdateRes();
-            repairUpdateRes();
-        }
-        public override void GetForceUpdate(OnFinish<ResultGetForce> getForceUpdateListener) {
-            base.GetForceUpdate(getForceUpdateListener);
-            getForceUpdate();
-        }
-
-        public override void DownForceUpdate(OnFinish<ResultDownload> downForceUpdateListener) {
-            base.DownForceUpdate(downForceUpdateListener);
-            downForceUpdate();
-        }
-
-        public override bool HasObbUpdate() {
-            base.HasObbUpdate();
-            return false;
-        }
-        public override void DownObbUpdate(OnFinish<ResultObbDownload> downObbUpdateListener) {
-            base.DownObbUpdate(downObbUpdateListener);
-        }
-
-        public override void ContinueUpdateObb() {
-            base.ContinueUpdateObb();
-        }
-
-        public override void ReloadObb() {
-            base.ReloadObb();
-        }
-
         public override void SetClipboard(string content) {
             base.SetClipboard(content);
         }
@@ -195,23 +130,12 @@ namespace HonorSDK {
             base.ExpandFunction(functionName, jsonParameter, headName, expandFunctionListener);
             expandFunction(functionName, jsonParameter);
         }
-        public override void GetHeadsetState(bool notifyWhenHeadsetChanged, OnFinish<ResultGetHeadsetState> getHeadsetStateListener) {
-            base.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
-            getHeadsetState(notifyWhenHeadsetChanged);
-        }
 
         public override void SendGuideFinish() {
             base.SendGuideFinish();
             sendGuideFinish();
         }
 
-        public override void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener) {
-            base.GetABTestVer(getABTestVerListener);
-            getABTestVer();
-        }
-        public override void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener) {
-            base.GetMobileAdapter(getMobileAdapterListener);
-        }
 
         public override void StartNewGame(OnFinish<UserInfo> startNewGameListener) {
             base.StartNewGame(startNewGameListener);
@@ -242,21 +166,9 @@ namespace HonorSDK {
         [DllImport("__Internal")]
         private static extern void getNoticeList(string serverId, string language, string country, string type);
         [DllImport("__Internal")]
-        private static extern void translateContent(string srcContent, string targetLan);
-        [DllImport("__Internal")]
         private static extern void monitorGameStep(string step, string type);
         [DllImport("__Internal")]
         private static extern void uploadExceptionLog();//暂未实现
-        [DllImport("__Internal")]
-        private static extern void getForceUpdate();
-        [DllImport("__Internal")]
-        private static extern void downForceUpdate();
-        [DllImport("__Internal")]
-        private static extern void getDynamicUpdate(string type);
-        [DllImport("__Internal")]
-        private static extern void downDynamicUpdate();
-        [DllImport("__Internal")]
-        private static extern void repairUpdateRes();//暂未实现
         [DllImport("__Internal")]
         private static extern void getBattery();
         [DllImport("__Internal")]
@@ -278,21 +190,12 @@ namespace HonorSDK {
         [DllImport("__Internal")]
         private static extern void cleanAllNotification();
         [DllImport("__Internal")]
-        private static extern void startRecordVideo(string videoUrl, string quality, long maxTime);
-        [DllImport("__Internal")]
-        private static extern void stopRecordVideo();
-        [DllImport("__Internal")]
-        private static extern void playVideo(string videoUrl);
-        [DllImport("__Internal")]
         private static extern void setGameObjectName(string gameObjectName);
         [DllImport("__Internal")]
         private static extern void expandFunction(string functionName, string jsonParameter);
         [DllImport("__Internal")]
-        private static extern void getHeadsetState(bool notifyWhenHeadsetChanged);
-        [DllImport("__Internal")]
         private static extern void sendGuideFinish();
-        [DllImport("__Internal")]
-        private static extern void getABTestVer();
+
     }
 }
 

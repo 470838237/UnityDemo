@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HonorSDK {
@@ -7,7 +6,7 @@ namespace HonorSDK {
     /// <summary>
     /// 类说明：游戏调用Android的接口
     /// </summary>
-    class AndroidSdkImpl : HonorSDKImpl {
+    class AndroidSdkImpl : SDKManager {
 
         AndroidJavaObject currentActivity;
 
@@ -18,12 +17,9 @@ namespace HonorSDK {
         protected override void Init() {
             currentActivity.Call("init");
         }
-
-
         protected override void SetGameObjectName(string gameObjectName) {
             currentActivity.Call("setGameObjectName", gameObjectName);
         }
-
         public override void Login(OnFinish<UserInfo> loginListener) {
             base.Login(loginListener);
             currentActivity.Call("login");
@@ -63,14 +59,7 @@ namespace HonorSDK {
             base.GetBattery(getBatteryInfoListener);
             currentActivity.Call("getBattery");
         }
-        public override void TranslateContent(string srcContent, string targetLan, OnFinish<ResultTranslate> translateContentListener) {
-            base.TranslateContent(srcContent, targetLan, translateContentListener);
-            currentActivity.Call("translateContent", srcContent, targetLan);
-        }
-        public override void GetCpuAndGpu(OnFinish<CpuGpuInfo> getCpuAndGpuListener) {
-            base.GetCpuAndGpu(getCpuAndGpuListener);
-            currentActivity.Call("getCpuAndGpu");
-        }
+
         public override void PushNotification(string content, int delay, int id) {
             base.PushNotification(content, delay, id);
             currentActivity.Call("pushNotification", content, delay, id);
@@ -83,24 +72,6 @@ namespace HonorSDK {
         public override void CleanAllNotification() {
             base.CleanAllNotification();
             currentActivity.Call("cleanAllNotification");
-        }
-
-        public override void UdpPush(string ip, string port, string gameRoleId) {
-            base.UdpPush(ip, port, gameRoleId);
-            currentActivity.Call("udpPush", ip, port, gameRoleId);
-        }
-
-        public override void StartRecordVideo(string serverURL, string bit, long recordMaxTime) {
-            base.StartRecordVideo(serverURL, bit, recordMaxTime);
-            currentActivity.Call("startRecordVideo", serverURL, bit, recordMaxTime);
-        }
-        public override void StopRecordVideo(OnFinish<ResultVideoRecord> stopRecordVideoListener) {
-            base.StopRecordVideo(stopRecordVideoListener);
-            currentActivity.Call("stopRecordVideo");
-        }
-        public override void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener) {
-            base.PlayVideo(videoUrl, playVideoListener);
-            currentActivity.Call("playVideo", videoUrl);
         }
 
         public override void SwitchAccount(OnFinish<UserInfo> switchAccountListener) {
@@ -153,50 +124,6 @@ namespace HonorSDK {
             base.GetGoodsList(getGoodsListListener, serverId, category, currency);
             currentActivity.Call("getGoodsList", serverId, category, currency);
         }
-
-        public override void GetDynamicUpdate(string rootDir, OnFinish<ResultGetDynamic> getDynamicUpdateListener) {
-            base.GetDynamicUpdate(rootDir, getDynamicUpdateListener);
-            currentActivity.Call("getDynamicUpdate", rootDir);
-        }
-
-        public override void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener) {
-            base.DownDynamicUpdate(downDynamicUpdateListener);
-            currentActivity.Call("downDynamicUpdate");
-        }
-
-        public override void RepairUpdateRes() {
-            base.RepairUpdateRes();
-            currentActivity.Call("repairUpdateRes");
-        }
-        public override void GetForceUpdate(OnFinish<ResultGetForce> getForceUpdateListener) {
-            base.GetForceUpdate(getForceUpdateListener);
-            currentActivity.Call("getForceUpdate");
-        }
-
-        public override void DownForceUpdate(OnFinish<ResultDownload> downForceUpdateListener) {
-            base.DownForceUpdate(downForceUpdateListener);
-            currentActivity.Call("downForceUpdate");
-        }
-
-        public override bool HasObbUpdate() {
-            base.HasObbUpdate();
-            return currentActivity.Call<bool>("hasObbUpdate");
-        }
-        public override void DownObbUpdate(OnFinish<ResultObbDownload> downObbUpdateListener) {
-            base.DownObbUpdate(downObbUpdateListener);
-            currentActivity.Call("downObbUpdate");
-        }
-
-        public override void ContinueUpdateObb() {
-            base.ContinueUpdateObb();
-            currentActivity.Call("continueUpdateObb");
-        }
-
-        public override void ReloadObb() {
-            base.ReloadObb();
-            currentActivity.Call("reloadObb");
-        }
-
         public override void SetClipboard(string content) {
             base.SetClipboard(content);
             currentActivity.Call("setClipboard");
@@ -210,100 +137,16 @@ namespace HonorSDK {
             base.ExpandFunction(functionName, jsonParameter, headName, expandFunctionListener);
             currentActivity.Call("expandFunction", functionName, jsonParameter, headName);
         }
-        public override void GetHeadsetState(bool notifyWhenHeadsetChanged, OnFinish<ResultGetHeadsetState> getHeadsetStateListener) {
-            base.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
-            currentActivity.Call("getHeadsetState", notifyWhenHeadsetChanged ? "true" : "false");
-        }
 
         public override void SendGuideFinish() {
             base.SendGuideFinish();
             currentActivity.Call("sendGuideFinish");
         }
 
-        public override void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener) {
-            base.GetABTestVer(getABTestVerListener);
-            currentActivity.Call("getABTestVer");
-        }
-        public override void GetMobileAdapter(OnFinish<ResultGetMobileAdapter> getMobileAdapterListener) {
-            base.GetMobileAdapter(getMobileAdapterListener);
-            currentActivity.Call("getMobileAdapter");
-        }
-
-
         public override void StartNewGame(OnFinish<UserInfo> startNewGameListener) {
             base.StartNewGame(startNewGameListener);
             currentActivity.Call("startNewGame");
         }
 
-        public override DiskInfo GetDiskInfo() {
-            base.GetDiskInfo();
-            string result = currentActivity.Call<string>("getDiskInfo");
-            DiskInfo info = new DiskInfo();
-            JSONNode node = JSONNode.Parse(result);
-            info.totalSize = node["totalSize"].AsLong;
-            info.availSize = node["availSize"].AsLong;
-            return info;
-        }
-
-        public override string GetResFilePath() {
-            base.GetResFilePath();
-            return currentActivity.Call<string>("getResFilePath");
-        }
-
-
-        public override Dictionary<string, long> GetAllResCrc() {
-            base.GetAllResCrc();
-            string result = currentActivity.Call<string>("getAllResCrc");
-            string[] results = result.Split(new string[] { "," }, StringSplitOptions.None);
-            Dictionary<string, long> crcs = new Dictionary<string, long>();
-            for (int i = 0; i < results.Length; i += 2) {
-                long crc;
-                if (!long.TryParse(results[i + 1], out crc))
-                    crc = 0;
-                crcs.Add(results[i], crc);
-            }
-            return crcs;
-        }
-
-        public override long GetResCrc(string path) {
-            base.GetResCrc(path);
-            return currentActivity.Call<long>("getResCrc");
-        }
-
-        public override void PauseDownload() {
-            base.PauseDownload();
-            currentActivity.Call("pauseDownload");
-        }
-        public override void ResumeDownload() {
-            base.ResumeDownload();
-            currentActivity.Call("resumeDownload");
-        }
-
-        public override void RequestDownload(int[] seqIds, string[] paths, int[] offsets, int[] lengths, long[] crcs, int[] fileIds) {
-            base.RequestDownload(seqIds, paths, offsets, lengths, crcs, fileIds);
-            currentActivity.Call("requestDownload", seqIds, paths, offsets, lengths, crcs, fileIds);
-        }
-
-        public override void RegisterDownloadListener(OnFinish<DownloadInfo> downloadListener) {
-            base.RegisterDownloadListener(downloadListener);
-            currentActivity.Call("registerDownloadListener");
-        }
-
-        public override string GetGameResUrl() {
-            base.GetGameResUrl();
-            return currentActivity.Call<string>("getGameResUrl");
-        }
-
-        public override string GetAuthInfo()
-        {
-            base.GetAuthInfo();
-            return currentActivity.Call<string>("getAuthInfo");          
-        }
-
-        public override void DownloadText(string url,OnFinish<ResultDownloadText> downloadTextListener)
-        {
-            base.DownloadText(url,downloadTextListener);
-            currentActivity.Call("downloadText", url);
-        }
     }
 }

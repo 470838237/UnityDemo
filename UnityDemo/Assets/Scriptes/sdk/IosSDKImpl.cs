@@ -144,9 +144,9 @@ namespace HonorSDK {
             getGoodsList(serverId, category, currency);
         }
 
-        public override void GetDynamicUpdate(string type, OnFinish<ResultGetDynamic> getDynamicUpdateListener) {
-            base.GetDynamicUpdate(type, getDynamicUpdateListener);
-            getDynamicUpdate(type);
+        public override void GetDynamicUpdate(string roorDir, OnFinish<ResultGetDynamic> getDynamicUpdateListener) {
+            base.GetDynamicUpdate(roorDir, getDynamicUpdateListener);
+            getDynamicUpdate(roorDir);
         }
 
         public override void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener) {
@@ -213,8 +213,7 @@ namespace HonorSDK {
             base.GetMobileAdapter(getMobileAdapterListener);
         }
 
-        public override void StartNewGame(OnFinish<UserInfo> startNewGameListener)
-        {
+        public override void StartNewGame(OnFinish<UserInfo> startNewGameListener) {
             base.StartNewGame(startNewGameListener);
             startNewGame();
         }

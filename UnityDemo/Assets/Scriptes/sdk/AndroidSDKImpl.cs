@@ -154,9 +154,9 @@ namespace HonorSDK {
             currentActivity.Call("getGoodsList", serverId, category, currency);
         }
 
-        public override void GetDynamicUpdate(string type, OnFinish<ResultGetDynamic> getDynamicUpdateListener) {
-            base.GetDynamicUpdate(type, getDynamicUpdateListener);
-            currentActivity.Call("getDynamicUpdate", type);
+        public override void GetDynamicUpdate(string rootDir, OnFinish<ResultGetDynamic> getDynamicUpdateListener) {
+            base.GetDynamicUpdate(rootDir, getDynamicUpdateListener);
+            currentActivity.Call("getDynamicUpdate", rootDir);
         }
 
         public override void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener) {
@@ -230,16 +230,14 @@ namespace HonorSDK {
         }
 
 
-        public override void StartNewGame(OnFinish<UserInfo> startNewGameListener)
-        {
+        public override void StartNewGame(OnFinish<UserInfo> startNewGameListener) {
             base.StartNewGame(startNewGameListener);
-            currentActivity.Call("startNewGame");        
+            currentActivity.Call("startNewGame");
         }
 
-        public override DiskInfo GetDiskInfo()
-        {
+        public override DiskInfo GetDiskInfo() {
             base.GetDiskInfo();
-            string result =  currentActivity.Call<string>("getDiskInfo");
+            string result = currentActivity.Call<string>("getDiskInfo");
             DiskInfo info = new DiskInfo();
             JSONNode node = JSONNode.Parse(result);
             info.totalSize = node["totalSize"].AsLong;
@@ -247,21 +245,18 @@ namespace HonorSDK {
             return info;
         }
 
-        public override string GetResFilePath()
-        {
+        public override string GetResFilePath() {
             base.GetResFilePath();
             return currentActivity.Call<string>("getResFilePath");
         }
 
 
-        public override Dictionary<string, long> GetAllResCrc()
-        {
+        public override Dictionary<string, long> GetAllResCrc() {
             base.GetAllResCrc();
             string result = currentActivity.Call<string>("getAllResCrc");
-            string[] results = result.Split(new string[]{ "," }, StringSplitOptions.None);
+            string[] results = result.Split(new string[] { "," }, StringSplitOptions.None);
             Dictionary<string, long> crcs = new Dictionary<string, long>();
-            for (int i = 0; i < results.Length; i += 2)
-            {
+            for (int i = 0; i < results.Length; i += 2) {
                 long crc;
                 if (!long.TryParse(results[i + 1], out crc))
                     crc = 0;
@@ -270,39 +265,45 @@ namespace HonorSDK {
             return crcs;
         }
 
-        public override long GetResCrc(string path)
-        {
+        public override long GetResCrc(string path) {
             base.GetResCrc(path);
-            return currentActivity.Call<long>("getResCrc");          
+            return currentActivity.Call<long>("getResCrc");
         }
 
-        public override void PauseDownload()
-        {
+        public override void PauseDownload() {
             base.PauseDownload();
             currentActivity.Call("pauseDownload");
         }
-        public override void ResumeDownload()
-        {
+        public override void ResumeDownload() {
             base.ResumeDownload();
             currentActivity.Call("resumeDownload");
         }
 
-        public override void RequestDownload(int[] seqIds, string[] paths, int[] offsets, int[] lengths, uint[] crcs, int[] fileIds)
-        {
+        public override void RequestDownload(int[] seqIds, string[] paths, int[] offsets, int[] lengths, long[] crcs, int[] fileIds) {
             base.RequestDownload(seqIds, paths, offsets, lengths, crcs, fileIds);
             currentActivity.Call("requestDownload", seqIds, paths, offsets, lengths, crcs, fileIds);
         }
 
-        public override void RegisterDownloadListener(OnFinish<DownloadInfo> downloadListener)
-        {
+        public override void RegisterDownloadListener(OnFinish<DownloadInfo> downloadListener) {
             base.RegisterDownloadListener(downloadListener);
             currentActivity.Call("registerDownloadListener");
         }
 
-        public override string GetGameResUrl()
-        {
+        public override string GetGameResUrl() {
             base.GetGameResUrl();
             return currentActivity.Call<string>("getGameResUrl");
+        }
+
+        public override string GetAuthInfo()
+        {
+            base.GetAuthInfo();
+            return currentActivity.Call<string>("getAuthInfo");          
+        }
+
+        public override void DownloadText(string url,OnFinish<ResultDownloadText> downloadTextListener)
+        {
+            base.DownloadText(url,downloadTextListener);
+            currentActivity.Call("downloadText", url);
         }
     }
 }

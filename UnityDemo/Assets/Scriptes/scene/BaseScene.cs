@@ -1,4 +1,4 @@
-﻿using honorsdk;
+﻿using HonorSDK;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class BaseScene : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("HonorSDK:BaseScene.Update GetKeyDown=KeyCode.Escape");
-            if (HonorSDK.GetInstance().HasExitDialog())
+            if (HonorSDKImpl.GetInstance().HasExitDialog())
             {
                 Scene3.Exit();
             }

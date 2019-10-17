@@ -148,5 +148,12 @@ namespace HonorSDK {
             currentActivity.Call("startNewGame");
         }
 
+
+        public override void GetNetStateInfo(OnFinish<NetStateInfo> getNetStateInfoListener)
+        {
+            base.GetNetStateInfo(getNetStateInfoListener);
+            currentActivity.Call("getNetStateInfo");
+        }
+
     }
 }

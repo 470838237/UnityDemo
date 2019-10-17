@@ -33,7 +33,7 @@ public class Scene1 : BaseScene
 
             string url = initResult.getCustomParameter("mobileAdapterKey");
 
-            HonorSDKImpl.GetInstance().GetMobileAdapter(url);
+          
 
 
         });
@@ -104,14 +104,7 @@ public class Scene1 : BaseScene
 
     private void GetCpuAndGpu()
     {
-        HonorSDKImpl.GetInstance().GetCpuAndGpu(delegate (CpuGpuInfo cpuGpuInfo)
-        {
-            Debug.Log("HonorSDK:GetCpuAndGpu.cpu = " + cpuGpuInfo.cpu
-                + ",cpuFreq =" + cpuGpuInfo.cpuFreq
-                + ",cpuNum =" + cpuGpuInfo.cpuNum
-                 + ",gpu =" + cpuGpuInfo.gpu
-               );
-        });
+     
     }
 
     private void GetMemory()

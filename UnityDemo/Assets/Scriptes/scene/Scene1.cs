@@ -9,25 +9,34 @@ public class Scene1 : BaseScene
 {
     private Button loginButton;
     // Use this for initialization
-    void OnEnable()
+    void Awake()
     {
+        Debug.Log("awake = " + Time.time);
         Init();
         GameObject gameObject = transform.Find("LoginButton").gameObject;
         loginButton = gameObject.GetComponent<Button>();
+        Debug.LogError("000000000000");
         loginButton.enabled = false;
         loginButton.onClick.AddListener(delegate()
         {
+            Debug.LogError("1111111111111111");
             Login();
         });
     }
 
     private void Init()
     {
+        Debug.Log("unity.Init");
+        HonorSDKImpl.CreateInstance(HonorSDKImpl.ePlat.Android);
         HonorSDKImpl.GetInstance().Init(LoadTest.Instance.sdkObj, delegate (ResultInit initResult)
         {
             Debug.Log("HonorSDK:Init.success = " + initResult.success
                 + ",message =" + initResult.message
                 );
+            if (initResult.success)
+            {
+                loginButton.enabled = true;
+            }
             InitFinish();
 
 
@@ -41,6 +50,9 @@ public class Scene1 : BaseScene
 
     private void InitFinish()
     {
+      //  HonorSDKImpl.GetInstance().RequestDownload(new int[] { 1,2},new string[] { "1","2"},new int[] { 1, 2 }, new int[] { 1, 2 }, new long[] { 1, 2 }, new int[] { 1, 2 });
+        HonorSDKImpl.GetInstance().ClearCrc(new string[] { "1"});
+        HonorSDKImpl.GetInstance().GetAllResCrc();
         GetAppInfo();
         GetBattery();
         GameStepInfo();
@@ -264,7 +276,7 @@ public class Scene1 : BaseScene
                     DownDynamicUpdate();
                 }
                 {
-                    loginButton.enabled = true;
+                    Debug.LogError("22222222222");              
                 }
                
             }
@@ -295,10 +307,6 @@ public class Scene1 : BaseScene
     }
 
 
-    void Awake()
-    {
-        Debug.Log("awake = " + Time.time);
-    }
 
 
     public void Login()

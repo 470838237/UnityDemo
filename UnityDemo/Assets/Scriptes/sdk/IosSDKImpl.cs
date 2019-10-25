@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿//#define IosSDK
+using System.Runtime.InteropServices;
 
 namespace HonorSDK {
 
@@ -7,6 +8,7 @@ namespace HonorSDK {
     /// </summary>
     class IosSdkImpl : SDKManager {
 
+#if IosSDK
         public IosSdkImpl() {
 
         }
@@ -195,7 +197,7 @@ namespace HonorSDK {
         private static extern void expandFunction(string functionName, string jsonParameter);
         [DllImport("__Internal")]
         private static extern void sendGuideFinish();
-
+#endif
     }
 }
 

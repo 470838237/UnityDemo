@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace HonorSDK {
 
@@ -17,7 +18,12 @@ namespace HonorSDK {
             JSONNode rootNode = JSONNode.Parse(message);
             string head = rootNode["head"].Value;
             string body = rootNode["body"].Value;
+            if (body == null || body == "")
+            {
+                body = "{}";
+            }
             receive(head, body);
+       
         }
 
     }

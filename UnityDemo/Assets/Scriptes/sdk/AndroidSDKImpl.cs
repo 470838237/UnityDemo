@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define AndroidSDK
+using System;
 using UnityEngine;
 
 namespace HonorSDK {
@@ -8,6 +9,7 @@ namespace HonorSDK {
     /// </summary>
     class AndroidSdkImpl : SDKManager {
 
+#if AndroidSDK
         AndroidJavaObject currentActivity;
 
         public AndroidSdkImpl() {
@@ -154,6 +156,6 @@ namespace HonorSDK {
             base.GetNetStateInfo(getNetStateInfoListener);
             currentActivity.Call("getNetStateInfo");
         }
-
+#endif
     }
 }

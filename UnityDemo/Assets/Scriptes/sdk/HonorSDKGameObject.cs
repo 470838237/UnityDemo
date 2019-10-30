@@ -14,7 +14,7 @@ namespace HonorSDK {
             this.receive = receive;
         }
 
-        public void OnGetMessage(string message) {
+        public void OnGetMessage(string message) {         
             JSONNode rootNode = JSONNode.Parse(message);
             string head = rootNode["head"].Value;
             string body = rootNode["body"].Value;
@@ -26,5 +26,16 @@ namespace HonorSDK {
        
         }
 
+        public void OnDownloadTextSuccess(string message)
+        {
+            receive(HonorSDKImpl.DOWNLOAD_TEXT_SUCCESS, message);
+        }
+
+        public void OnDownloadTextFailed(string message)
+        {
+            receive(HonorSDKImpl.DOWNLOAD_TEXT_FAILED, message);
+        }
     }
+  
+
 }

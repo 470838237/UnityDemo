@@ -10,8 +10,17 @@
 
 
     <parameter name="honor_log_debug">true</parameter>
-    <parameter name="honor_game_version">0.0.1</parameter>
+
+ 
+	<parameter name="honor_platform_secrete">1fdsf56dsa</parameter>
+	<parameter name="honor_platform_pkid">1</parameter>
+	
+	<parameter name="honor_secrete">fndkjsnflkdfdoijsa</parameter>
     <parameter name="honor_pkid">1</parameter>
-    <parameter name="honor_secrete">1fdsf56dsa</parameter>
+    <parameter name="honor_game_version">1</parameter>
+    <parameter name="honor_ad_id">1</parameter>
+    <parameter name="honor_release_mainland">true</parameter>
+    <parameter name="honor_google_public_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn/C8+pK/IIjoz+os7DkhGbiS/64e5F6hJ+AEvQCJ6GUlQj0DF6MiNDmw6OQnlCHMe7vVcfHdJoj53luuVTQ55WtgO2P8poiSkoj38wdVAJPTUG0E4n4xaf2X0D1FRABp5na+BNGFfiCHBvNu89nqUToMoxulowfww7/xWFkKzEw5Zd7ayWM7InuOUaB3q1ukn533xIaEBuiTzYxW3D6iykCY1Htjg6YTk4Umj5UIt+w5NR4xlbW8yAUrxjWmqHgwADNeL+BEBkkPK7QNzn7HbHBqajIOCXjZShMUGpblpS89mMUwlpCC/kmrqBNl24q50JVwpq0QtkGWvohtBm2qFwIDAQAB</parameter>
+
 
 </resources>

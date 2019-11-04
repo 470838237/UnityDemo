@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.honor.unity.bridge">
+    package="com.war.legends">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -11,10 +11,10 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application android:name="com.honor.platform.HpApplication"
-		android:label="@string/app_name"
-		>
-		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-        <activity android:name="com.honor.bridge.unity.HonorUnityActivity"
+		android:icon="@drawable/ic_launcher"
+		android:label="@string/app_name">
+		
+		  <activity android:name="com.honor.bridge.unity.HonorCustomUnityActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
@@ -25,13 +25,16 @@
             <meta-data
                 android:name="unityplayer.UnityActivity"
                 android:value="true" />
-				  <intent-filter>
-            <action android:name="android.intent.action.MAIN"></action>
-            <category android:name="android.intent.category.LAUNCHER"></category>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
         </activity>
 
-
+        <service android:name="com.honor.bridge.download.DownloadService"></service>
+		
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+   
 		<meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

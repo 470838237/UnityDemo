@@ -53,10 +53,14 @@
      <Compile Include="Assets\Scriptes\scene\Scene2.cs" />
      <Compile Include="Assets\Scriptes\scene\Scene3.cs" />
      <Compile Include="Assets\Scriptes\sdk\AndroidSdkImpl.cs" />
+     <Compile Include="Assets\Scriptes\sdk\CustomAndroidSdkImpl.cs" />
+     <Compile Include="Assets\Scriptes\sdk\CustomIosSdkImpl.cs" />
      <Compile Include="Assets\Scriptes\sdk\HonorSDKGameObject.cs" />
      <Compile Include="Assets\Scriptes\sdk\HonorSDKImpl.cs" />
      <Compile Include="Assets\Scriptes\sdk\IosSdkImpl.cs" />
      <Compile Include="Assets\Scriptes\sdk\JSONParse.cs" />
+     <Compile Include="Assets\Scriptes\sdk\NoSdkImpl.cs" />
+     <Compile Include="Assets\Scriptes\sdk\SDKManager.cs" />
      <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />
      <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Reporter.cs" />
      <Compile Include="Assets\Unity-Logs-Viewer\Reporter\ReporterGUI.cs" />

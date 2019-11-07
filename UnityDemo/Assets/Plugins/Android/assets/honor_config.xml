@@ -7,11 +7,30 @@
     <plugin name="plugin">dynamic</plugin>
     <plugin name="plugin">video</plugin>
     <plugin name="plugin">push</plugin>
+	<plugin name="plugin">adjust</plugin>
+	<plugin name="plugin">honorcustomplugin</plugin>
+
+	
+    <parameter name="adjust_app_token">7pbhqrlovi80</parameter>
+    <!--是否是沙盒环境-->
+    <parameter name="adjust_environment_sandbox">true</parameter>
+    <!--创建角色-->
+    <parameter name="adjust_event_token_create_role">7ejexf</parameter>
+    <!--第一次付费-->
+    <parameter name="adjust_event_token_first_recharge">ijihri</parameter>
+    <!--第二天留存指玩家在第24-48小时内登录，与游戏内时间无关-->
+    <parameter name="adjust_event_token_nextday_login">c4izrv</parameter>
+    <!--角色到达等级5-->
+    <parameter name="adjust_event_token_reach_lv5">alznox</parameter>
+    <!--角色到达等级10-->
+    <parameter name="adjust_event_token_reach_lv10">ua0rzo</parameter>
+    <!--注册账号-->
+    <parameter name="adjust_event_token_register_account">k33yqe</parameter>
+    <!--付费，每次付费都要打点，附上金额（开启付费前验证）-->
+    <parameter name="adjust_event_token_revenue">8v02h2</parameter>
 
 
     <parameter name="honor_log_debug">true</parameter>
-
- 
 	<parameter name="honor_platform_secrete">1fdsf56dsa</parameter>
 	<parameter name="honor_platform_pkid">1</parameter>
 	
@@ -19,8 +38,13 @@
     <parameter name="honor_pkid">1</parameter>
     <parameter name="honor_game_version">1</parameter>
     <parameter name="honor_ad_id">1</parameter>
-    <parameter name="honor_release_mainland">true</parameter>
-    <parameter name="honor_google_public_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn/C8+pK/IIjoz+os7DkhGbiS/64e5F6hJ+AEvQCJ6GUlQj0DF6MiNDmw6OQnlCHMe7vVcfHdJoj53luuVTQ55WtgO2P8poiSkoj38wdVAJPTUG0E4n4xaf2X0D1FRABp5na+BNGFfiCHBvNu89nqUToMoxulowfww7/xWFkKzEw5Zd7ayWM7InuOUaB3q1ukn533xIaEBuiTzYxW3D6iykCY1Htjg6YTk4Umj5UIt+w5NR4xlbW8yAUrxjWmqHgwADNeL+BEBkkPK7QNzn7HbHBqajIOCXjZShMUGpblpS89mMUwlpCC/kmrqBNl24q50JVwpq0QtkGWvohtBm2qFwIDAQAB</parameter>
-
+	<!--true表示大陆发行，false表示海外发行-->
+    <parameter name="honor_release_mainland">false</parameter>
+	<parameter name="honor_platform_server_host">https://platform.qixia.com</parameter>
+	<parameter name="honor_channel_server_host">https://channel.qixia.com</parameter>
+	
+    <parameter name="google_public_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn/C8+pK/IIjoz+os7DkhGbiS/64e5F6hJ+AEvQCJ6GUlQj0DF6MiNDmw6OQnlCHMe7vVcfHdJoj53luuVTQ55WtgO2P8poiSkoj38wdVAJPTUG0E4n4xaf2X0D1FRABp5na+BNGFfiCHBvNu89nqUToMoxulowfww7/xWFkKzEw5Zd7ayWM7InuOUaB3q1ukn533xIaEBuiTzYxW3D6iykCY1Htjg6YTk4Umj5UIt+w5NR4xlbW8yAUrxjWmqHgwADNeL+BEBkkPK7QNzn7HbHBqajIOCXjZShMUGpblpS89mMUwlpCC/kmrqBNl24q50JVwpq0QtkGWvohtBm2qFwIDAQAB</parameter>
+    <parameter name="facebook_app_id">969650443399198</parameter>
+	
 
 </resources>

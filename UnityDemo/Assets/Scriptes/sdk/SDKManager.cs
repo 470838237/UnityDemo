@@ -796,13 +796,13 @@ namespace HonorSDK {
         /// <param name="gameRoleInfo">角色信息</param>
         /// <returns></returns>
         public virtual string UploadGameRoleInfo(GameRoleInfo gameRoleInfo) {
-            JSONClass json = new JSONClass();
-            json.Add("roleId", gameRoleInfo.roleId);
-            json.Add("roleName", gameRoleInfo.roleName);
-            json.Add("roleLevel", gameRoleInfo.roleLevel + "");
-            json.Add("roleVip", gameRoleInfo.roleVip);
-            json.Add("serverId", gameRoleInfo.serverId);
-            json.Add("extra", gameRoleInfo.extra);
+            JSONClass json = new JSONClass();       
+            json.Add("roleId", new JSONData(gameRoleInfo.roleId));
+            json.Add("roleName", new JSONData(gameRoleInfo.roleName));
+            json.Add("roleLevel", new JSONData(gameRoleInfo.roleLevel));
+            json.Add("roleVip", new JSONData(gameRoleInfo.roleVip));
+            json.Add("serverId", new JSONData(gameRoleInfo.serverId));
+            json.Add("extra", new JSONData(gameRoleInfo.extra));
             return json.ToString();
         }
 
@@ -815,13 +815,13 @@ namespace HonorSDK {
         public virtual string Pay(OrderInfo orderInfo, OnFinish<ResultPay> payListener) {
             this.payListener = payListener;
             JSONClass json = new JSONClass();
-            json.Add("roleId", orderInfo.roleId);
-            json.Add("isFirstPay", orderInfo.isFirstPay+"");
-            json.Add("roleName", orderInfo.roleName);
-            json.Add("roleLevel", orderInfo.roleLevel + "");
-            json.Add("count", orderInfo.count + "");
-            json.Add("goodsId", orderInfo.goodsId);
-            json.Add("extra", orderInfo.extra);
+            json.Add("roleId", new JSONData(orderInfo.roleId));
+            json.Add("isFirstPay", new JSONData(orderInfo.isFirstPay));
+            json.Add("roleName", new JSONData(orderInfo.roleName));
+            json.Add("roleLevel", new JSONData(orderInfo.roleLevel));
+            json.Add("count", new JSONData(orderInfo.count));
+            json.Add("goodsId", new JSONData(orderInfo.goodsId));
+            json.Add("extra", new JSONData(orderInfo.extra));
             return json.ToString();
         }
 

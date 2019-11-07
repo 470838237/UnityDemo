@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
     package="com.war.legends">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -13,8 +14,18 @@
     <application android:name="com.honor.platform.HpApplication"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name">
-		
+		 <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+			
+		<meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/google_server_client_id" />
+        <meta-data
+            android:name="com.google.android.gms.appstate.APP_ID"
+            android:value="@string/google_server_client_id" />
 		  <activity android:name="com.honor.bridge.unity.HonorCustomUnityActivity"
+			tools:replace="android:configChanges"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
@@ -157,9 +168,10 @@
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+			
         <provider
             android:name="com.facebook.internal.FacebookInitProvider"
-            android:authorities="com.honor.unitydemo.FacebookInitProvider"
+            android:authorities="com.war.legends.FacebookInitProvider"
             android:exported="false" />
 
         <receiver

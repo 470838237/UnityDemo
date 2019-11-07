@@ -47,12 +47,16 @@ public class Scene1 : BaseScene
 
         });
     }
+  
 
     private void InitFinish()
     {
-      //  HonorSDKImpl.GetInstance().RequestDownload(new int[] { 1,2},new string[] { "1","2"},new int[] { 1, 2 }, new int[] { 1, 2 }, new long[] { 1, 2 }, new int[] { 1, 2 });
-        HonorSDKImpl.GetInstance().ClearCrc(new string[] { "1"});
-        HonorSDKImpl.GetInstance().GetAllResCrc();
+        //  HonorSDKImpl.GetInstance().RequestDownload(new int[] { 1,2},new string[] { "1","2"},new int[] { 1, 2 }, new int[] { 1, 2 }, new long[] { 1, 2 }, new int[] { 1, 2 });
+
+        string OPEN_GOOGLE_PLAY_COMMENTS = "open_google_play_comments";
+        HonorSDKImpl.GetInstance().ExpandFunction(OPEN_GOOGLE_PLAY_COMMENTS);
+
+
         GetAppInfo();
         GetBattery();
         GameStepInfo();

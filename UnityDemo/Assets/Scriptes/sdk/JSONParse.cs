@@ -210,6 +210,8 @@ namespace HonorSDK {
         #endregion operators
 
         internal static string Escape(string aText) {
+            if (aText == null)
+                return "";
             string result = "";
             foreach (char c in aText) {
                 switch (c) {

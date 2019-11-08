@@ -169,23 +169,45 @@ namespace HonorSDK {
         }
         //角色名称
         public string roleName {
-            set; get;
+            set {
+            }
+            get {       
+                return roleName== null?"":roleName;
+            }
         }
         //服务器id
         public string serverId {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return serverId == null ? "" : serverId;
+            }
         }
         //角色等级
         public int roleLevel {
-            set; get;
+            set; get;          
         }
         //角色vip等级
         public string roleVip {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return roleVip == null ? "" : roleVip;
+            }
         }
         //角色其他信息
         public string extra {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return extra == null ? "" : extra;
+            }
         }
         //角色上传的节点类型
         public int type {
@@ -206,15 +228,33 @@ namespace HonorSDK {
 
         //服务器id
         public string serverId {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return this.serverId == null ? "" : this.serverId;
+            }
         }
         //角色id
         public string roleId {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return this.roleId == null ? "" : this.roleId;
+            }
         }
         //角色名称
         public string roleName {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return this.roleName == null ? "" : this.roleName;
+            }
         }
         //角色等级
         public int roleLevel {
@@ -222,7 +262,13 @@ namespace HonorSDK {
         }
         //商品id
         public string goodsId {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return this.goodsId == null ? "" : this.goodsId;
+            }
         }
         //商品数量 不传时默认为1
         public int count {
@@ -230,7 +276,13 @@ namespace HonorSDK {
         }
         //透传参数，游戏传入的值，将在查询订单信息时原样返回
         public string extra {
-            set; get;
+            set
+            {
+            }
+            get
+            {
+                return this.extra == null ? "" : this.extra;
+            }
         }
     }
 

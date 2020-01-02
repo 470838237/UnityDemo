@@ -82,7 +82,7 @@ namespace HonorSDK {
         //未绑定
         public int STATE_UNBIND = 0;
         const string PLATFORM_GOOGLE = "google";
-        const string PLATFORM_FACEBOOK = "fb";
+        const string PLATFORM_FACEBOOK = "facebook";
         const string PLATFORM_TWITTER = "twitter";
     }
 
@@ -882,6 +882,16 @@ namespace HonorSDK {
             if (headName != null && headName != "" && !expandListeners.ContainsKey(headName)) {
                 expandListeners.Add(headName, expandFunctionListener);
             }
+
+        }
+
+        /// <summary>
+        /// 设置SDK应用语言和国家
+        /// </summary>
+        /// <param name="language"></param>
+        /// <param name="country"></param>
+        public virtual void SetApplicationLocale(string language, string country ="")
+        {
 
         }
 

@@ -67,9 +67,10 @@
      <Compile Include="Assets\Unity-Logs-Viewer\Reporter\ReporterMessageReceiver.cs" />
      <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Test\Rotate.cs" />
      <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Test\TestReporter.cs" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\assets\honor_config.xml" />
+     <None Include="Assets\Plugins\Android\res\values-en-rUS\values-en-rUS.xml" />
      <None Include="Assets\Plugins\Android\res\values\values.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\res\values-zh-rCN\values-zh-rCN.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

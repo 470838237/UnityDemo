@@ -284,5 +284,17 @@ namespace HonorSDK {
             info.networkConnect = node["networkConnect"].AsBool;
             return info;
         }
+
+        public override void SetApplicationLocale(string language, string country = "")
+        {
+            base.SetApplicationLocale(language, country);
+            currentActivity.Call("setApplicationLocale", language, country);
+        }
+
+        public override void GetDeviceInfo(OnFinish<string> getDeviceInfoListener)
+        {
+            base.GetDeviceInfo(getDeviceInfoListener);
+            currentActivity.Call("getDeviceInfo");
+        }
     }
 }

@@ -156,6 +156,14 @@ namespace HonorSDK {
             base.GetNetStateInfo(getNetStateInfoListener);
             currentActivity.Call("getNetStateInfo");
         }
+
+        public override void SetApplicationLocale(string language, string country = "")
+        {
+            base.SetApplicationLocale(language, country);
+            currentActivity.Call("setApplicationLocale", language, country);
+        }
+
+        
 #endif
     }
 }

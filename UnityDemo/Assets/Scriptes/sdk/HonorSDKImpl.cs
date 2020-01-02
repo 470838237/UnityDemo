@@ -214,8 +214,9 @@ namespace HonorSDK {
         //下载文本文件失败
         public const string DOWNLOAD_TEXT_FAILED = "download_text_failed";
         //获取耳机状态成功
-        const string GET_HEADSET_STATE_SUCCESS = "get_headset_state_success";
-
+        public const string GET_HEADSET_STATE_SUCCESS = "get_headset_state_success";
+        //获取设备信息
+        public const string GET_DEVICE_INFO = "get_device_info";
 
         private OnFinish<ResultTranslate> translateContentListener;
         private OnFinish<HardwareInfo> getHardwareListener;
@@ -231,6 +232,7 @@ namespace HonorSDK {
         private OnFinish<NetStateInfo> networkStateListener;
         private OnFinish<ResultDownloadText> downloadTextListener;
         private OnFinish<ResultGetHeadsetState> getHeadsetStateListener;
+        private OnFinish<string> getDeviceInfoListener;
 
         protected override void OnReceive(string head, string body) {
             base.OnReceive(head, body);
@@ -294,6 +296,9 @@ namespace HonorSDK {
                     break;
                 case GET_HEADSET_STATE_SUCCESS:
                     GetHeadsetStateFinish(true, body);
+                    break;
+                case GET_DEVICE_INFO:
+                    getDeviceInfoListener(body);
                     break;
                 default: break;
             }
@@ -484,6 +489,12 @@ namespace HonorSDK {
             this.getABTestVerListener = getABTestVerListener;
         }
 
+        public virtual void GetDeviceInfo(OnFinish<string> getDeviceInfoListener)
+        {
+            this.getDeviceInfoListener = getDeviceInfoListener;
+        }
+
+     
         private void DownloadTextFinish(bool success, string body) {
             ResultDownloadText result = new ResultDownloadText();
             result.success = success;

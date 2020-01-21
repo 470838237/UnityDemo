@@ -30,6 +30,10 @@ namespace HonorSDK {
         public int freeMemory {
             set; get;
         }
+        //机型
+        public string deviceModel;
+        //cpu温度
+        public double temperature;
     }
 
     public class ResultVideoRecord : Result {
@@ -303,6 +307,12 @@ namespace HonorSDK {
                 default: break;
             }
         }
+
+
+        public const string CONFIG_UNITY_ID = "unity_id";
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -338,8 +348,8 @@ namespace HonorSDK {
             return "";
         }
 
-    
-      
+  
+     
         /// <summary>
         /// 注册网络改变监听
         /// </summary>
@@ -488,7 +498,10 @@ namespace HonorSDK {
         public virtual void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener) {
             this.getABTestVerListener = getABTestVerListener;
         }
-
+        /// <summary>
+        /// 获取设备信息
+        /// </summary>
+        /// <param name="getDeviceInfoListener"></param>
         public virtual void GetDeviceInfo(OnFinish<string> getDeviceInfoListener)
         {
             this.getDeviceInfoListener = getDeviceInfoListener;
@@ -615,6 +628,8 @@ namespace HonorSDK {
                 info.cpuNum = node["cpuNum"].AsInt;
                 info.totalMemory = node["totalMemory"].AsInt;
                 info.freeMemory = node["freeMemory"].AsInt;
+                info.deviceModel = node["deviceModel"].Value;
+                info.temperature = node["temperature"].AsDouble;
             }
             else {
                 info.message = body;

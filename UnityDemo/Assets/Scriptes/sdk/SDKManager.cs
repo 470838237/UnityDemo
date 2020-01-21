@@ -163,6 +163,10 @@ namespace HonorSDK {
         public const int TYPE_ENTER_GAME = 2;
         //角色升级节点
         public const int TYPE_ROLE_LEVEL = 3;
+
+        public const int GENDERMALE = 1;
+
+        public const int GENDER_FEMALE = 2;
         //角色ID
         public string roleId {
             set; get;
@@ -183,6 +187,20 @@ namespace HonorSDK {
         public string roleVip {
             set; get;
         }
+
+        //角色性别
+        public int gender
+        {
+            set; get;
+        }
+
+        //账户金币或钻石等货币余额
+        public int balance
+        {
+            set; get;
+        }
+
+
         //角色其他信息
         public string extra {
             set; get;
@@ -220,6 +238,18 @@ namespace HonorSDK {
         public int roleLevel {
             set; get;
         }
+
+        //vip等级
+        public int vipLevel
+        {
+            set; get;
+        }
+
+        //账户余额
+        public int balance
+        {
+            set; get;
+        }
         //商品id
         public string goodsId {
             set; get;
@@ -228,6 +258,7 @@ namespace HonorSDK {
         public int count {
             set; get;
         }
+
         //透传参数，游戏传入的值，将在查询订单信息时原样返回
         public string extra {
             set; get;
@@ -386,14 +417,19 @@ namespace HonorSDK {
         public string priceDisplay {
             set; get;
         }
-        //币种例:"¥", "$", "€"---后台配置的
+        //币种代码 例:"USD" "CNY"
         public string currency {
             set; get;
         }
+        //货币符号 例:"¥", "$", "€"---后台配置的
+        public string localSymbol;
         //当地价格,主要针对海外多地区发行，国内发行等同price---google获取
+     
         public double localPrice { set; get; }
-        //当地币种类型"¥", "$", "€",主要针对海外多地区发行，国内发行等同currency---google获取
+
+        //币种代码 例:"USD" "CNY"
         public string localCurrency { set; get; }
+
         //游戏币数量
         public int count {
             set; get;
@@ -557,7 +593,7 @@ namespace HonorSDK {
             Debug.Log("head=" + head + ";body=" + body);
             switch (head) {
                 case SET_GAME_OBJECT_NAME_SUCCESS:
-                    Init();
+                    Init(mConfigs);
                     break;
                 case INIT_SUCCESS:
                     InitFinish(true, body);
@@ -639,7 +675,7 @@ namespace HonorSDK {
                     GetGoodsListFinish(false, body);
                     break;
                 case GET_NET_STATE_INFO:
-                    GetNetStateInfoFinish(true,body);
+                    GetNetStateInfoFinish(true, body);
                     break;
                 default:
                     if (expandListeners.ContainsKey(head)) {
@@ -648,14 +684,30 @@ namespace HonorSDK {
                     break;
             }
         }
+
+   
+
+        private string mConfigs;
+
         /// <summary>
         /// 初始化，此接口必须最先调用
         /// </summary>
         /// <param name="gameObject">游戏对象</param>
         /// <param name="initListener">返回初始化结果<see cref="ResultInit"/></param>
-        public void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener) {
+        public void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null) {
             Debug.Log("SDKManager.Init");
-            this.initListener = initListener;
+            this.initListener = initListener;         
+            if (configs == null)
+            {
+                configs = new Dictionary<string, string>();
+            }
+            configs.Add("gameResVersion", gameResVersion);
+            JSONClass json = new JSONClass();
+            foreach (KeyValuePair<string, string> kv in configs)
+            {               
+                json.Add(kv.Key, new JSONData(kv.Value));     
+            }
+            mConfigs = json.ToString();
             gameObject.SetOnReceiveListener(new OnReceiveMsg(this.OnReceive));
             SetGameObjectName(gameObject.gameObject.name);
             Debug.Log(this.ToString());
@@ -663,7 +715,7 @@ namespace HonorSDK {
         protected virtual void SetGameObjectName(string gameObjectName) {
             Debug.Log("SDKManager.SetGameObjectName");
         }
-        protected virtual void Init() {
+        protected virtual void Init(string configsJson) {
 
         }
         /// <summary>
@@ -796,12 +848,16 @@ namespace HonorSDK {
         /// <param name="gameRoleInfo">角色信息</param>
         /// <returns></returns>
         public virtual string UploadGameRoleInfo(GameRoleInfo gameRoleInfo) {
-            JSONClass json = new JSONClass();       
+            JSONClass json = new JSONClass();
+            json.Add("type", new JSONData(gameRoleInfo.type));
             json.Add("roleId", new JSONData(gameRoleInfo.roleId));
             json.Add("roleName", new JSONData(gameRoleInfo.roleName));
             json.Add("roleLevel", new JSONData(gameRoleInfo.roleLevel));
             json.Add("roleVip", new JSONData(gameRoleInfo.roleVip));
             json.Add("serverId", new JSONData(gameRoleInfo.serverId));
+            json.Add("sex", new JSONData(gameRoleInfo.gender));
+            json.Add("balance", new JSONData(gameRoleInfo.balance));
+            json.Add("lastUpdate", new JSONData(gameRoleInfo.lastUpdate));  
             json.Add("extra", new JSONData(gameRoleInfo.extra));
             return json.ToString();
         }
@@ -822,6 +878,8 @@ namespace HonorSDK {
             json.Add("count", new JSONData(orderInfo.count));
             json.Add("goodsId", new JSONData(orderInfo.goodsId));
             json.Add("extra", new JSONData(orderInfo.extra));
+            json.Add("vipLevel", new JSONData(orderInfo.vipLevel));
+            json.Add("balance", new JSONData(orderInfo.balance));
             return json.ToString();
         }
 
@@ -993,6 +1051,7 @@ namespace HonorSDK {
                     goodsInfo.tag = item["tag"].Value;
                     goodsInfo.localCurrency = item["localCurrency"].Value;
                     goodsInfo.localPrice = item["localPrice"].AsDouble;
+                    goodsInfo.localSymbol = item["localSymbol"].Value;
                     goods.Add(goodsInfo);
                 }
             }
@@ -1032,6 +1091,8 @@ namespace HonorSDK {
                         roleInfo.roleName = itemRole["name"].Value;
                         roleInfo.roleVip = itemRole["vip"].Value;
                         roleInfo.serverId = itemRole["server"].Value;
+                        roleInfo.gender = itemRole["gender"].AsInt;
+                        roleInfo.balance = itemRole["balance"].AsInt;
                         roles.Add(roleInfo);
                     }
                     servers.Add(serverInfo);

@@ -16,8 +16,8 @@ namespace HonorSDK {
             AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             currentActivity = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
         }
-        protected override void Init() {
-            currentActivity.Call("init");
+        protected override void Init(string configs) {
+            currentActivity.Call("init", configs);
         }
         protected override void SetGameObjectName(string gameObjectName) {
             currentActivity.Call("setGameObjectName", gameObjectName);

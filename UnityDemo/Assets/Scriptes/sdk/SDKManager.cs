@@ -70,7 +70,7 @@ namespace HonorSDK {
 		
 		private Dictionary<string, string> extra;
 
-        const string EXTRA_PLAT_TIME = "playtime";
+        public const string EXTRA_PLAT_TIME = "playtime";
         public UserInfo(Dictionary<string, string> extra) {
             this.extra = extra;
         }

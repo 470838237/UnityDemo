@@ -69,8 +69,8 @@ namespace HonorSDK {
         public List<BindState> bindStates = new List<BindState>();
 		
 		private Dictionary<string, string> extra;
-
-        public const string EXTRA_PLAT_TIME = "playtime";
+        //当前账号今天的累计登录时间
+        public const string EXTRA_PLAY_TIME = "playtime";
         public UserInfo(Dictionary<string, string> extra) {
             this.extra = extra;
         }

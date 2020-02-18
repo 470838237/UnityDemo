@@ -4,6 +4,17 @@ using UnityEngine;
 
 namespace HonorSDK {
 
+
+    public class IdentifyInfo
+    {
+
+        //-1:游客 0:未认证 1:未满8岁 2:未满16岁 3:未满18岁 4:成年
+        public int identify
+        {
+            set; get;
+        }
+
+    }
     public class HardwareInfo : Result {
         //Gpu型号
         public string gpu {
@@ -507,7 +518,60 @@ namespace HonorSDK {
             this.getDeviceInfoListener = getDeviceInfoListener;
         }
 
-     
+        const string HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT = "is_support_alert_agreement";
+        const string FUNCTION_NAME_IS_SUPPORT_ALERT_AGREEMENT = HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT;
+        /// <summary>
+        /// 判断是否需要弹出协议对话框
+        /// </summary>
+        /// <param name="isSupportAlertAgreementListener">回调是否需要弹出协议对话框</param>
+        public virtual void IsSupportAlertAgreement(OnFinish<bool> isSupportAlertAgreementListener)
+        {
+            ExpandFunction(FUNCTION_NAME_IS_SUPPORT_ALERT_AGREEMENT, "", HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT, delegate (ResultExpand result)
+            {
+                JSONNode node =  JSONNode.Parse(result.originResult);
+                isSupportAlertAgreementListener(node["isSupportAlertAgreement"].AsBool);
+            });
+
+        }
+
+        const string HEAD_NAME_ALERT_AGREEMENT = "alert_agreement";
+        const string FUNCTION_NAME_ALERT_AGREEMENT = HEAD_NAME_ALERT_AGREEMENT;
+        /// <summary>
+        /// 弹出协议框
+        /// </summary>
+        /// <param name="isSupportAlertAgreementListener">回调玩家是否接受协议</param>
+        public virtual void AlertAgreement(OnFinish<bool> alertAgreementListener)
+        {
+            ExpandFunction(FUNCTION_NAME_ALERT_AGREEMENT, "", HEAD_NAME_ALERT_AGREEMENT, delegate (ResultExpand result)
+            {
+                JSONNode node = JSONNode.Parse(result.originResult);
+                alertAgreementListener(node["isAcceptAgreement"].AsBool);
+            });
+        }    
+        const string HEAD_REGISTER_IDENTIFY = "register_identify";
+        const string FUNCTION_NAME_REGISTER_IDENTIFY = HEAD_REGISTER_IDENTIFY;
+        /// <summary>
+        ///     监听实名认证结果，登录成功后回调该接口实名认证状态，当玩家实名认证状态发生改变时回调该接口
+        /// </summary>
+        /// <param name="identifyListener"></param>
+        public virtual void RegisterIdentifyListener(OnFinish<IdentifyInfo> identifyListener) {
+            ExpandFunction(FUNCTION_NAME_REGISTER_IDENTIFY, "", HEAD_REGISTER_IDENTIFY, delegate (ResultExpand result)
+            {
+                JSONNode node = JSONNode.Parse(result.originResult);
+                IdentifyInfo info = new IdentifyInfo();
+                info.identify = node["identify"].AsInt;
+                identifyListener(info);
+            });
+        }
+        const string FUNCTION_ALERT_IDENTIFY = "alert_identify";
+        /// <summary>
+        /// 弹出实名认证弹窗，回调RegisterIdentifyListener接口
+        /// </summary>
+        public virtual void AlertIdentify() {
+            ExpandFunction(FUNCTION_ALERT_IDENTIFY);
+        }
+
+
         private void DownloadTextFinish(bool success, string body) {
             ResultDownloadText result = new ResultDownloadText();
             result.success = success;

@@ -26,7 +26,9 @@ namespace HonorSDK {
     /// 类说明：基础返回信息
     /// </summary>
     public class ResultInit : Result {
+
         private Dictionary<string, string> customParams;
+
         public ResultInit(Dictionary<string, string> customParams) {
             this.customParams = customParams;
         }
@@ -289,6 +291,11 @@ namespace HonorSDK {
         }
 
         //公告类型(0普通1活动2更新3跑马灯4登录5登出)
+        public int id
+        {
+            set; get;
+        }
+
         public int type {
             set; get;
         }
@@ -1114,6 +1121,7 @@ namespace HonorSDK {
                 List<NoticeInfo> notices = result.notices;
                 foreach (JSONNode item in jsonArrayNotices.Childs) {
                     NoticeInfo noticeInfo = new NoticeInfo();
+                    noticeInfo.id = item["id"].AsInt;
                     noticeInfo.content = item["content"].Value;
                     noticeInfo.endTime = item["end_time"].AsLong;
                     noticeInfo.image = item["image"].Value;

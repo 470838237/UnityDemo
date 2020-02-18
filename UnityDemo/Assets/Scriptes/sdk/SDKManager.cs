@@ -67,6 +67,16 @@ namespace HonorSDK {
         public string platform { set; get; }
 
         public List<BindState> bindStates = new List<BindState>();
+		
+		private Dictionary<string, string> extra;
+
+        const string EXTRA_PLAT_TIME = "playtime";
+        public UserInfo(Dictionary<string, string> extra) {
+            this.extra = extra;
+        }
+        public string getExtra(string key) {
+            return extra[key];
+        }
     }
 
     public class ResultBind : Result {
@@ -1236,13 +1246,18 @@ namespace HonorSDK {
             getMemroyInfoListener(info);
         }
 
-        private void LoginFinish(bool success, string body) {
-            UserInfo userInfo = new UserInfo();
+        private void LoginFinish(bool success, string body) {		
+			Dictionary<string, string> extra = new Dictionary<string, string>();
+            UserInfo userInfo = new UserInfo(extra);
             userInfo.success = success;
             if (!success)
                 userInfo.message = body;
             else {
                 JSONNode node = JSONNode.Parse(body);
+                JSONClass extraNode = node["extra"].AsObject;				
+				foreach (KeyValuePair<string, JSONNode> item in extraNode) {
+					extra[item.Key] = item.Value.Value;
+				}
                 userInfo.uid = node["uid"].Value;
                 userInfo.accessToken = node["accessToken"].Value;
                 userInfo.nickName = node["nickname"].Value;
@@ -1259,15 +1274,30 @@ namespace HonorSDK {
         }
 
         private void SwitchAccountFinish(bool success, string body) {
-            UserInfo userInfo = new UserInfo();
+            Dictionary<string, string> extra = new Dictionary<string, string>();
+            UserInfo userInfo = new UserInfo(extra);
             userInfo.success = success;
             if (!success)
                 userInfo.message = body;
             else {
                 JSONNode node = JSONNode.Parse(body);
+                JSONClass extraNode = node["extra"].AsObject;
+                foreach (KeyValuePair<string, JSONNode> item in extraNode)
+                {
+                    extra[item.Key] = item.Value.Value;
+                }
                 userInfo.uid = node["uid"].Value;
                 userInfo.accessToken = node["accessToken"].Value;
                 userInfo.nickName = node["nickname"].Value;
+                JSONArray arrayBindStates = node["bindStates"].AsArray;
+                List<BindState> bindStates = userInfo.bindStates;
+                foreach (JSONNode item in arrayBindStates.Childs)
+                {
+                    BindState bindState = new BindState();
+                    bindState.bindState = item["bindState"].AsInt;
+                    bindState.platform = item["platform"].Value;
+                    bindStates.Add(bindState);
+                }
             }
             switchAccountListener(userInfo);
         }

@@ -332,6 +332,7 @@ namespace HonorSDK {
 
             return null;
         }
+     
         /// <summary>
         /// 获取认证信息，用户登陆成功后调用
         /// </summary>

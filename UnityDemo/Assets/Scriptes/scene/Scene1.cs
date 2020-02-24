@@ -42,10 +42,11 @@ public class Scene1 : BaseScene
 
             string url = initResult.getCustomParameter("mobileAdapterKey");
 
-          
+            string privacyUrl = initResult.getCustomParameter("privacy");
+            string termsUrl = initResult.getCustomParameter("terms");
 
 
-        });
+        },"1");
     }
   
 
@@ -321,6 +322,10 @@ public class Scene1 : BaseScene
             Debug.Log("HonorSDK:Login.success = " + userInfo.success);
             if (userInfo.success)
             {
+
+                string playTime = userInfo.getExtra(UserInfo.EXTRA_PLAY_TIME);
+
+
                 Debug.Log("HonorSDK:Login.accessToken = " + userInfo.accessToken
                + ",nickName =" + userInfo.nickName
                + ",uid =" + userInfo.uid

@@ -572,6 +572,45 @@ namespace HonorSDK {
             ExpandFunction(FUNCTION_ALERT_IDENTIFY);
         }
 
+        const string FUNCTION_AI_HELP_SHOW_FAQS = "aihelp_showFAQs";
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tags">对用户标记，用于分类</param>
+        public virtual void AiHelpShowFAQs(List<string> tags) {
+            JSONClass json = new JSONClass();
+            JSONArray jsonArray = new JSONArray();
+            if (tags != null)
+            {
+                foreach (string v in tags)
+                {
+                    jsonArray.Add(new JSONData(v));
+                }
+            }
+            json.Add("tags", jsonArray);
+            ExpandFunction(FUNCTION_AI_HELP_SHOW_FAQS, jsonArray.ToString());
+        }
+        const string FUNCTION_AI_HELP_SHOW_ELVA = "aihelp_showElva";
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sererId"></param>
+        /// <param name="tags">对用户标记，用于分类</param>
+        public virtual void AiHelpShowElva(string sererId, List<string> tags) {
+            JSONClass json = new JSONClass();
+            json.Add("serverId", new JSONData(sererId));
+            JSONArray jsonArray = new JSONArray();
+            if (tags != null)
+            {
+                foreach (string v in tags)
+                {
+                    jsonArray.Add(new JSONData(v));
+                }
+            }
+            json.Add("tags", jsonArray);
+            ExpandFunction(FUNCTION_AI_HELP_SHOW_ELVA, json.ToString());
+        }
+
 
         private void DownloadTextFinish(bool success, string body) {
             ResultDownloadText result = new ResultDownloadText();

@@ -29,10 +29,16 @@ public class Scene1 : BaseScene
         Debug.Log("unity.Init");
         HonorSDKImpl.CreateInstance(HonorSDKImpl.ePlat.Android);
         HonorSDKImpl.GetInstance().Init(LoadTest.Instance.sdkObj, delegate (ResultInit initResult)
-        {
+        {       
+            string url = initResult.getCustomParameter("mobileAdapterKey");
+            string privacyUrl = initResult.getCustomParameter("privacy");
+            string termsUrl = initResult.getCustomParameter("terms");
+
+
+
             Debug.Log("HonorSDK:Init.success = " + initResult.success
-                + ",message =" + initResult.message
-                );
+             + ",message =" + initResult.message
+             );
             if (initResult.success)
             {
                 loginButton.enabled = true;
@@ -40,13 +46,7 @@ public class Scene1 : BaseScene
             InitFinish();
 
 
-            string url = initResult.getCustomParameter("mobileAdapterKey");
-
-            string privacyUrl = initResult.getCustomParameter("privacy");
-            string termsUrl = initResult.getCustomParameter("terms");
-
-
-        },"1");
+        }, "1");
     }
   
 
@@ -316,7 +316,11 @@ public class Scene1 : BaseScene
 
     public void Login()
     {
+        int identify = -1;
+        HonorSDKImpl.GetInstance().RegisterIdentifyListener(delegate (IdentifyInfo identifyInfo) {
+            identify = identifyInfo.identify;
 
+        });
         HonorSDKImpl.GetInstance().Login(delegate (UserInfo userInfo)
         {
             Debug.Log("HonorSDK:Login.success = " + userInfo.success);
@@ -324,6 +328,17 @@ public class Scene1 : BaseScene
             {
 
                 string playTime = userInfo.getExtra(UserInfo.EXTRA_PLAY_TIME);
+
+                string authInfo =   HonorSDKImpl.GetInstance().GetAuthInfo();
+                authInfo += "&playtime="+ authInfo;
+
+
+
+
+
+
+
+
 
 
                 Debug.Log("HonorSDK:Login.accessToken = " + userInfo.accessToken

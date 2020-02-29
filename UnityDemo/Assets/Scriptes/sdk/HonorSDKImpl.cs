@@ -574,7 +574,7 @@ namespace HonorSDK {
 
         const string FUNCTION_AI_HELP_SHOW_FAQS = "aihelp_showFAQs";
         /// <summary>
-        /// 
+        /// 显示帮助页面
         /// </summary>
         /// <param name="tags">对用户标记，用于分类</param>
         public virtual void AiHelpShowFAQs(List<string> tags) {
@@ -592,7 +592,7 @@ namespace HonorSDK {
         }
         const string FUNCTION_AI_HELP_SHOW_ELVA = "aihelp_showElva";
         /// <summary>
-        /// 
+        /// 显示机器人客服页面
         /// </summary>
         /// <param name="sererId"></param>
         /// <param name="tags">对用户标记，用于分类</param>
@@ -609,6 +609,13 @@ namespace HonorSDK {
             }
             json.Add("tags", jsonArray);
             ExpandFunction(FUNCTION_AI_HELP_SHOW_ELVA, json.ToString());
+        }
+        const string FUNCTION_OPEN_GOOGLE_PLAY_COMMENTS = "open_google_play_comments";
+        /// <summary>
+        /// 打开应用市场评论
+        /// </summary>
+        public virtual void OpenMarketComments() {
+            ExpandFunction(FUNCTION_OPEN_GOOGLE_PLAY_COMMENTS);
         }
 
 

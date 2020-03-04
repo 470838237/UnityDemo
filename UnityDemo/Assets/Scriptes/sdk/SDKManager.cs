@@ -897,6 +897,7 @@ namespace HonorSDK {
             json.Add("extra", new JSONData(orderInfo.extra));
             json.Add("vipLevel", new JSONData(orderInfo.vipLevel));
             json.Add("balance", new JSONData(orderInfo.balance));
+            json.Add("serverId", new JSONData(orderInfo.serverId));
             return json.ToString();
         }
 

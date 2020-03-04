@@ -331,7 +331,7 @@ public class Scene1 : BaseScene
 
                 string authInfo =   HonorSDKImpl.GetInstance().GetAuthInfo();
                 authInfo += "&playtime="+ authInfo;
-
+                authInfo+= "&identify=" + identify;
 
 
 

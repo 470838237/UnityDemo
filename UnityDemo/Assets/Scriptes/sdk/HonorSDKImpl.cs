@@ -576,18 +576,26 @@ namespace HonorSDK {
         /// <summary>
         /// 显示帮助页面
         /// </summary>
-        /// <param name="tags">对用户标记，用于分类</param>
-        public virtual void AiHelpShowFAQs(List<string> tags) {
+        /// <param name="tags1">分类，所传递的标签需要和客服后台保持一致</param>
+        /// <param name="tags2">分类，游戏通过key-value形式自定义标签</param>
+        public virtual void AiHelpShowFAQs(List<string> tags1, Dictionary<string, string> tags2) {
             JSONClass json = new JSONClass();
             JSONArray jsonArray = new JSONArray();
-            if (tags != null)
+            if (tags1 != null)
             {
-                foreach (string v in tags)
+                foreach (string v in tags1)
                 {
                     jsonArray.Add(new JSONData(v));
                 }
             }
-            json.Add("tags", jsonArray);
+            json.Add("tags1", jsonArray);
+            JSONClass jsonTags2 = new JSONClass();
+            if (tags2 != null) {             
+                foreach (KeyValuePair<string, string> item in tags2) {
+                    jsonTags2.Add(item.Key,new JSONData(item.Value));
+                }
+            }
+            json.Add("tags2", jsonTags2);
             ExpandFunction(FUNCTION_AI_HELP_SHOW_FAQS, jsonArray.ToString());
         }
         const string FUNCTION_AI_HELP_SHOW_ELVA = "aihelp_showElva";
@@ -595,19 +603,31 @@ namespace HonorSDK {
         /// 显示机器人客服页面
         /// </summary>
         /// <param name="sererId"></param>
-        /// <param name="tags">对用户标记，用于分类</param>
-        public virtual void AiHelpShowElva(string sererId, List<string> tags) {
+        /// <param name="tags1">分类，所传递的标签需要和客服后台保持一致</param>
+        /// <param name="tags2">分类，游戏通过key-value形式自定义标签</param>
+        public virtual void AiHelpShowElva(string sererId, List<string> tags1,Dictionary<string,string> tags2) {
             JSONClass json = new JSONClass();
             json.Add("serverId", new JSONData(sererId));
             JSONArray jsonArray = new JSONArray();
-            if (tags != null)
+            if (tags1 != null)
             {
-                foreach (string v in tags)
+                foreach (string v in tags1)
                 {
                     jsonArray.Add(new JSONData(v));
                 }
             }
-            json.Add("tags", jsonArray);
+            json.Add("tags1", jsonArray);
+
+            JSONClass jsonTags2 = new JSONClass();
+            if (tags2 != null)
+            {
+                foreach (KeyValuePair<string, string> item in tags2)
+                {
+                    jsonTags2.Add(item.Key, new JSONData(item.Value));
+                }
+            }
+            json.Add("tags2", jsonTags2);
+
             ExpandFunction(FUNCTION_AI_HELP_SHOW_ELVA, json.ToString());
         }
         const string FUNCTION_OPEN_GOOGLE_PLAY_COMMENTS = "open_google_play_comments";

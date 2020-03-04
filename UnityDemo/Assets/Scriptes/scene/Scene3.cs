@@ -22,6 +22,14 @@ public class Scene3 : BaseScene
 
     void OnEnable()
     {
+        List<string> tags = new List<string>();
+        tags.Add("vipLevel");
+        tags.Add("serverId");
+        tags.Add("version");
+        tags.Add("level");
+        HonorSDKImpl.GetInstance().AiHelpShowElva("serverId", tags);
+
+
         HonorSDKImpl.GetInstance().GetServerList(delegate(ServerList list)
         {
          

@@ -76,9 +76,14 @@ namespace HonorSDK {
             currentActivity.Call("cleanAllNotification");
         }
 
-        public override void SwitchAccount(OnFinish<UserInfo> switchAccountListener) {
-            base.SwitchAccount(switchAccountListener);
+        public override void SwitchAccount() {
             currentActivity.Call("switchAccount");
+        }
+
+        public override void RegisterSwitchAccountListener(OnFinish<UserInfo> switchAccountListener)
+        {
+            base.RegisterSwitchAccountListener(switchAccountListener);
+            currentActivity.Call("registerSwitchAccountListener");
         }
 
         public override void StartBind(OnFinish<ResultBind> startBindListener) {

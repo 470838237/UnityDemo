@@ -840,8 +840,16 @@ namespace HonorSDK {
         /// <summary>
         /// 账号切换
         /// </summary>
+
+        public virtual void SwitchAccount() {
+           
+        }
+        /// <summary>
+        /// 注册监听
+        /// </summary>
         /// <param name="switchAccountListener">返回账号切换结果<see cref="UserInfo"/></param>
-        public virtual void SwitchAccount(OnFinish<UserInfo> switchAccountListener) {
+        public virtual void RegisterSwitchAccountListener(OnFinish<UserInfo> switchAccountListener)
+        {
             this.loginListener = switchAccountListener;
         }
 
@@ -1259,7 +1267,7 @@ namespace HonorSDK {
         private void LoginFinish(bool success, string body) {		
 			Dictionary<string, string> extra = new Dictionary<string, string>();
             UserInfo userInfo = new UserInfo(extra);
-            userInfo.success = success;
+            userInfo.success = success;        
             if (!success)
                 userInfo.message = body;
             else {
@@ -1271,7 +1279,6 @@ namespace HonorSDK {
                 userInfo.uid = node["uid"].Value;
                 userInfo.accessToken = node["accessToken"].Value;
                 userInfo.nickName = node["nickname"].Value;
-                userInfo.type = node["nickname"].AsInt;
                 JSONArray arrayBindStates = node["bindStates"].AsArray;
                 List<BindState> bindStates = userInfo.bindStates;
                 foreach (JSONNode item in arrayBindStates.Childs) {

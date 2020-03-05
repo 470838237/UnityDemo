@@ -51,7 +51,17 @@ namespace HonorSDK {
     }
 
     public class UserInfo : Result {
-        //用户唯一表示
+        //登录
+        public const int TYPE_LOGIN = 1;
+        //切换账户
+        public const int TYPE_SWITCH_ACCOUNT = 2;
+        //开始新游戏
+        public const int TYPE_NEW_GAME = 3;
+        public int type
+        {
+            set; get;
+        }
+
         public string uid {
             set; get;
         }
@@ -595,7 +605,6 @@ namespace HonorSDK {
         private OnFinish<MemoryInfo> getMemroyInfoListener;
         private OnFinish<BatteryInfo> getBatteryInfoListener;
         private OnFinish<Result> playVideoListener;
-        private OnFinish<UserInfo> switchAccountListener;
         private OnFinish<Result> logoutListener;
         private OnFinish<ResultPay> payListener;
         private OnFinish<Result> exitListener;
@@ -644,10 +653,10 @@ namespace HonorSDK {
                     LoginFinish(false, body);
                     break;
                 case SWITCH_ACCOUNT_SUCCESS:
-                    SwitchAccountFinish(true, body);
+                    LoginFinish(true, body);
                     break;
                 case SWITCH_ACCOUNT_FAILED:
-                    SwitchAccountFinish(false, body);
+                    LoginFinish(false, body);
                     break;
                 case BIND_SUCCESS:
                     StartBindFinish(true, body);
@@ -833,7 +842,7 @@ namespace HonorSDK {
         /// </summary>
         /// <param name="switchAccountListener">返回账号切换结果<see cref="UserInfo"/></param>
         public virtual void SwitchAccount(OnFinish<UserInfo> switchAccountListener) {
-            this.switchAccountListener = switchAccountListener;
+            this.loginListener = switchAccountListener;
         }
 
         /// <summary>
@@ -1262,6 +1271,7 @@ namespace HonorSDK {
                 userInfo.uid = node["uid"].Value;
                 userInfo.accessToken = node["accessToken"].Value;
                 userInfo.nickName = node["nickname"].Value;
+                userInfo.type = node["nickname"].AsInt;
                 JSONArray arrayBindStates = node["bindStates"].AsArray;
                 List<BindState> bindStates = userInfo.bindStates;
                 foreach (JSONNode item in arrayBindStates.Childs) {
@@ -1272,35 +1282,6 @@ namespace HonorSDK {
                 }
             }
             loginListener(userInfo);
-        }
-
-        private void SwitchAccountFinish(bool success, string body) {
-            Dictionary<string, string> extra = new Dictionary<string, string>();
-            UserInfo userInfo = new UserInfo(extra);
-            userInfo.success = success;
-            if (!success)
-                userInfo.message = body;
-            else {
-                JSONNode node = JSONNode.Parse(body);
-                JSONClass extraNode = node["extra"].AsObject;
-                foreach (KeyValuePair<string, JSONNode> item in extraNode)
-                {
-                    extra[item.Key] = item.Value.Value;
-                }
-                userInfo.uid = node["uid"].Value;
-                userInfo.accessToken = node["accessToken"].Value;
-                userInfo.nickName = node["nickname"].Value;
-                JSONArray arrayBindStates = node["bindStates"].AsArray;
-                List<BindState> bindStates = userInfo.bindStates;
-                foreach (JSONNode item in arrayBindStates.Childs)
-                {
-                    BindState bindState = new BindState();
-                    bindState.bindState = item["bindState"].AsInt;
-                    bindState.platform = item["platform"].Value;
-                    bindStates.Add(bindState);
-                }
-            }
-            switchAccountListener(userInfo);
         }
     }
 }

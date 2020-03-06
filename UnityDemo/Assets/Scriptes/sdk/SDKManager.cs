@@ -26,9 +26,7 @@ namespace HonorSDK {
     /// 类说明：基础返回信息
     /// </summary>
     public class ResultInit : Result {
-
         private Dictionary<string, string> customParams;
-
         public ResultInit(Dictionary<string, string> customParams) {
             this.customParams = customParams;
         }
@@ -37,26 +35,19 @@ namespace HonorSDK {
         }
     }
 
-    public class NetStateInfo : Result{
+    public class NetStateInfo : Result {
         //是否是wifi连接
-        public bool wifi
-        {
+        public bool wifi {
             set; get;
         }
         //是否有网络
-        public bool networkConnect
-        {
+        public bool networkConnect {
             set; get;
         }
     }
 
     public class UserInfo : Result {
- 
-        public int type
-        {
-            set; get;
-        }
-
+        //用户唯一表示
         public string uid {
             set; get;
         }
@@ -72,8 +63,8 @@ namespace HonorSDK {
         public string platform { set; get; }
 
         public List<BindState> bindStates = new List<BindState>();
-		
-		private Dictionary<string, string> extra;
+
+        private Dictionary<string, string> extra;
         //当前账号今天的累计登录时间
         public const string EXTRA_PLAY_TIME = "playtime";
         public UserInfo(Dictionary<string, string> extra) {
@@ -182,8 +173,8 @@ namespace HonorSDK {
         public const int TYPE_ROLE_LEVEL = 3;
 
         public const int GENDERMALE = 1;
-
         public const int GENDER_FEMALE = 2;
+
         //角色ID
         public string roleId {
             set; get;
@@ -198,26 +189,21 @@ namespace HonorSDK {
         }
         //角色等级
         public int roleLevel {
-            set; get;          
+            set; get;
         }
         //角色vip等级
         public string roleVip {
             set; get;
         }
-
         //角色性别
-        public int gender
-        {
+        public int gender {
             set; get;
         }
 
         //账户金币或钻石等货币余额
-        public int balance
-        {
+        public int balance {
             set; get;
         }
-
-
         //角色其他信息
         public string extra {
             set; get;
@@ -230,15 +216,12 @@ namespace HonorSDK {
         public int lastUpdate {
             set; get;
         }
-
     }
     public class OrderInfo {
         //是否是首充
-        public bool isFirstPay
-        {
+        public bool isFirstPay {
             set; get;
         }
-
         //服务器id
         public string serverId {
             set; get;
@@ -257,14 +240,12 @@ namespace HonorSDK {
         }
 
         //vip等级
-        public int vipLevel
-        {
+        public int vipLevel {
             set; get;
         }
 
         //账户余额
-        public int balance
-        {
+        public int balance {
             set; get;
         }
         //商品id
@@ -284,9 +265,13 @@ namespace HonorSDK {
 
     public class DiskInfo {
         // 外部存储总大小 单位Byte
-        public long totalSize { set; get; }
+        public long totalSize {
+            set; get;
+        }
         //外部存储可用大小 单位Byte
-        public long availSize { set; get; }
+        public long availSize {
+            set; get;
+        }
     }
 
     public class ResultPay : Result {
@@ -296,22 +281,22 @@ namespace HonorSDK {
         }
     }
     public class NoticeInfo {
+
         public enum eNoticeType {
             NomalNotice = 0,//普通公告
             ActivityNotice = 1,//活动公告
             UpdateNotice = 2,//更新公告
             MarqueeNotice = 3,//跑马灯公告
-            LoginNotice = 4,//登录公告
+            LoginNotice = 4,//维护公告
             LogoutNotice = 5,//登出公告
-            InterceptNotice = 6//截断公告
+            InterceptNotice = 6 //截断公告
         }
 
-        //公告类型(0普通1活动2更新3跑马灯4登录5登出)
-        public int id
-        {
+        public int id {
             set; get;
         }
 
+        // 公告类型(0普通,1活动,2更新,3跑马灯,4登录,5登出,6截断)
         public int type {
             set; get;
         }
@@ -440,19 +425,20 @@ namespace HonorSDK {
         public string priceDisplay {
             set; get;
         }
-        //币种代码 例:"USD" "CNY"
+        //币种例:"¥", "$", "€"---后台配置的
         public string currency {
             set; get;
         }
-        //货币符号 例:"¥", "$", "€"---后台配置的
+        //当地价格,主要针对海外多地区发行，国内发行等同price---google获取(显示层)
+        public double localPrice {
+            set; get;
+        }
+        //当地币种符号"¥", "$", "€",主要针对海外多地区发行，国内发行等同currency---google获取(显示层)
         public string localSymbol;
-        //当地价格,主要针对海外多地区发行，国内发行等同price---google获取
-     
-        public double localPrice { set; get; }
-
-        //币种代码 例:"USD" "CNY"
-        public string localCurrency { set; get; }
-
+        //当地币种代码"USD", "CNY", 主要针对海外多地区发行，国内发行等同currency---google获取(显示层)
+        public string localCurrency {
+            set; get;
+        }
         //游戏币数量
         public int count {
             set; get;
@@ -644,13 +630,13 @@ namespace HonorSDK {
                     GetBatteryFinish(success, body);
                     break;
                 case LOGIN_SUCCESS:
-                    LoginFinish(true, body,true);
+                    LoginFinish(true, body, true);
                     break;
                 case LOGIN_FAILED:
                     LoginFinish(false, body, true);
                     break;
                 case SWITCH_ACCOUNT_SUCCESS:
-                    LoginFinish(true, body,false);
+                    LoginFinish(true, body, false);
                     break;
                 case SWITCH_ACCOUNT_FAILED:
                     LoginFinish(false, body, false);
@@ -708,10 +694,7 @@ namespace HonorSDK {
             }
         }
 
-   
-
         private string mConfigs;
-
         /// <summary>
         /// 初始化，此接口必须最先调用
         /// </summary>
@@ -719,26 +702,25 @@ namespace HonorSDK {
         /// <param name="initListener">返回初始化结果<see cref="ResultInit"/></param>
         public void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null) {
             Debug.Log("SDKManager.Init");
-            this.initListener = initListener;         
-            if (configs == null)
-            {
+            this.initListener = initListener;
+            if (configs == null) {
                 configs = new Dictionary<string, string>();
             }
             configs.Add("gameResVersion", gameResVersion);
             JSONClass json = new JSONClass();
-            foreach (KeyValuePair<string, string> kv in configs)
-            {               
-                json.Add(kv.Key, new JSONData(kv.Value));     
+            foreach (KeyValuePair<string, string> kv in configs) {
+                json.Add(kv.Key, new JSONData(kv.Value));
             }
             mConfigs = json.ToString();
             gameObject.SetOnReceiveListener(new OnReceiveMsg(this.OnReceive));
             SetGameObjectName(gameObject.gameObject.name);
             Debug.Log(this.ToString());
         }
-        protected virtual void SetGameObjectName(string gameObjectName) {
-            Debug.Log("SDKManager.SetGameObjectName");
+
+        public virtual void SetGameObjectName (string gameObjectName) {
+
         }
-        protected virtual void Init(string configsJson) {
+        public virtual void Init (string configs) {
 
         }
         /// <summary>
@@ -748,9 +730,7 @@ namespace HonorSDK {
         public virtual void GetAppInfo(OnFinish<AppInfo> appInfoListener) {
             this.appInfoListener = appInfoListener;
         }
-
         public virtual void GameStepInfo(string step, string type = "") {
-
         }
         /// <summary>
         /// 获取刘海屏信息
@@ -758,7 +738,6 @@ namespace HonorSDK {
         /// <param name="getNotchInfoListener">返回刘海屏信息<see cref="NotchScreenInfo"/></param>
         public virtual void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener) {
             this.getNotchInfoListener = getNotchInfoListener;
-
         }
         /// <summary>
         /// 获取国家码 
@@ -839,14 +818,13 @@ namespace HonorSDK {
         /// </summary>
 
         public virtual void SwitchAccount() {
-           
+
         }
         /// <summary>
         /// 注册监听
         /// </summary>
         /// <param name="switchAccountListener">返回账号切换结果<see cref="UserInfo"/></param>
-        public virtual void RegisterSwitchAccountListener(OnFinish<UserInfo> switchAccountListener)
-        {
+        public virtual void RegisterSwitchAccountListener(OnFinish<UserInfo> switchAccountListener) {
             this.switchAccountListener = switchAccountListener;
         }
 
@@ -888,7 +866,7 @@ namespace HonorSDK {
             json.Add("serverId", new JSONData(gameRoleInfo.serverId));
             json.Add("sex", new JSONData(gameRoleInfo.gender));
             json.Add("balance", new JSONData(gameRoleInfo.balance));
-            json.Add("lastUpdate", new JSONData(gameRoleInfo.lastUpdate));  
+            json.Add("lastUpdate", new JSONData(gameRoleInfo.lastUpdate));
             json.Add("extra", new JSONData(gameRoleInfo.extra));
             return json.ToString();
         }
@@ -972,7 +950,6 @@ namespace HonorSDK {
             if (headName != null && headName != "" && !expandListeners.ContainsKey(headName)) {
                 expandListeners.Add(headName, expandFunctionListener);
             }
-
         }
 
         /// <summary>
@@ -980,8 +957,7 @@ namespace HonorSDK {
         /// </summary>
         /// <param name="language"></param>
         /// <param name="country"></param>
-        public virtual void SetApplicationLocale(string language, string country ="")
-        {
+        public virtual void SetApplicationLocale(string language, string country = "") {
 
         }
 
@@ -995,13 +971,11 @@ namespace HonorSDK {
         /// 获取网络状态
         /// </summary>
         /// <param name="getNetStateInfoListener"></param>
-        public virtual void GetNetStateInfo(OnFinish<NetStateInfo> getNetStateInfoListener)
-        {
+        public virtual void GetNetStateInfo(OnFinish<NetStateInfo> getNetStateInfoListener) {
             this.getNetStateInfoListener = getNetStateInfoListener;
         }
 
-        public virtual NetStateInfo GetNetStateInfo()
-        {
+        public virtual NetStateInfo GetNetStateInfo() {
             return null;
         }
 
@@ -1261,18 +1235,18 @@ namespace HonorSDK {
             getMemroyInfoListener(info);
         }
 
-        private void LoginFinish(bool success, string body,bool login) {		
-			Dictionary<string, string> extra = new Dictionary<string, string>();
+        private void LoginFinish(bool success, string body, bool login) {
+            Dictionary<string, string> extra = new Dictionary<string, string>();
             UserInfo userInfo = new UserInfo(extra);
-            userInfo.success = success;        
+            userInfo.success = success;
             if (!success)
                 userInfo.message = body;
             else {
                 JSONNode node = JSONNode.Parse(body);
-                JSONClass extraNode = node["extra"].AsObject;				
-				foreach (KeyValuePair<string, JSONNode> item in extraNode) {
-					extra[item.Key] = item.Value.Value;
-				}
+                JSONClass extraNode = node["extra"].AsObject;
+                foreach (KeyValuePair<string, JSONNode> item in extraNode) {
+                    extra[item.Key] = item.Value.Value;
+                }
                 userInfo.uid = node["uid"].Value;
                 userInfo.accessToken = node["accessToken"].Value;
                 userInfo.nickName = node["nickname"].Value;

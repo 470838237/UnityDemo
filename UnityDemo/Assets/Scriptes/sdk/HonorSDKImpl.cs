@@ -4,13 +4,10 @@ using UnityEngine;
 
 namespace HonorSDK {
 
-
-    public class IdentifyInfo
-    {
+    public class IdentifyInfo {
 
         //-1:游客 0:未认证 1:未满8岁 2:未满16岁 3:未满18岁 4:成年
-        public int identify
-        {
+        public int identify {
             set; get;
         }
 
@@ -134,23 +131,6 @@ namespace HonorSDK {
         }
     }
 
-    public class DownloadInfo : Result {
-
-        public const int CODE_CONNECTION_SUCCEED = 0, // 连接成功
-              CODE_DOWNLOAD_NONE = 1, // 下载响应正常
-              CODE_DOWNLOAD_TIMEOUT = -101, // 下载超时
-              CODE_DISK_FULL = -102,// 磁盘满------TODO提前预估磁盘情况
-              CODE_FILE_NOT_EXIST = -103, // 服务器没有该文件
-              CODE_DOWNLOAD_UNCOMPLETET = -106, // 网络波动导致文件未完整下载
-              DOWNLOAD_QUEUE_FULL = -107,// SDK下载队列已满
-              CODE_WRITE_FILE_FAILED = -150; // 写文件失败等一些列未知异常
-
-        //请求id
-        public int seqId { set; get; }
-        //文件下载进度 单位Byte
-        public int downloadSize { set; get; }
-    }
-
     public class ResultDownloadText : Result {
         public string content {
             set; get;
@@ -165,11 +145,18 @@ namespace HonorSDK {
             Android,
             Ios,
         }
-
         /// <summary>
         /// 资源文件路径
         /// </summary>
         public static string RES_FILE_PATH;
+        /// <summary>
+        /// url路径
+        /// </summary>
+        public static string RES_URL_PATH;
+        /// <summary>
+        /// 持久化路径
+        /// </summary>
+        public static string PERSISTENT_PATH;
 
         private static HonorSDKImpl instance;
 
@@ -187,7 +174,7 @@ namespace HonorSDK {
             }
         }
 
-        new public static HonorSDKImpl GetInstance() {
+        public static HonorSDKImpl GetInstance() {
             return instance;
         }
         //翻译成功
@@ -243,7 +230,6 @@ namespace HonorSDK {
         private OnFinish<ResultDownload> downForceUpdateListener;
         private OnFinish<ResultObbDownload> downObbUpdateListener;
         private OnFinish<ResultGetABTestVer> getABTestVerListener;
-        private OnFinish<DownloadInfo> downloadListener;
         private OnFinish<NetStateInfo> networkStateListener;
         private OnFinish<ResultDownloadText> downloadTextListener;
         private OnFinish<ResultGetHeadsetState> getHeadsetStateListener;
@@ -302,7 +288,7 @@ namespace HonorSDK {
                     break;
                 case GET_AB_TEST_FINISH:
                     GetABTestVerFinish(true, body);
-                    break;      
+                    break;
                 case DOWNLOAD_TEXT_SUCCESS:
                     DownloadTextFinish(true, body);
                     break;
@@ -315,15 +301,12 @@ namespace HonorSDK {
                 case GET_DEVICE_INFO:
                     getDeviceInfoListener(body);
                     break;
-                default: break;
+                default:
+                    break;
             }
         }
 
-
         public const string CONFIG_UNITY_ID = "unity_id";
-
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -332,7 +315,7 @@ namespace HonorSDK {
 
             return null;
         }
-     
+
         /// <summary>
         /// 获取认证信息，用户登陆成功后调用
         /// </summary>
@@ -340,7 +323,7 @@ namespace HonorSDK {
         public virtual string GetAuthInfo() {
             return "";
         }
-    
+
         /// <summary>
         /// 
         /// </summary>
@@ -348,8 +331,7 @@ namespace HonorSDK {
         /// <param name="retry">失败重试次数</param>
         /// <param name="timeout">下载超时时间 单位ms</param>
         /// <param name="downloadTextListener"></param>
-        public virtual void DownloadText(string url,int retry,int timeout, OnFinish<ResultDownloadText> downloadTextListener)
-        {
+        public virtual void DownloadText(string url, int retry, int timeout, OnFinish<ResultDownloadText> downloadTextListener) {
             this.downloadTextListener = downloadTextListener;
         }
 
@@ -360,8 +342,8 @@ namespace HonorSDK {
             return "";
         }
 
-  
-     
+
+
         /// <summary>
         /// 注册网络改变监听
         /// </summary>
@@ -369,7 +351,7 @@ namespace HonorSDK {
         public virtual void RegisterNetworkState(OnFinish<NetStateInfo> networkStateListener) {
             this.networkStateListener = networkStateListener;
         }
-    
+
 
         /// <summary>
         /// 游戏资源路径
@@ -514,8 +496,7 @@ namespace HonorSDK {
         /// 获取设备信息
         /// </summary>
         /// <param name="getDeviceInfoListener"></param>
-        public virtual void GetDeviceInfo(OnFinish<string> getDeviceInfoListener)
-        {
+        public virtual void GetDeviceInfo(OnFinish<string> getDeviceInfoListener) {
             this.getDeviceInfoListener = getDeviceInfoListener;
         }
 
@@ -525,11 +506,9 @@ namespace HonorSDK {
         /// 判断是否需要弹出协议对话框
         /// </summary>
         /// <param name="isSupportAlertAgreementListener">回调是否需要弹出协议对话框</param>
-        public virtual void IsSupportAlertAgreement(OnFinish<bool> isSupportAlertAgreementListener)
-        {
-            ExpandFunction(FUNCTION_NAME_IS_SUPPORT_ALERT_AGREEMENT, "", HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT, delegate (ResultExpand result)
-            {
-                JSONNode node =  JSONNode.Parse(result.originResult);
+        public virtual void IsSupportAlertAgreement(OnFinish<bool> isSupportAlertAgreementListener) {
+            ExpandFunction(FUNCTION_NAME_IS_SUPPORT_ALERT_AGREEMENT, "", HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT, delegate (ResultExpand result) {
+                JSONNode node = JSONNode.Parse(result.originResult);
                 isSupportAlertAgreementListener(node["isSupportAlertAgreement"].AsBool);
             });
 
@@ -541,14 +520,12 @@ namespace HonorSDK {
         /// 弹出协议框
         /// </summary>
         /// <param name="isSupportAlertAgreementListener">回调玩家是否接受协议</param>
-        public virtual void AlertAgreement(OnFinish<bool> alertAgreementListener)
-        {
-            ExpandFunction(FUNCTION_NAME_ALERT_AGREEMENT, "", HEAD_NAME_ALERT_AGREEMENT, delegate (ResultExpand result)
-            {
+        public virtual void AlertAgreement(OnFinish<bool> alertAgreementListener) {
+            ExpandFunction(FUNCTION_NAME_ALERT_AGREEMENT, "", HEAD_NAME_ALERT_AGREEMENT, delegate (ResultExpand result) {
                 JSONNode node = JSONNode.Parse(result.originResult);
                 alertAgreementListener(node["isAcceptAgreement"].AsBool);
             });
-        }    
+        }
         const string HEAD_REGISTER_IDENTIFY = "register_identify";
         const string FUNCTION_NAME_REGISTER_IDENTIFY = HEAD_REGISTER_IDENTIFY;
         /// <summary>
@@ -556,8 +533,7 @@ namespace HonorSDK {
         /// </summary>
         /// <param name="identifyListener"></param>
         public virtual void RegisterIdentifyListener(OnFinish<IdentifyInfo> identifyListener) {
-            ExpandFunction(FUNCTION_NAME_REGISTER_IDENTIFY, "", HEAD_REGISTER_IDENTIFY, delegate (ResultExpand result)
-            {
+            ExpandFunction(FUNCTION_NAME_REGISTER_IDENTIFY, "", HEAD_REGISTER_IDENTIFY, delegate (ResultExpand result) {
                 JSONNode node = JSONNode.Parse(result.originResult);
                 IdentifyInfo info = new IdentifyInfo();
                 info.identify = node["identify"].AsInt;
@@ -581,18 +557,16 @@ namespace HonorSDK {
         public virtual void AiHelpShowFAQs(List<string> tags1, Dictionary<string, string> tags2) {
             JSONClass json = new JSONClass();
             JSONArray jsonArray = new JSONArray();
-            if (tags1 != null)
-            {
-                foreach (string v in tags1)
-                {
+            if (tags1 != null) {
+                foreach (string v in tags1) {
                     jsonArray.Add(new JSONData(v));
                 }
             }
             json.Add("tags1", jsonArray);
             JSONClass jsonTags2 = new JSONClass();
-            if (tags2 != null) {             
+            if (tags2 != null) {
                 foreach (KeyValuePair<string, string> item in tags2) {
-                    jsonTags2.Add(item.Key,new JSONData(item.Value));
+                    jsonTags2.Add(item.Key, new JSONData(item.Value));
                 }
             }
             json.Add("tags2", jsonTags2);
@@ -605,24 +579,20 @@ namespace HonorSDK {
         /// <param name="sererId"></param>
         /// <param name="tags1">分类，所传递的标签需要和客服后台保持一致</param>
         /// <param name="tags2">分类，游戏通过key-value形式自定义标签</param>
-        public virtual void AiHelpShowElva(string sererId, List<string> tags1,Dictionary<string,string> tags2) {
+        public virtual void AiHelpShowElva(string sererId, List<string> tags1, Dictionary<string, string> tags2) {
             JSONClass json = new JSONClass();
             json.Add("serverId", new JSONData(sererId));
             JSONArray jsonArray = new JSONArray();
-            if (tags1 != null)
-            {
-                foreach (string v in tags1)
-                {
+            if (tags1 != null) {
+                foreach (string v in tags1) {
                     jsonArray.Add(new JSONData(v));
                 }
             }
             json.Add("tags1", jsonArray);
 
             JSONClass jsonTags2 = new JSONClass();
-            if (tags2 != null)
-            {
-                foreach (KeyValuePair<string, string> item in tags2)
-                {
+            if (tags2 != null) {
+                foreach (KeyValuePair<string, string> item in tags2) {
                     jsonTags2.Add(item.Key, new JSONData(item.Value));
                 }
             }
@@ -637,7 +607,6 @@ namespace HonorSDK {
         public virtual void OpenMarketComments() {
             ExpandFunction(FUNCTION_OPEN_GOOGLE_PLAY_COMMENTS);
         }
-
 
         private void DownloadTextFinish(bool success, string body) {
             ResultDownloadText result = new ResultDownloadText();

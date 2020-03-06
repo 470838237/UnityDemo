@@ -51,12 +51,7 @@ namespace HonorSDK {
     }
 
     public class UserInfo : Result {
-        //登录
-        public const int TYPE_LOGIN = 1;
-        //切换账户
-        public const int TYPE_SWITCH_ACCOUNT = 2;
-        //开始新游戏
-        public const int TYPE_NEW_GAME = 3;
+ 
         public int type
         {
             set; get;
@@ -308,6 +303,7 @@ namespace HonorSDK {
             MarqueeNotice = 3,//跑马灯公告
             LoginNotice = 4,//登录公告
             LogoutNotice = 5,//登出公告
+            InterceptNotice = 6//截断公告
         }
 
         //公告类型(0普通1活动2更新3跑马灯4登录5登出)

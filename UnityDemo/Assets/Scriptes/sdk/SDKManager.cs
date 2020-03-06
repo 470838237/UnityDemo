@@ -599,6 +599,7 @@ namespace HonorSDK {
 
         private OnFinish<ResultInit> initListener;
         private OnFinish<UserInfo> loginListener;
+        private OnFinish<UserInfo> switchAccountListener;
         private OnFinish<AppInfo> appInfoListener;
         private OnFinish<NotchScreenInfo> getNotchInfoListener;
         private OnFinish<Locale> getCountryAndLanguageListener;
@@ -647,16 +648,16 @@ namespace HonorSDK {
                     GetBatteryFinish(success, body);
                     break;
                 case LOGIN_SUCCESS:
-                    LoginFinish(true, body);
+                    LoginFinish(true, body,true);
                     break;
                 case LOGIN_FAILED:
-                    LoginFinish(false, body);
+                    LoginFinish(false, body, true);
                     break;
                 case SWITCH_ACCOUNT_SUCCESS:
-                    LoginFinish(true, body);
+                    LoginFinish(true, body,false);
                     break;
                 case SWITCH_ACCOUNT_FAILED:
-                    LoginFinish(false, body);
+                    LoginFinish(false, body, false);
                     break;
                 case BIND_SUCCESS:
                     StartBindFinish(true, body);
@@ -850,7 +851,7 @@ namespace HonorSDK {
         /// <param name="switchAccountListener">返回账号切换结果<see cref="UserInfo"/></param>
         public virtual void RegisterSwitchAccountListener(OnFinish<UserInfo> switchAccountListener)
         {
-            this.loginListener = switchAccountListener;
+            this.switchAccountListener = switchAccountListener;
         }
 
         /// <summary>
@@ -1264,7 +1265,7 @@ namespace HonorSDK {
             getMemroyInfoListener(info);
         }
 
-        private void LoginFinish(bool success, string body) {		
+        private void LoginFinish(bool success, string body,bool login) {		
 			Dictionary<string, string> extra = new Dictionary<string, string>();
             UserInfo userInfo = new UserInfo(extra);
             userInfo.success = success;        
@@ -1288,7 +1289,10 @@ namespace HonorSDK {
                     bindStates.Add(bindState);
                 }
             }
-            loginListener(userInfo);
+            if (login)
+                loginListener(userInfo);
+            else
+                switchAccountListener(userInfo);
         }
     }
 }

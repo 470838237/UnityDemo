@@ -52,10 +52,7 @@ namespace HonorSDK {
 
     public class UserInfo : Result {
  
-        public int type
-        {
-            set; get;
-        }
+    
 
         public string uid {
             set; get;
@@ -76,6 +73,7 @@ namespace HonorSDK {
 		private Dictionary<string, string> extra;
         //当前账号今天的累计登录时间
         public const string EXTRA_PLAY_TIME = "playtime";
+        public const string EXTRA_IDENTIFY = "identify";
         public UserInfo(Dictionary<string, string> extra) {
             this.extra = extra;
         }

@@ -48,7 +48,7 @@ public class Scene1 : BaseScene
 
         }, "1");
     }
-  
+    int identify ;
 
     private void InitFinish()
     {
@@ -57,6 +57,12 @@ public class Scene1 : BaseScene
         string OPEN_GOOGLE_PLAY_COMMENTS = "open_google_play_comments";
         HonorSDKImpl.GetInstance().ExpandFunction(OPEN_GOOGLE_PLAY_COMMENTS);
 
+
+        HonorSDKImpl.GetInstance().RegisterIdentifyListener(delegate(IdentifyInfo info) {
+
+            identify = info.identify;
+
+        });
 
         GetAppInfo();
         GetBattery();

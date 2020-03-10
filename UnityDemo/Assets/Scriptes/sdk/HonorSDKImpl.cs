@@ -562,6 +562,8 @@ namespace HonorSDK {
                 IdentifyInfo info = new IdentifyInfo();
                 info.identify = node["identify"].AsInt;
                 identifyListener(info);
+
+
             });
         }
         const string FUNCTION_ALERT_IDENTIFY = "alert_identify";
@@ -596,7 +598,8 @@ namespace HonorSDK {
                 }
             }
             json.Add("tags2", jsonTags2);
-            ExpandFunction(FUNCTION_AI_HELP_SHOW_FAQS, jsonArray.ToString());
+
+            ExpandFunction(FUNCTION_AI_HELP_SHOW_FAQS, json.ToString());
         }
         const string FUNCTION_AI_HELP_SHOW_ELVA = "aihelp_showElva";
         /// <summary>

@@ -303,5 +303,11 @@ namespace HonorSDK {
             base.GetDeviceInfo(getDeviceInfoListener);
             currentActivity.Call("getDeviceInfo");
         }
+
+        public override void RestartApp()
+        {
+            base.RestartApp();
+            currentActivity.Call("restartApp");
+        }
     }
 }

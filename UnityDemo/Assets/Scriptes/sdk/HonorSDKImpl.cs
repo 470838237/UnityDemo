@@ -534,6 +534,50 @@ namespace HonorSDK {
             });
 
         }
+        /// <summary>
+        /// 重启应用
+        /// </summary>
+        public virtual void RestartApp() {
+
+        }
+
+        const string HEAD_GET_CPU_TYPE = "get_cpu_type";
+        const string FUNCTION_GET_CPU_TYPET = HEAD_GET_CPU_TYPE;
+
+        public enum CPUArchitecture
+        {
+            ARCH_UNKNOWN = 0,
+            ARCH_X86 = 1,
+            ARCH_ARMV7 = 2,
+            ARCH_ARMV64 = 3,
+        }
+
+        /// <summary>
+        /// 获取CPU类型 ，类型说明<see cref="CPUArchitecture"/>
+        /// </summary>
+        /// <param name="getGetCpuTypeListener">回调CPU类型</param>
+        public virtual void GetCpuType(OnFinish<int> getGetCpuTypeListener) {
+            ExpandFunction(FUNCTION_GET_CPU_TYPET,"", FUNCTION_GET_CPU_TYPET, delegate (ResultExpand result) {
+                JSONNode node = JSONNode.Parse(result.originResult);
+                getGetCpuTypeListener(node["cpuType"].AsInt);
+            });
+
+        }
+
+        const string HEAD_GET_SO_RELATIVE_PATH = "get_so_relative_path";
+        const string FUNCTION_GET_SO_RELATIVE_PATH = HEAD_GET_SO_RELATIVE_PATH;
+        /// <summary>
+        /// 获取so的相对路径 例如comlibs/x86/
+        /// </summary>
+        /// <param name="getSoRelativePathListener">回调so的相对路径</param>
+        public virtual void GetSoRelativePath(OnFinish<string> getSoRelativePathListener)
+        {
+            ExpandFunction(HEAD_GET_SO_RELATIVE_PATH, "", HEAD_GET_SO_RELATIVE_PATH, delegate (ResultExpand result) {
+                JSONNode node = JSONNode.Parse(result.originResult);
+                getSoRelativePathListener(node["soRelativePath"].Value);
+            });
+
+        }
 
         const string HEAD_NAME_ALERT_AGREEMENT = "alert_agreement";
         const string FUNCTION_NAME_ALERT_AGREEMENT = HEAD_NAME_ALERT_AGREEMENT;

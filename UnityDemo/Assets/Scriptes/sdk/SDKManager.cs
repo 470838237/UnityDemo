@@ -51,8 +51,6 @@ namespace HonorSDK {
     }
 
     public class UserInfo : Result {
- 
-    
 
         public string uid {
             set; get;

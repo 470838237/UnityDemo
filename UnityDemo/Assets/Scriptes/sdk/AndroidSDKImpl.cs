@@ -168,11 +168,7 @@ namespace HonorSDK {
             currentActivity.Call("setApplicationLocale", language, country);
         }
 
-        public override void RestartApp()
-        {
-            base.RestartApp();
-            currentActivity.Call("setApplicationLocale", language, country);
-        }
+       
 
 
 #endif

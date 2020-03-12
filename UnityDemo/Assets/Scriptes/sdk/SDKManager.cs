@@ -827,6 +827,10 @@ namespace HonorSDK {
             this.loginListener = loginListener;
         }
 
+        /// <summary>
+        ///不管之前是否有游客账号都从新生成新的游客账号
+        /// </summary>
+        /// <param name="startNewGameListener"></param>
         public virtual void StartNewGame(OnFinish<UserInfo> startNewGameListener) {
             this.loginListener = startNewGameListener;
         }
@@ -1199,9 +1203,12 @@ namespace HonorSDK {
             result.success = success;
             if (!success)
                 result.message = body;
-            JSONNode node = JSONNode.Parse(body);
-            foreach (KeyValuePair<string, JSONNode> item in node.AsObject) {
-                customParams[item.Key] = item.Value.Value;
+            else {
+                JSONNode node = JSONNode.Parse(body);
+                foreach (KeyValuePair<string, JSONNode> item in node.AsObject)
+                {
+                    customParams[item.Key] = item.Value.Value;
+                }
             }
             initListener(result);
         }

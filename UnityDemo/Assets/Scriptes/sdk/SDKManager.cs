@@ -745,9 +745,17 @@ namespace HonorSDK {
             this.appInfoListener = appInfoListener;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="step">步骤</param>
+        /// <param name="fps">游戏帧率</param>
+        /// <param name="type">步骤类型</param>
         public virtual void GameStepInfo(string step, string type = "") {
 
         }
+
+
         /// <summary>
         /// 获取刘海屏信息
         /// </summary>

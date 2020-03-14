@@ -35,10 +35,13 @@ namespace HonorSDK {
             base.GetAppInfo(appInfoListener);
             currentActivity.Call("getAppInfo");
         }
-        public override void GameStepInfo(string step, string type) {
+
+        public override void GameStepInfo(string step, string type)
+        {
             base.GameStepInfo(step, type);
             currentActivity.Call("gameStepInfo", step, type);
         }
+       
 
         public override void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener) {
             base.GetNotchScreenInfo(getNotchInfoListener);
@@ -65,9 +68,9 @@ namespace HonorSDK {
             base.GetBattery(getBatteryInfoListener);
             currentActivity.Call("getBattery");
         }
-        public override void TranslateContent(string srcContent, string targetLan, OnFinish<ResultTranslate> translateContentListener) {
-            base.TranslateContent(srcContent, targetLan, translateContentListener);
-            currentActivity.Call("translateContent", srcContent, targetLan);
+        public override void TranslateContent(string srcContent, string targetLan, int id, OnFinish<ResultTranslate> translateContentListener) {
+            base.TranslateContent(srcContent, targetLan, id,translateContentListener);
+            currentActivity.Call("translateContent", srcContent, targetLan, id);
         }
         public override void GetHardwareInfo(OnFinish<HardwareInfo> getHardwareListener) {
             base.GetHardwareInfo(getHardwareListener);

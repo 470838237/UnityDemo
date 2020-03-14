@@ -61,6 +61,9 @@ namespace HonorSDK {
         public string translateReult {
             set; get;
         }
+        public int id {
+            set; get;
+        }
     }
 
     public class ResultGetDynamic : Result {
@@ -134,22 +137,7 @@ namespace HonorSDK {
         }
     }
 
-    public class DownloadInfo : Result {
 
-        public const int CODE_CONNECTION_SUCCEED = 0, // 连接成功
-              CODE_DOWNLOAD_NONE = 1, // 下载响应正常
-              CODE_DOWNLOAD_TIMEOUT = -101, // 下载超时
-              CODE_DISK_FULL = -102,// 磁盘满------TODO提前预估磁盘情况
-              CODE_FILE_NOT_EXIST = -103, // 服务器没有该文件
-              CODE_DOWNLOAD_UNCOMPLETET = -106, // 网络波动导致文件未完整下载
-              DOWNLOAD_QUEUE_FULL = -107,// SDK下载队列已满
-              CODE_WRITE_FILE_FAILED = -150; // 写文件失败等一些列未知异常
-
-        //请求id
-        public int seqId { set; get; }
-        //文件下载进度 单位Byte
-        public int downloadSize { set; get; }
-    }
 
     public class ResultDownloadText : Result {
         public string content {
@@ -243,7 +231,6 @@ namespace HonorSDK {
         private OnFinish<ResultDownload> downForceUpdateListener;
         private OnFinish<ResultObbDownload> downObbUpdateListener;
         private OnFinish<ResultGetABTestVer> getABTestVerListener;
-        private OnFinish<DownloadInfo> downloadListener;
         private OnFinish<NetStateInfo> networkStateListener;
         private OnFinish<ResultDownloadText> downloadTextListener;
         private OnFinish<ResultGetHeadsetState> getHeadsetStateListener;
@@ -395,7 +382,7 @@ namespace HonorSDK {
         /// <param name="srcContent">待翻译文本内容</param>
         /// <param name="targetLan">目标语言码</param>
         /// <param name="translateContentListener">成功返回翻译后文本，失败返回原文本</param>
-        public virtual void TranslateContent(string srcContent, string targetLan, OnFinish<ResultTranslate> translateContentListener) {
+        public virtual void TranslateContent(string srcContent, string targetLan, int id, OnFinish<ResultTranslate> translateContentListener) {
             this.translateContentListener = translateContentListener;
         }
 
@@ -833,7 +820,9 @@ namespace HonorSDK {
         private void TranslateContentFinish(bool success, string body) {
             ResultTranslate result = new ResultTranslate();
             result.success = success;
-            result.translateReult = body;
+            JSONNode node = JSONNode.Parse(body);
+            result.id = node["id"].AsInt;
+            result.translateReult = node["translatedText"].Value;
             translateContentListener(result);
         }
 

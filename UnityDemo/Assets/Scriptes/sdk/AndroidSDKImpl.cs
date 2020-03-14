@@ -32,8 +32,8 @@ namespace HonorSDK {
             currentActivity.Call("getAppInfo");
         }
         public override void GameStepInfo(string step, string type) {
-            base.GameStepInfo(step, type);
-            currentActivity.Call("gameStepInfo", step, type);
+            base.GameStepInfo(step,type);
+            currentActivity.Call("gameStepInfo", step,type);
         }
 
         public override void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener) {

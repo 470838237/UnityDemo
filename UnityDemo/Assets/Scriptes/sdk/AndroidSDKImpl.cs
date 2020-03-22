@@ -36,8 +36,8 @@ namespace HonorSDK {
             currentActivity.Call("gameStepInfo", step,type);
         }
 
-        public override void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener) {
-            base.GetNotchScreenInfo(getNotchInfoListener);
+        public override void RegisterNotchScreenInfoListener(OnFinish getNotchInfoListener) {
+            base.RegisterNotchScreenInfoListener(getNotchInfoListener);
             currentActivity.Call("getNotchScreenInfo");
         }
 
@@ -133,7 +133,7 @@ namespace HonorSDK {
         }
         public override void SetClipboard(string content) {
             base.SetClipboard(content);
-            currentActivity.Call("setClipboard");
+            currentActivity.Call("setClipboard", content);
         }
         public override bool IsSupportApi(Api api) {
             base.IsSupportApi(api);

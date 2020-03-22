@@ -42,9 +42,11 @@ namespace HonorSDK {
             set; get;
         }
         //机型
-        public string deviceModel;
-        //cpu温度
-        public double temperature;
+        public string deviceModel
+        {
+            set; get;
+        }
+    
     }
 
     public class ResultVideoRecord : Result {
@@ -810,7 +812,7 @@ namespace HonorSDK {
                 info.totalMemory = node["totalMemory"].AsInt;
                 info.freeMemory = node["freeMemory"].AsInt;
                 info.deviceModel = node["deviceModel"].Value;
-                info.temperature = node["temperature"].AsDouble;
+            
             }
             else {
                 info.message = body;

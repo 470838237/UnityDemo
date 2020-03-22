@@ -27,6 +27,8 @@ namespace HonorSDK {
     /// </summary>
     public class ResultInit : Result {
 
+        public const string DYNAMIC_SETTING_FILE_PATH = "dynamic_setting_file_path";
+
         private Dictionary<string, string> customParams;
 
         public ResultInit(Dictionary<string, string> customParams) {
@@ -166,6 +168,16 @@ namespace HonorSDK {
         }
         //总电量(100)
         public int scale {
+            set; get;
+        }
+        //cpu温度
+        public double temperature
+        {
+            set; get;
+        }
+        //是否在充电
+        public bool isCharge
+        {
             set; get;
         }
     }
@@ -515,7 +527,7 @@ namespace HonorSDK {
             set; get;
         }
     }
-
+    public delegate void OnFinish();
     public delegate void OnFinish<T>(T result);
     public delegate void OnReceiveMsg(string head, string body);
 
@@ -593,7 +605,7 @@ namespace HonorSDK {
         private OnFinish<UserInfo> loginListener;
         private OnFinish<UserInfo> switchAccountListener;
         private OnFinish<AppInfo> appInfoListener;
-        private OnFinish<NotchScreenInfo> getNotchInfoListener;
+        private OnFinish getNotchInfoListener;
         private OnFinish<Locale> getCountryAndLanguageListener;
         private OnFinish<MemoryInfo> getMemroyInfoListener;
         private OnFinish<BatteryInfo> getBatteryInfoListener;
@@ -609,7 +621,6 @@ namespace HonorSDK {
         private Dictionary<string, OnFinish<ResultExpand>> expandListeners = new Dictionary<string, OnFinish<ResultExpand>>();
 
         protected virtual void OnReceive(string head, string body) {
-            Debug.Log("head=" + head + ";body=" + body);
             switch (head) {
                 case SET_GAME_OBJECT_NAME_SUCCESS:
                     Init(mConfigs);
@@ -757,13 +768,21 @@ namespace HonorSDK {
 
 
         /// <summary>
-        /// 获取刘海屏信息
+        /// 注册刘海屏监听,<see cref="GetNotchScreenInfo"/>  获取刘海屏宽高 </param>
         /// </summary>
-        /// <param name="getNotchInfoListener">返回刘海屏信息<see cref="NotchScreenInfo"/></param>
-        public virtual void GetNotchScreenInfo(OnFinish<NotchScreenInfo> getNotchInfoListener) {
+        /// <param name="getNotchInfoListener">获取刘海屏成功回调<see cref="NotchScreenInfo"/></param>
+        public virtual void RegisterNotchScreenInfoListener(OnFinish getNotchInfoListener) {
             this.getNotchInfoListener = getNotchInfoListener;
 
         }
+        /// <summary>
+        ///  获取刘海屏宽高 </param>
+        /// </summary>
+ 
+        public NotchScreenInfo GetNotchScreenInfo() {
+            return notchInfo;
+        }
+
         /// <summary>
         /// 获取国家码 
         /// </summary>
@@ -1058,6 +1077,7 @@ namespace HonorSDK {
             if (success) {
                 JSONNode node = JSONNode.Parse(body);
                 result.nickName = node["nickName"].Value;
+                result.message = node["message"].Value;
             }
             else {
                 result.message = body;
@@ -1220,16 +1240,19 @@ namespace HonorSDK {
             }
             initListener(result);
         }
+        private NotchScreenInfo notchInfo = new NotchScreenInfo();
 
         private void GetNotchInfoFinish(bool success, string body) {
-            NotchScreenInfo info = new NotchScreenInfo();
-            info.success = success;
+
+            notchInfo.success = success;
             if (success) {
                 JSONNode node = JSONNode.Parse(body);
-                info.width = node["width"].AsInt;
-                info.height = node["height"].AsInt;
+                notchInfo.width = node["width"].AsInt;
+                notchInfo.height = node["height"].AsInt;
             }
-            getNotchInfoListener(info);
+            if(getNotchInfoListener!=null)
+                  getNotchInfoListener();
+            getNotchInfoListener = null;
         }
 
 
@@ -1257,6 +1280,8 @@ namespace HonorSDK {
                 JSONNode node = JSONNode.Parse(body);
                 info.scale = node["scale"].AsInt;
                 info.level = node["level"].AsInt;
+                info.temperature = node["temperature"].AsInt;
+                info.isCharge = node["isCharge"].AsBool;
             }
             getBatteryInfoListener(info);
         }
@@ -1284,6 +1309,7 @@ namespace HonorSDK {
 				foreach (KeyValuePair<string, JSONNode> item in extraNode) {
 					extra[item.Key] = item.Value.Value;
 				}
+                userInfo.message = node["message"].Value;
                 userInfo.uid = node["uid"].Value;
                 userInfo.accessToken = node["accessToken"].Value;
                 userInfo.nickName = node["nickname"].Value;

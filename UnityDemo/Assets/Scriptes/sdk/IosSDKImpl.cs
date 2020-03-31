@@ -12,8 +12,8 @@ namespace HonorSDK {
         public IosSdkImpl() {
 
         }
-        protected override void Init() {
-            initConfig();
+        protected override void Init(string configs) {
+            initConfig(configs);
         }
 
 
@@ -148,7 +148,7 @@ namespace HonorSDK {
         [DllImport("__Internal")]
         private static extern void startNewGame();
         [DllImport("__Internal")]
-        private static extern void initConfig();
+        private static extern void initConfig(string configs);
         [DllImport("__Internal")]
         private static extern void login();
         [DllImport("__Internal")]

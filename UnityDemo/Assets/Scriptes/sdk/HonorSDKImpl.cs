@@ -41,6 +41,7 @@ namespace HonorSDK {
         public int freeMemory {
             set; get;
         }
+
         //机型
         public string deviceModel
         {
@@ -500,15 +501,7 @@ namespace HonorSDK {
         public virtual void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener) {
             this.getABTestVerListener = getABTestVerListener;
         }
-        /// <summary>
-        /// 获取设备信息
-        /// </summary>
-        /// <param name="getDeviceInfoListener"></param>
-        public virtual void GetDeviceInfo(OnFinish<string> getDeviceInfoListener)
-        {
-            this.getDeviceInfoListener = getDeviceInfoListener;
-        }
-
+    
         const string HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT = "is_support_alert_agreement";
         const string FUNCTION_NAME_IS_SUPPORT_ALERT_AGREEMENT = HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT;
         /// <summary>
@@ -714,10 +707,10 @@ namespace HonorSDK {
             getABTestVerListener(result);
         }
 
-        private void DownObbUpdateFinish(bool stateChanged, string body) {
+        private void DownObbUpdateFinish(bool success, string body) {
             ResultObbDownload result = new ResultObbDownload();
-            result.stateChanged = stateChanged;
-            if (stateChanged) {
+            result.stateChanged = !success;
+            if (result.stateChanged) {
                 result.state = body;
             }
             else {
@@ -812,7 +805,7 @@ namespace HonorSDK {
                 info.totalMemory = node["totalMemory"].AsInt;
                 info.freeMemory = node["freeMemory"].AsInt;
                 info.deviceModel = node["deviceModel"].Value;
-            
+                info.pssMemory = node["pssMemory"].AsInt;
             }
             else {
                 info.message = body;

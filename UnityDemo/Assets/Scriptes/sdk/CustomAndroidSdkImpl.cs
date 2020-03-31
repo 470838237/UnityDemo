@@ -301,12 +301,6 @@ namespace HonorSDK {
             currentActivity.Call("setApplicationLocale", language, country);
         }
 
-        public override void GetDeviceInfo(OnFinish<string> getDeviceInfoListener)
-        {
-            base.GetDeviceInfo(getDeviceInfoListener);
-            currentActivity.Call("getDeviceInfo");
-        }
-
         public override void RestartApp()
         {
             base.RestartApp();

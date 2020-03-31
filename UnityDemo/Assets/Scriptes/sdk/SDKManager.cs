@@ -148,6 +148,10 @@ namespace HonorSDK {
         public long totalMem {
             set; get;
         }
+        public long pssmemory
+        {
+            set; get;
+        }
     }
 
     public class Locale : Result {
@@ -170,7 +174,7 @@ namespace HonorSDK {
         public int scale {
             set; get;
         }
-        //cpu温度
+        //电池温度
         public double temperature
         {
             set; get;
@@ -1293,6 +1297,7 @@ namespace HonorSDK {
                 JSONNode node = JSONNode.Parse(body);
                 info.totalMem = node["totalMem"].AsLong;
                 info.availMem = node["availMem"].AsLong;
+                info.pssmemory = node["pssmemory"].AsLong;
             }
             getMemroyInfoListener(info);
         }

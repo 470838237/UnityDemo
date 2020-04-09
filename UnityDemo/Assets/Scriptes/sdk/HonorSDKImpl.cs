@@ -615,8 +615,14 @@ namespace HonorSDK {
             });
         }
 
+        const string FUNCTION_OPEN_BROWSER = "open_browser";
 
-        
+        public virtual void OpenBrowser(string url) {
+            JSONClass json = new JSONClass();
+            json.Add("url", new JSONData(url));
+            ExpandFunction(FUNCTION_OPEN_BROWSER, json.ToString());
+        }
+
 
         private string createTagJsonString(List<string> tags1, Dictionary<string, string> tags2,string serverId) {
             JSONClass json = new JSONClass();
@@ -706,6 +712,7 @@ namespace HonorSDK {
             }
             getABTestVerListener(result);
         }
+
 
         private void DownObbUpdateFinish(bool success, string body) {
             ResultObbDownload result = new ResultObbDownload();
@@ -804,8 +811,7 @@ namespace HonorSDK {
                 info.cpuNum = node["cpuNum"].AsInt;
                 info.totalMemory = node["totalMemory"].AsInt;
                 info.freeMemory = node["freeMemory"].AsInt;
-                info.deviceModel = node["deviceModel"].Value;
-                info.pssMemory = node["pssMemory"].AsInt;
+                info.deviceModel = node["deviceModel"].Value;          
             }
             else {
                 info.message = body;

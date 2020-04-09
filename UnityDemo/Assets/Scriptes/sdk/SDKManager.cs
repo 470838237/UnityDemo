@@ -138,6 +138,7 @@ namespace HonorSDK {
             set; get;
         }
     }
+    
 
     public class MemoryInfo : Result {
         //可用内存大小 单位Byte

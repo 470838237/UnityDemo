@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace HonorSdk
@@ -150,6 +151,11 @@ namespace HonorSdk
         public bool HasObbUpdate()
         {
             return false;
+        }
+
+        public void Init(HonorSDKGameObject gameObject, OnFinish<HonorResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null)
+        {
+            base.Init(gameObject, null, gameResVersion, configs);
         }
 
         public void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener)

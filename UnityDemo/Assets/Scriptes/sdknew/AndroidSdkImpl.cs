@@ -250,6 +250,11 @@ namespace HonorSdk
             currentActivity.Call("getHeadsetState", notifyWhenHeadsetChanged ? "true" : "false");
         }
 
+        public void RegisterNetworkState(OnFinish<NetStateInfo> networkStateListener)
+        {
+            
+        }
+
 #endif
     }
 }

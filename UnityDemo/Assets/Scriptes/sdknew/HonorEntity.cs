@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HonorSdk
 {
-    class HonorResultInit : ResultInit
+    public class HonorResultInit : ResultInit
     {
 
         public const string DYNAMIC_SETTING_FILE_PATH = "dynamic_setting_file_path";
@@ -15,7 +15,7 @@ namespace HonorSdk
         }
     }
 
-    class HonorUserInfo : UserInfo
+    public class HonorUserInfo : UserInfo
     {
 
         //当前登录平台类型google,fb,twitter，可以从bindStates集合中查找当前平台的绑定状态

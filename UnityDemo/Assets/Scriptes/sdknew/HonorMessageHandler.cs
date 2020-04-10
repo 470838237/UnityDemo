@@ -50,6 +50,16 @@ namespace HonorSdk
         private OnFinish<ResultObbDownload> downObbUpdateListener;
         private OnFinish<ResultGetABTestVer> getABTestVerListener;
 
+        public void RegisterCallback<T>(HonorApi function, OnFinish<T> callback)
+        {
+            
+            switch (function)
+            {
+                case HonorApi.CONTINUE_UPDATE_OBB:break;
+
+            }
+        }
+
         public HonorMessageHandler(HonorSDKImpl manager) : base(manager)
         {
             this.manager = manager;

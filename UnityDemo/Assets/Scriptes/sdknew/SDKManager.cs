@@ -381,5 +381,10 @@ namespace HonorSdk
             handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
             instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
+
+        public void RegisterNetworkState(OnFinish<NetStateInfo> networkStateListener)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

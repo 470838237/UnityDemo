@@ -138,6 +138,11 @@ namespace HonorSdk
             return false;
         }
 
+        public void Init(HonorSDKGameObject gameObject, OnFinish<HonorResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null)
+        {
+           
+        }
+
         public void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null)
         {
         }

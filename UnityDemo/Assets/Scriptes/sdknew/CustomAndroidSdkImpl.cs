@@ -1,5 +1,8 @@
 ﻿
 
+using System;
+using System.Collections.Generic;
+
 namespace HonorSdk
 {
 
@@ -110,5 +113,9 @@ namespace HonorSdk
             return currentActivity.Call<string>("getAuthInfo");
         }
 
+        public void Init(HonorSDKGameObject gameObject, OnFinish<HonorResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null)
+        {
+            base.Init(gameObject, null, gameResVersion, configs);
+        }
     }
 }

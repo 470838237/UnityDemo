@@ -1,12 +1,14 @@
 ﻿
 
+using System.Collections.Generic;
+
 namespace HonorSdk
 {
     /// <summary>
     /// Honor扩展接口
     /// </summary>
     /// 
-    enum HonorApi {
+   public enum HonorApi {
         TRANSLATE = 1000,
         GET_HARDWARE_INFO,
         UDP_PUSH,
@@ -32,6 +34,7 @@ namespace HonorSdk
 
     interface IHonorApi : IBaseApi
     {
+        void Init(HonorSDKGameObject gameObject, OnFinish<HonorResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null);
         void TranslateContent(string srcContent, string targetLan, int id, OnFinish<ResultTranslate> translateContentListener);
         void GetHardwareInfo(OnFinish<HardwareInfo> getHardwareListener);
         void UdpPush(string ip, string port, string gameRoleId);

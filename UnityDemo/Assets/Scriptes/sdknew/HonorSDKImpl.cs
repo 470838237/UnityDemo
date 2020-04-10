@@ -24,6 +24,8 @@ namespace HonorSdk
         private static HonorSDKImpl instance;
         private  IHonorApi instanceImpl;
 
+        new protected HonorMessageHandler handler;
+
         protected HonorSDKImpl()
         {
         }
@@ -85,15 +87,6 @@ namespace HonorSdk
 
 
 
-        /// <summary>
-        /// 注册网络改变监听
-        /// </summary>
-        /// <param name="networkStateListener"></param>
-        public virtual void RegisterNetworkState(OnFinish<NetStateInfo> networkStateListener)
-        {
-            handler.RegisterCallback(HonorApi.REGISTER_NETWORK_STATE, networkStateListener);
-            instance.instanceImpl.RegisterNetworkState(networkStateListener);
-        }
 
 
         /// <summary>
@@ -462,7 +455,9 @@ namespace HonorSdk
             ExpandFunction(FUNCTION_OPEN_GOOGLE_PLAY_COMMENTS);
         }
 
-
-   
+        public void Init(HonorSDKGameObject gameObject, OnFinish<HonorResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null)
+        {
+            
+        }
     }
 }

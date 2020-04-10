@@ -1,0 +1,12 @@
+{
+    "group": "MSDKLBS",
+    "libs": [],
+    "frameworks": ["CoreLocation.framework"],
+    "files": [],
+    "folders": [],
+    "excludes": [],
+    "headerpaths":[],
+    "build_settings":{},
+    "system_capabilities": {},
+    "Info.plist":{"NSLocationWhenInUseUsageDescription": "CurrentNeedLocation"}
+}

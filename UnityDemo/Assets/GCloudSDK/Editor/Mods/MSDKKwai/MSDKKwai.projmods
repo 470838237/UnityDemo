@@ -1,0 +1,12 @@
+{
+    "group": "MSDKKwai",
+    "libs": [],
+    "frameworks": [],
+    "files": [],
+    "folders": [],
+    "excludes": [],
+    "headerpaths":[],
+    "build_settings":{},
+    "system_capabilities": {},
+    "Info.plist":{"LSApplicationQueriesSchemes": ["KwaiBundleToken", "kwai.clip.multi", "kwai", "kwaiopenapi", "kwaiAuth2", "kwai.shareAuth", "kwai.edit.video.single"], "CFBundleURLTypes": [{"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["ks649925724446463421"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["KwaigameSDK.fallback.$(PRODUCT_BUNDLE_IDENTIFIER)"]}]}
+}

@@ -1,0 +1,12 @@
+{
+    "group": "MSDKSystem",
+    "libs": [],
+    "frameworks": ["MessageUI.framework"],
+    "files": [],
+    "folders": [],
+    "excludes": [],
+    "headerpaths":[],
+    "build_settings":{},
+    "system_capabilities": {},
+    "Info.plist":{}
+}

@@ -1,0 +1,12 @@
+{
+    "group": "MSDKBugly",
+    "libs": ["libz.tbd", "libc++.tbd"],
+    "frameworks": ["SystemConfiguration.framework", "Security.framework"],
+    "files": [],
+    "folders": [],
+    "excludes": [],
+    "headerpaths":[],
+    "build_settings":{},
+    "system_capabilities": {},
+    "Info.plist":{}
+}

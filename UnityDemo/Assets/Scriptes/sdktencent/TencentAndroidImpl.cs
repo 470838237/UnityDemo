@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Honor
+namespace HonorSDK
 {
     class TencentAndroidImpl : HonorTencentSDKImpl
     {
@@ -32,7 +32,10 @@ namespace Honor
             MSDKNotice.NoticeRetEvent += OnNoticeRetEvent;
             MSDKPush.PushBaseRetEvent += OnPushBaseRetEvent;
             MSDKPush.PushNotificationEvent += OnPushNotificationEvent;
+            MSDKCrash.CrashBaseRetEvent += OnCrashBaseRetEvent;
             MSDKPush.RegisterPush("XG");
+            MSDKReport.Init("Beacon,TDM");
+            MSDK.Init();
             Dictionary<string, string> extra = new Dictionary<string, string>();
             ResultInit result = new ResultInit(extra);
             if (initListener != null)
@@ -48,10 +51,51 @@ namespace Honor
             MSDKNotice.NoticeRetEvent -= OnNoticeRetEvent;
             MSDKPush.PushBaseRetEvent -= OnPushBaseRetEvent;
             MSDKPush.PushNotificationEvent -= OnPushNotificationEvent;
+            MSDKCrash.CrashBaseRetEvent -= OnCrashBaseRetEvent;
             MSDKPush.UnregisterPush("XG");
         }
 
+        private CrashCallback crashCallback;
+        public override void SetCrashCallback(CrashCallback crashCallback)
+        {
+            this.crashCallback = crashCallback;
+            MSDKCrash.InitCrash();
+            MSDKCrash.SetCrashCallback();
+           
+        }
 
+        public override void LogInfo(MSDKCrashLevel level, string tag, string log)
+        {
+            MSDKCrash.LogInfo(level, tag, log);
+        }
+
+        public override void SetUserValue(string key, string value)
+        {
+            MSDKCrash.SetUserValue(key, value);
+        }
+        public override void SetUserId(string userId)
+        {
+            MSDKCrash.SetUserId(userId);
+        }
+
+        public string OnCrashBaseRetEvent(MSDKBaseRet baseRet)
+        {
+            if (baseRet.MethodNameId == (int)MSDKMethodNameID.MSDK_CRASH_CALLBACK_EXTRA_DATA)
+            {
+                // 这里是非unity进程，注意不要做unity相关的操作
+                if (crashCallback != null)
+                    return crashCallback.GetExtraData();
+                return "this is extra data.";
+            }
+            else if (baseRet.MethodNameId == (int)MSDKMethodNameID.MSDK_CRASH_CALLBACK_EXTRA_MESSAGE)
+            {
+                // 这里是非unity进程，注意不要做unity相关的操作
+                if (crashCallback != null)
+                    return crashCallback.GetExtraMessage();
+                return "this is extra message.";
+            }
+            return "";
+        }
 
         private void OnLoginRetEvent(MSDKLoginRet loginRet)
         {
@@ -247,20 +291,23 @@ namespace Honor
             else if (pushRet.MethodNameId == (int)MSDKMethodNameID.MSDK_PUSH_NOTIFICAITON_CALLBACK)
             {
                 methodTag = "NotificationCallback";
-                if (pushRet.Type == 0) {
+                if (pushRet.Type == 0)
+                {
                     RemoteNotification notification = new RemoteNotification();
                     notification.notification = pushRet.Notification;
                     notification.foreground = true;
                     if (pushCallback != null)
                         pushCallback(notification);
-                } else if (pushRet.Type == 1) {
+                }
+                else if (pushRet.Type == 1)
+                {
                     RemoteNotification notification = new RemoteNotification();
                     notification.notification = pushRet.Notification;
                     notification.foreground = false;
                     if (pushCallback != null)
                         pushCallback(notification);
                     else
-                        PushNotification(pushRet.Notification, 0,0);
+                        PushNotification(pushRet.Notification, 0, 0);
                 }
             }
             // SampleInstance.showRetDialog(methodTag, pushRet);
@@ -305,11 +352,16 @@ namespace Honor
             }
         }
 
+        public override void ReportEvent(string eventName, Dictionary<string, string> paramsDic, string spChannels = "", bool isRealTime = true)
+        {
+            MSDKReport.ReportEvent(eventName, paramsDic, spChannels, isRealTime);
+        }
+
         private OnFinish<MSDKNoticeRet> callback;
-        public override void LoadNoticeData(OnFinish<MSDKNoticeRet> callback, string noticeGroup, string language, int region, string partition, string extra)
+        public override string LoadNoticeData(OnFinish<MSDKNoticeRet> callback, string noticeGroup, string language, int region, string partition, string extra)
         {
             this.callback = callback;
-            MSDKNotice.LoadNoticeData(noticeGroup, language, region, partition, extra);
+            return  MSDKNotice.LoadNoticeData(noticeGroup, language, region, partition, extra);
         }
         public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener, string serverId, string language, string country, string type)
         {
@@ -324,7 +376,7 @@ namespace Honor
         /// <param name="extra">[permissions:登录授权的权限列表，国内渠道默认传空，海外渠道若存在多个权限，可用逗号分隔。例如：user_info,inapp_friends
         /// ,subChannel:子渠道名字，大小写敏感。比如 Garena 包含 Facebook 子渠道
         /// ,extraJson:扩展字段，具体含义参考各渠道说明]</param>
-        public override void Login(OnFinish<UserInfo> loginListener, string channel, Dictionary<string, string> extra)
+        public override void Login(OnFinish<UserInfo> loginListener)
         {
             //无效
         }
@@ -371,7 +423,10 @@ namespace Honor
 
         public override void GameStepInfo(string step, string type)
         {
-
+            Dictionary<string, string> paramsDic = new Dictionary<string, string>();
+            paramsDic.Add("step", step);
+            paramsDic.Add("type", type);
+            MSDKReport.ReportEvent("GameStepInfo", paramsDic, "", true);
         }
 
 
@@ -387,7 +442,7 @@ namespace Honor
 
         public override void ReportError(string errorMsg, string type)
         {
-
+            MSDKCrash.LogInfo(MSDKCrashLevel.BuglyLogLevelError, type, errorMsg);
         }
 
         public override void GetMemory(OnFinish<MemoryInfo> getMemroyInfoListener)
@@ -466,10 +521,9 @@ namespace Honor
 
         }
 
-        public override void Logout(OnFinish<Result> logoutListener, Dictionary<string, string> extra = null)
+        public override void Logout(OnFinish<Result> logoutListener)
         {
-
-
+            MSDKLogin.Logout();
         }
 
         public override bool HasExitDialog()
@@ -597,8 +651,6 @@ namespace Honor
 
             return null;
         }
-
-
 
         public override void DownloadText(string url, int retry, int timeout, OnFinish<ResultDownloadText> downloadTextListener)
         {

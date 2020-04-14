@@ -729,7 +729,7 @@ namespace HonorSDK {
         /// </summary>
         /// <param name="gameObject">游戏对象</param>
         /// <param name="initListener">返回初始化结果<see cref="ResultInit"/></param>
-        public void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null) {
+        public virtual void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null) {
             Debug.Log("SDKManager.Init");
             this.initListener = initListener;         
             if (configs == null)

@@ -1,4 +1,5 @@
 ﻿
+using GCloud;
 using GCloud.MSDK;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ namespace HonorSDK
 {
     class TencentAndroidImpl : HonorTencentSDKImpl
     {
+        ITdir tdir = TdirFactory.CreateInstance();
+        bool inited;
         AndroidJavaObject currentActivity;
         public TencentAndroidImpl()
         {
@@ -15,17 +18,14 @@ namespace HonorSDK
             currentActivity = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
         }
         private OnFinish<ResultInit> initListener;
+
         public override void Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null)
         {
             this.initListener = initListener;
             parentImpl.Init(gameObject, initListener, gameResVersion, configs);
 
         }
-        protected override void SetGameObjectName(string gameObjectName)
-        {
-            currentActivity.Call("setGameObjectName", gameObjectName);
-        }
-        protected override void Init(string configsJson)
+        public override void InitGCloud(InitializeInfo cloudInfo, TdirInitInfo tdirInfo)
         {
             MSDKLogin.LoginRetEvent += OnLoginRetEvent;
             MSDKLogin.LoginBaseRetEvent += OnLoginBaseRetEvent;
@@ -33,16 +33,109 @@ namespace HonorSDK
             MSDKPush.PushBaseRetEvent += OnPushBaseRetEvent;
             MSDKPush.PushNotificationEvent += OnPushNotificationEvent;
             MSDKCrash.CrashBaseRetEvent += OnCrashBaseRetEvent;
+            IGCloud.Instance.Initialize(cloudInfo);
+            tdir.Initialize(tdirInfo);
+            RegisterDirCallback();
+            inited = true;
             MSDKPush.RegisterPush("XG");
             MSDKReport.Init("Beacon,TDM");
             MSDK.Init();
-            Dictionary<string, string> extra = new Dictionary<string, string>();
-            ResultInit result = new ResultInit(extra);
-            if (initListener != null)
+        }
+
+        private void RegisterDirCallback()
+        {
+            tdir.QueryTreeEvent += (result, tree) =>
             {
-                initListener(result);
+                // showMessage("QueryTree result: " + result, false);
+                if (QueryTreeCallback != null)
+                {
+                    Wrapper<TreeInfo> wrapper = new Wrapper<TreeInfo>();
+                    wrapper.success = result.IsSuccess();
+                    wrapper.obj = tree;
+                    QueryTreeCallback(wrapper);
+                }
+
+
+                //if (result.IsSuccess() && tree != null)
+                //{
+                //    for (int j = 0; j < tree.NodeList.Count; j++)
+                //    {
+                //        NodeWrapper nodeWrapper = tree.NodeList[j];
+                //        TreeNodeBase node = nodeWrapper.GetNode();
+
+                //        //  printNode(node);
+                //    }
+                //}
+            };
+
+            tdir.QueryLeafEvent += (result, node) =>
+            {
+                // showMessage("QueryLeaf result: " + result, false);
+                if (queryLeafCallback != null)
+                {
+                    Wrapper<NodeWrapper> wrapper = new Wrapper<NodeWrapper>();
+                    wrapper.success = result.IsSuccess();
+                    wrapper.obj = node;
+                    queryLeafCallback(wrapper);
+                }
+                //if (result.IsSuccess() && node != null)
+                //{
+                //    TreeNodeBase node = node.GetNode();
+                //    printNode(node);
+                //}
+            };
+
+        }
+        private OnFinish<Wrapper<TreeInfo>> QueryTreeCallback;
+        public override int QueryTree(int treeId, OnFinish<Wrapper<TreeInfo>> callback)
+        {
+            this.QueryTreeCallback = callback;
+            if (tdir != null)
+            {
+                return tdir.QueryTree(treeId);
+            }
+            return -1;
+        }
+
+        private OnFinish<Wrapper<NodeWrapper>> queryLeafCallback;
+        public override int QueryLeaf(int treeId, int leafId, OnFinish<Wrapper<NodeWrapper>> callback)
+        {
+            this.queryLeafCallback = callback;
+            if (tdir != null)
+            {
+                return tdir.QueryLeaf(treeId, leafId);
+            }
+            return -1;
+        }
+
+
+        public override void Update()
+        {
+            if (tdir != null && inited)
+            {
+                tdir.Update();
             }
         }
+
+        //private void InitFailure(string message)
+        //{
+        //    Dictionary<string, string> extra = new Dictionary<string, string>();
+        //    ResultInit result = new ResultInit(extra);
+        //    result.success = false;
+        //    result.message = message;
+        //    if (initListener != null)
+        //        initListener(result);
+        //}
+
+        protected override void SetGameObjectName(string gameObjectName)
+        {
+            currentActivity.Call("setGameObjectName", gameObjectName);
+        }
+        protected override void Init(string configsJson)
+        {
+            currentActivity.Call("init", configsJson);
+        }
+    
         public override void Exit(OnFinish<Result> exitListener)
         {
 
@@ -61,7 +154,7 @@ namespace HonorSDK
             this.crashCallback = crashCallback;
             MSDKCrash.InitCrash();
             MSDKCrash.SetCrashCallback();
-           
+
         }
 
         public override void LogInfo(MSDKCrashLevel level, string tag, string log)
@@ -244,8 +337,8 @@ namespace HonorSDK
             if (noticeRet.MethodNameId == (int)MSDKMethodNameID.MSDK_NOTICE_LOAD_DATA)
             {
                 methodTag = "LoadNotice";
-                if (callback != null)
-                    callback(noticeRet);
+                if (loadNoticeDataCallback != null)
+                    loadNoticeDataCallback(noticeRet);
 
             }
             //  SampleInstance.showRetDialog(methodTag, noticeRet);
@@ -357,11 +450,11 @@ namespace HonorSDK
             MSDKReport.ReportEvent(eventName, paramsDic, spChannels, isRealTime);
         }
 
-        private OnFinish<MSDKNoticeRet> callback;
+        private OnFinish<MSDKNoticeRet> loadNoticeDataCallback;
         public override string LoadNoticeData(OnFinish<MSDKNoticeRet> callback, string noticeGroup, string language, int region, string partition, string extra)
         {
-            this.callback = callback;
-            return  MSDKNotice.LoadNoticeData(noticeGroup, language, region, partition, extra);
+            this.loadNoticeDataCallback = callback;
+            return MSDKNotice.LoadNoticeData(noticeGroup, language, region, partition, extra);
         }
         public override void GetNoticeList(OnFinish<NoticeList> getNoticeListListener, string serverId, string language, string country, string type)
         {
@@ -412,8 +505,6 @@ namespace HonorSDK
                 MSDKLogin.Login(channel, permissions, subChannel, extraJson);
             }
         }
-
-
 
 
         public override void GetAppInfo(OnFinish<AppInfo> appInfoListener)
@@ -494,15 +585,15 @@ namespace HonorSDK
 
         public override void StartRecordVideo(string serverURL, string bit, long recordMaxTime)
         {
-
+            parentImpl.StartRecordVideo(serverURL, bit, recordMaxTime);
         }
         public override void StopRecordVideo(OnFinish<ResultVideoRecord> stopRecordVideoListener)
         {
-
+            parentImpl.StopRecordVideo(stopRecordVideoListener);
         }
         public override void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener)
         {
-
+            parentImpl.PlayVideo(videoUrl, playVideoListener);
         }
 
 
@@ -542,9 +633,6 @@ namespace HonorSDK
             return null;
         }
 
-
-
-
         public override void GetServerList(OnFinish<ServerList> getServerListListener)
         {
 
@@ -557,45 +645,45 @@ namespace HonorSDK
 
         public override void GetDynamicUpdate(string rootDir, OnFinish<ResultGetDynamic> getDynamicUpdateListener)
         {
-
+            parentImpl.GetDynamicUpdate(rootDir, getDynamicUpdateListener);
         }
 
         public override void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener)
         {
-
+            parentImpl.DownDynamicUpdate(downDynamicUpdateListener);
         }
 
         public override void RepairUpdateRes()
         {
-
+            parentImpl.RepairUpdateRes();
         }
         public override void GetForceUpdate(OnFinish<ResultGetForce> getForceUpdateListener)
         {
-
+            parentImpl.GetForceUpdate(getForceUpdateListener);
         }
 
         public override void DownForceUpdate(OnFinish<ResultDownload> downForceUpdateListener)
         {
-
+            parentImpl.DownForceUpdate(downForceUpdateListener);
         }
 
         public override bool HasObbUpdate()
         {
-            return false;
+            return parentImpl.HasObbUpdate(); ;
         }
         public override void DownObbUpdate(OnFinish<ResultObbDownload> downObbUpdateListener)
         {
-
+            parentImpl.DownObbUpdate(downObbUpdateListener);
         }
 
         public override void ContinueUpdateObb()
         {
-
+            parentImpl.ContinueUpdateObb();
         }
 
         public override void ReloadObb()
         {
-
+            parentImpl.ReloadObb();
         }
 
         public override void SetClipboard(string content)
@@ -613,7 +701,7 @@ namespace HonorSDK
         }
         public override void GetHeadsetState(bool notifyWhenHeadsetChanged, OnFinish<ResultGetHeadsetState> getHeadsetStateListener)
         {
-
+            parentImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
 
         public override void SendGuideFinish()
@@ -623,10 +711,12 @@ namespace HonorSDK
 
         public override void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener)
         {
+
         }
 
         public override void StartNewGame(OnFinish<UserInfo> startNewGameListener)
         {
+
         }
 
         public override DiskInfo GetDiskInfo()
@@ -637,13 +727,13 @@ namespace HonorSDK
 
         public override string GetResFilePath()
         {
-            return null;
+            return parentImpl.GetResFilePath();
         }
 
         public override string GetGameResUrl()
         {
 
-            return null;
+            return parentImpl.GetGameResUrl();
         }
 
         public override string GetAuthInfo()
@@ -654,7 +744,7 @@ namespace HonorSDK
 
         public override void DownloadText(string url, int retry, int timeout, OnFinish<ResultDownloadText> downloadTextListener)
         {
-
+            parentImpl.DownloadText(url, retry, timeout, downloadTextListener);
         }
 
 

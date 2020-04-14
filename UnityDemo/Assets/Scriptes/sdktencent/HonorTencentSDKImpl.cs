@@ -2,6 +2,8 @@
 using GCloud.MSDK;
 using UnityEngine;
 using System.Collections.Generic;
+using GCloud;
+
 namespace HonorSDK
 {
     public class RemoteNotification
@@ -16,11 +18,19 @@ namespace HonorSDK
             set; get;
         }
     }
-    public interface Callback<T>
-    {
-        void OnSuccess(T ret);
-        void OnFailure(int retCode, string msg);
+    public class Wrapper<T> {
+ 
+        public bool success
+        {
+            set; get;
+        }
+        public T obj
+        {
+            set; get;
+        }
     }
+
+ 
     public interface CrashCallback
     {
         /// <summary>
@@ -69,9 +79,14 @@ namespace HonorSDK
     {
         private static HonorTencentSDKImpl instance;
         protected HonorSDKImpl parentImpl;
+      
+
         protected HonorTencentSDKImpl()
         {
         }
+
+        public const string  GCLOUD_GAME_ID = "gcloud_game_id";
+        public const string  GCLOUD_GAME_KEY = "gcloud_game_key";
 
         new public static void CreateInstance(ePlat plant)
         {
@@ -96,10 +111,49 @@ namespace HonorSDK
             return instance;
         }
 
-        public virtual void Init() {
-            //  IGCloud.Instance.Initialize(new InitializeInfo(gameId, gameKey));
+        /// <summary>
+        /// 在Init(HonorSDKGameObject gameObject, OnFinish<ResultInit> initListener, string gameResVersion, Dictionary<string, string> configs = null)初始化成功后调用
+        /// 初始化游戏云
+        /// 初始化TDir
+        /// <see cref="https://sdk.gcloud.tencent.com/documents/details/%E5%8C%BA%E6%9C%8D%E5%AF%BC%E8%88%AA%20Maple/%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97/%E5%8C%BA%E6%9C%8D%E5%AF%BC%E8%88%AA%EF%BC%88Dir%E6%9C%8D%E5%8A%A1%EF%BC%89"/>
+        /// </summary>
+        /// <param name="cloudInfo"></param>
+        /// <param name="tdirInfo"></param>
+
+        public virtual void InitGCloud(InitializeInfo cloudInfo, TdirInitInfo tdirInfo) {
+            
         }
 
+        /// <summary>
+        /// 在调用上述初始化接口之后，游戏模块需要在MonoBehaviour的Update函数里，定时调用Update函数，驱动Tdir底层模块进行收发数据。
+        /// </summary>
+        public virtual void Update()
+        {
+           
+        }
+        /// <summary>
+        /// 拉取目录树 SDK提供拉取单个目录树(大区)的功能
+        /// 可以获取指定目录树（treeId即OMS界面-区服编辑器页面中的ID，如下图显示）的结构信息
+        /// <see cref="https://sdk.gcloud.tencent.com/documents/details/%E5%8C%BA%E6%9C%8D%E5%AF%BC%E8%88%AA%20Maple/%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97/%E5%8C%BA%E6%9C%8D%E5%AF%BC%E8%88%AA%EF%BC%88Dir%E6%9C%8D%E5%8A%A1%EF%BC%89"/>
+        /// </summary>
+        /// <param name="treeId">TreeId == PlatformId</param>
+        /// <returns>-1表示查询失败</returns>
+        public virtual int QueryTree(int treeId , OnFinish<Wrapper<TreeInfo>> callback) {
+
+            return -1;
+        }
+        /// <summary>
+        /// 拉取指定服务节点_SDK还提供拉取某个指定服的信息的功能，以满足一些特殊的业务需求
+        /// 此处的treeId， 是整棵树的id，可以通过TreeInfo的TreeId属性获取。此处的leafId是叶子节点的Id。
+        /// <see cref="https://sdk.gcloud.tencent.com/documents/details/%E5%8C%BA%E6%9C%8D%E5%AF%BC%E8%88%AA%20Maple/%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97/%E5%8C%BA%E6%9C%8D%E5%AF%BC%E8%88%AA%EF%BC%88Dir%E6%9C%8D%E5%8A%A1%EF%BC%89"/>
+        /// </summary>
+        /// <param name="treeId">TreeId == PlatformId</param>
+        /// <param name="nodeId">LeafId == ZoneId</param>
+        /// <returns>-1表示查询失败</returns>
+        public virtual int QueryLeaf(int treeId,int leafId, OnFinish<Wrapper<NodeWrapper>> callback)
+        {
+            return -1;
+        }
 
         /// <summary>
         /// 登录指定渠道，获取第三方平台登录态并到 MSDK 服务器鉴权，返回 MSDK 统一账号。

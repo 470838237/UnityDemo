@@ -1230,7 +1230,7 @@ namespace HonorSDK {
             logoutListener(result);
         }
 
-        private void InitFinish(bool success, string body) {
+        protected virtual void InitFinish(bool success, string body) {
             Dictionary<string, string> customParams = new Dictionary<string, string>();
             ResultInit result = new ResultInit(customParams);
             result.success = success;

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tencent.gcloud.msdk.webview"
+    android:versionCode="2018"
+    android:versionName="5.9.000.2018" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="28" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <activity
+            android:name="com.tencent.gcloud.msdk.webview.WebViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation|fontScale|locale"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask"
+            android:process=":msdk_inner_webview"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.tencent.gcloud.msdk.webview.WebViewIPCActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+    </application>
+
+</manifest>

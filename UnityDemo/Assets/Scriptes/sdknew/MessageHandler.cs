@@ -565,13 +565,13 @@ namespace HonorSdk
                 userInfo.accessToken = node["accessToken"].Value;
                 userInfo.nickName = node["nickname"].Value;
                 JSONArray arrayBindStates = node["bindStates"].AsArray;
-                List<BindState> bindStates = userInfo.bindStates;
+                //List<BindState> bindStates = userInfo.bindStates;
                 foreach (JSONNode item in arrayBindStates.Childs)
                 {
                     BindState bindState = new BindState();
                     bindState.bindState = item["bindState"].AsInt;
                     bindState.platform = item["platform"].Value;
-                    bindStates.Add(bindState);
+                    //bindStates.Add(bindState);
                 }
             }
             if (login)

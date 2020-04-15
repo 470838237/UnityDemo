@@ -1,0 +1,22 @@
+# interface
+
+-keep interface com.tencent.gcloud.voice.IGCloudVoiceNotify{ *; }
+
+
+# class
+
+-keep class com.tencent.apollo.ApolloVoiceConfig{ *; }
+
+-keep class com.tencent.apollo.ApolloVoiceDeviceMgr{ *; }
+
+-keep class com.tencent.apollo.ApolloVoiceEngine{ *; }
+
+-keep class com.tencent.apollo.ApolloVoiceNetStatus{ *; }
+
+-keep class com.tencent.apollo.ApolloVoiceUDID{ *; }
+
+-keep class com.tencent.apollo.apollovoice.**{ *; }
+
+-keep class com.tencent.gcloud.voice.**{ *; }
+
+

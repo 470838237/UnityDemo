@@ -1,0 +1,6 @@
+dependencies {
+	compile fileTree(dir: 'libs', exclude: ['android-support-v4.jar'], include: ['*.jar'])
+	compile rootProject.ext.commonDependencies["support-v4"]
+}
+
+

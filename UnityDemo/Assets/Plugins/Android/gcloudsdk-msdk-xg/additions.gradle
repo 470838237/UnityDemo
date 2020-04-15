@@ -1,0 +1,45 @@
+// 处理xg mipush的placeholder
+afterEvaluate {
+    def applicationId = ""
+    rootProject.allprojects.each {
+        def appPlugin = it.plugins.findPlugin("com.android.application")
+        if(appPlugin != null){
+            println "com.android.application"
+            if(it.extensions.getByName("android") != null){
+                applicationId = it.extensions.android.defaultConfig.applicationId
+            }else{
+                applicationId = it.android.defaultConfig.applicationId
+            }
+            println it.extensions
+            if(applicationId == null || applicationId == "" ){
+                throw new RuntimeException("Please config applicationId first")
+            }
+            println "for xg manifestPlaceholders buildTypes:" + applicationId
+            appPlugin.variantManager.buildTypes.each{ key, value ->
+                println "for xg manifestPlaceholders buildTypes set:" + applicationId
+                value.buildType.manifestPlaceholders["PACKAGE_NAME"] = applicationId
+            }
+            // common method
+            if(it.hasProperty("android") && it.android.hasProperty("defaultConfig")){
+                it.android.defaultConfig.manifestPlaceholders["PACKAGE_NAME"] = applicationId
+            }
+        }
+    }
+    println "for xg manifestPlaceholders library:" + project.name
+    def libPlugin = project.plugins.findPlugin("com.android.library")
+    if(libPlugin != null){
+        libPlugin.variantManager.buildTypes.each{ key, value ->
+            println "for xg manifestPlaceholders buildTypes set:" + applicationId
+            value.buildType.manifestPlaceholders["PACKAGE_NAME"] = applicationId
+        }
+    }
+}
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile 'com.tencent.wup:wup:1.0.0.E-alpha'
+	compile 'com.tencent.xinge:mipush:4.3.2-xiaomi-release'
+	compile 'com.tencent.xinge:xgmz:4.3.2-meizu-release'
+	compile 'com.tencent.xinge:xghw:4.3.2-huawei-release'
+}
+
+

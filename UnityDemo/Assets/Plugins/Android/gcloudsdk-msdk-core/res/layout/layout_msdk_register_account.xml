@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.tencent.gcloud.msdk.api.login.ui.MSDKLoginUIClearableEditTextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/msdk_login_space_positive_18"
+        android:layout_marginLeft="@dimen/msdk_login_space_positive_35"
+        android:layout_marginRight="@dimen/msdk_login_space_positive_35"
+        android:layout_height="@dimen/msdk_login_space_positive_35"
+        android:nextFocusDown="@+id/msdk_register_enter_password"
+        android:id="@+id/msdk_register_enter_mobile_email"
+        app:hint_text = "@string/please_enter_mobile_email" />
+
+    <com.tencent.gcloud.msdk.api.login.ui.MSDKLoginUIEditTextView
+        android:id="@+id/msdk_register_enter_password"
+        style="@style/MSDK.Login.EditText.Normal"
+        android:layout_below="@id/msdk_register_enter_mobile_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/msdk_login_space_positive_35"
+        android:layout_marginTop="@dimen/msdk_login_space_positive_10"
+        android:layout_marginRight="@dimen/msdk_login_space_positive_35"
+        android:hint="@string/please_enter_login_password"
+        android:singleLine="true"
+        android:nextFocusDown="@+id/msdk_register_enter_password_again"/>
+
+    <com.tencent.gcloud.msdk.api.login.ui.MSDKLoginUIEditTextView
+        android:id="@+id/msdk_register_enter_password_again"
+        style="@style/MSDK.Login.EditText.Normal"
+        android:layout_below="@id/msdk_register_enter_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/msdk_login_space_positive_35"
+        android:layout_marginTop="@dimen/msdk_login_space_positive_10"
+        android:layout_marginRight="@dimen/msdk_login_space_positive_35"
+        android:hint="@string/please_enter_login_password_again"
+        android:singleLine="true"
+        android:nextFocusDown="@+id/msdk_register_enter_verfication_code"/>
+
+    <RelativeLayout
+        android:id="@+id/msdk_register_send_verification_code_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/msdk_register_enter_password_again"
+        android:layout_marginLeft="@dimen/msdk_login_space_positive_35"
+        android:layout_marginTop="@dimen/msdk_login_space_positive_10"
+        android:layout_marginRight="@dimen/msdk_login_space_positive_35">
+
+        <com.tencent.gcloud.msdk.api.login.ui.MSDKLoginUIEditTextView
+            android:id="@+id/msdk_register_enter_verfication_code"
+            style="@style/MSDK.Login.EditText.Normal.Half"
+            android:layout_alignParentLeft="true"
+            android:hint="@string/please_enter_verification_code"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/msdk_register_send_verification_code"
+            style="@style/MSDK.Login.Button.Normal.Purple.Half"
+            android:layout_alignParentRight="true"
+            android:text="@string/send_verification_code" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/msdk_register_account_register_button"
+        style="@style/MSDK.Login.Button.Normal.Blue"
+        android:layout_below="@id/msdk_register_send_verification_code_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/msdk_login_space_positive_35"
+        android:layout_marginTop="@dimen/msdk_login_space_positive_18"
+        android:layout_marginRight="@dimen/msdk_login_space_positive_35"
+        android:text="@string/register" />
+</RelativeLayout>

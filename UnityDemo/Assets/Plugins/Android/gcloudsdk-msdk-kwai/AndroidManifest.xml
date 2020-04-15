@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tencent.gcloud.msdk.kwai"
+    android:versionCode="1271"
+    android:versionName="5.8.000.1271" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="28" />
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 视频分享需要 -->
+    <uses-permission android:name="com.yxcorp.gifshow.thirdparty.auth.read" />
+
+    <application>
+        <activity
+            android:name="com.kwai.opensdk.HandlerRouteActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="behind"
+            android:theme="@style/Kwai.Theme.CustomTranslucent" />
+
+        <activity-alias
+            android:name="com.tencent.dm.kwai.KwaiHandlerActivity"
+            android:exported="true"
+            android:screenOrientation="behind"
+            android:targetActivity="com.kwai.opensdk.HandlerRouteActivity" />
+
+        <activity
+            android:name="com.kwai.opensdk.common.KwaiWebViewActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/Kwai.Theme.CustomTranslucent"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity
+            android:name="com.kwai.opensdk.allin.internal.activity.AllInWebViewActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:screenOrientation="behind" />
+
+        <!-- ↓↓↓↓私信分享 -->
+        <activity
+            android:name="com.kwai.opensdk.social.DefaultKwaiOpenSocialHandlerActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="behind"
+            android:theme="@style/Kwai.Theme.CustomTranslucent" />
+
+        <activity-alias
+            android:name="com.tencent.dm.kwai.OpenSocialHandlerActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="behind"
+            android:targetActivity="com.kwai.opensdk.social.DefaultKwaiOpenSocialHandlerActivity" />
+
+        <activity
+            android:name="com.kwai.opensdk.social.LoadingActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:screenOrientation="behind"
+            android:theme="@style/dialog_style" />
+        <!-- ↑↑↑↑私信分享 -->
+
+
+        <!-- ↓↓↓↓视频分享 -->
+        <activity
+            android:name="com.kwai.opensdk.share.HandlerRouteActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="behind"
+            android:theme="@style/Share.Kwai.Theme.CustomTranslucent" />
+
+        <activity-alias
+            android:name="com.tencent.dm.kwai.KwaiShareHandlerActivity"
+            android:exported="true"
+            android:screenOrientation="behind"
+            android:targetActivity="com.kwai.opensdk.share.HandlerRouteActivity" />
+
+        <provider
+            android:name="com.kwai.opensdk.share.FileProvider"
+            android:authorities="com.tencent.dm.share.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/allin_file_paths" />
+        </provider>
+        <!-- ↑↑↑↑视频分享 -->
+    </application>
+
+</manifest>

@@ -1,0 +1,2 @@
+-keep class com.tencent.tdm.** {*;}
+-keep class com.tencent.beacontdm.** { *; }

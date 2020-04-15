@@ -1,0 +1,29 @@
+# broadcast recevier
+-keep public class com.tencent.kgvmp.report.BatteryInfoReceiver { *; }
+
+# vendor sdk 
+-keep class com.samsung.android.** { *; }
+-keep class com.vivo.vivogamesdk.** { *; }
+-keep class com.huawei.iaware.sdk.** { *; }
+-keep class android.rms.iaware.IAwareSdkCore { *; }
+-keep class com.oppo.** { *; }
+-keep class com.xiaomi.boostersdk.** { *; }
+
+# for notch
+-dontwarn com.tencent.kgvmp.notch.**
+-keep class com.tencent.kgvmp.notch.** { *; }
+
+# jni for onesdk
+-keep public class com.tencent.kgvmp.onesdk.** { *;}
+
+# jni for gradish
+-keep public class com.tencent.gradish.** { *; }
+
+# interface for user
+-keep public interface com.tencent.kgvmp.VmpCallback { *;}
+-keep public interface com.tencent.vmp.GCallback { *;}
+-keep public interface com.tencent.vmp.GCallbackStr {*;}
+-keep public class com.tencent.kgvmp.PerformanceAdjuster {
+	public <fields>;
+	public <methods>;
+}

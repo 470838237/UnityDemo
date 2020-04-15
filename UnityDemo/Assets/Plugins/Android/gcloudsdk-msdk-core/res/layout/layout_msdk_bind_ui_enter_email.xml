@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/msdk_bind_email_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/msdk_bind_enter_your_email"
+        android:textColor="@color/msdk_inner_bg_color_000000"
+        android:textSize="@dimen/msdk_bind_ui_text_size_15"
+        android:textStyle="bold" />
+
+    <EditText
+        android:paddingBottom="@dimen/msdk_bind_space_positive_8_5"
+        android:id="@+id/msdk_bind_email_input_edittext"
+        android:layout_width="@dimen/msdk_bind_edittext_with"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/msdk_bind_email_title"
+        android:layout_marginTop="@dimen/msdk_bind_space_positive_35"
+        android:hint="@string/msdk_bind_email_hint"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:background="@drawable/msdk_bind_ui_text_line"
+        android:textSize="@dimen/msdk_bind_ui_text_size_17_5"
+        android:textStyle="italic" />
+
+
+    <TextView
+        android:id="@+id/msdk_bind_email_notice_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@id/msdk_bind_email_input_edittext"
+        android:layout_marginTop="@dimen/msdk_bind_space_positive_7_5"
+        android:text="@string/msdk_bind_please_enter_valid_email"
+        android:textColor="@color/msdk_notice_text_color_e93a29"
+        android:textSize="@dimen/msdk_bind_ui_text_size_10" />
+
+
+    <LinearLayout
+        android:id="@+id/msdk_bind_email_check_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_below="@id/msdk_bind_email_input_edittext"
+        android:layout_marginTop="@dimen/msdk_bind_space_positive_40"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:id="@+id/msdk_bind_ui_send_email_notice_checkbox"
+            android:layout_width="wrap_content"
+            style="@style/MSDK.Bind.Checkbox"
+            android:layout_height="wrap_content"></CheckBox>
+
+        <TextView
+            android:text="fsdfsdfsdfdsfsdfdsfsdf"
+            android:id="@+id/msdk_bind_ui_terms_and_policy_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/msdk_bind_space_positive_5"
+            android:textColor="@color/msdk_inner_bg_color_000000"
+            android:textSize="@dimen/msdk_bind_ui_text_size_10">
+
+        </TextView>
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="@dimen/msdk_bind_space_positive_2"-->
+<!--            android:layout_marginRight="@dimen/msdk_bind_space_positive_2"-->
+<!--            android:text="@string/msdk_bind_and"-->
+<!--            android:textSize="@dimen/msdk_bind_ui_text_size_10">-->
+
+<!--        </TextView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/msdk_bind_ui_policy_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/msdk_bind_privacy_policy"-->
+<!--            android:textColor="@color/msdk_clickable_text_color_2d98d3"-->
+<!--            android:textSize="@dimen/msdk_bind_ui_text_size_10">-->
+
+<!--        </TextView>-->
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/msdk_bind_ui_email_next_button"
+        style="@style/MSDK.Bind.Button.Normal.Clickable"
+        android:layout_width="@dimen/msdk_bind_next_button_with"
+        android:layout_height="@dimen/msdk_bind_next_button_height"
+        android:layout_below="@id/msdk_bind_email_input_edittext"
+        android:layout_marginTop="@dimen/msdk_bind_space_positive_90"
+        android:enabled="false"
+        android:text="@string/msdk_bind_button_next" />
+
+
+</RelativeLayout>

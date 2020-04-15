@@ -58,7 +58,16 @@ namespace MidasPay {
 	}
 	
 
-
+	public interface MidasQueryInventoryCallback
+	{
+		void OnQueryInventoryCallback (string result);
+	}
+	public interface MidasQueryPromotionCallback
+	{
+		void OnQueryPromotionCallback (string result);
+	}
+	
+	
 
     /// <summary>
     /// midas payment interface
@@ -124,6 +133,7 @@ namespace MidasPay {
 		void GetIntroPrice(string channel, List<string> productList, MidasGetIntroPriceCallback callback);
 		
 		// only for garena
-		void GetGarenaProductInfo(APMidasGameRequest request, MidasGetLocalPriceCallback callback);
+		void GetGarenaProductInfo(APMidasBaseRequest request, MidasGetLocalPriceCallback callback);
+        void ScanGoogleInventory(int serverId, int roleId, MidasQueryPromotionCallback callback);
     }
 }

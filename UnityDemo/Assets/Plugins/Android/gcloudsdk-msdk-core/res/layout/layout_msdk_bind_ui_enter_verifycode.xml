@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/msdk_bind_enter_verify_code_home_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/msdk_bind_verification_sent_notification"
+            android:layout_width="@dimen/msdk_bind_edittext_with"
+            android:layout_height="wrap_content"
+            android:text="@string/msdk_bind_verification_sent_notification"
+            android:textColor="@color/msdk_inner_bg_color_000000"
+            android:textSize="@dimen/msdk_bind_ui_text_size_12_5" />
+
+        <TextView
+            android:layout_below="@id/msdk_bind_verification_sent_notification"
+            android:id="@+id/msdk_bind_enter_verifycode_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/msdk_bind_space_positive_22"
+            android:text="@string/msdk_bind_enter_verification_code"
+            android:textColor="@color/msdk_inner_bg_color_000000"
+            android:textSize="@dimen/msdk_bind_ui_text_size_15"
+            android:textStyle="bold" />
+
+        <com.tencent.gcloud.msdk.api.login.ui.MSDKVerifyCodeView
+            android:id="@+id/msdk_bind_verify_code_layout"
+            android:layout_width="@dimen/msdk_bind_edittext_with"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/msdk_bind_enter_verifycode_title"
+            android:layout_marginTop="@dimen/msdk_bind_space_positive_15"
+            />
+
+        <TextView
+            android:visibility="invisible"
+            android:layout_below="@id/msdk_bind_verify_code_layout"
+            android:id="@+id/msdk_bind_verify_code_notice"
+            android:layout_width="@dimen/msdk_bind_edittext_with"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/msdk_bind_space_positive_2"
+            android:textSize="@dimen/msdk_bind_ui_text_size_10"
+            android:textColor="@color/msdk_notice_text_color_e93a29"
+            android:text="@string/msdk_bind_please_enter_valid_verifycode"/>
+
+        <LinearLayout
+            android:id="@+id/msdk_bind_not_get_code"
+            android:layout_below="@id/msdk_bind_verify_code_layout"
+            android:layout_marginTop="@dimen/msdk_bind_space_positive_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/msdk_bind_email_notice_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msdk_bind_not_get_verification_code"
+                android:textColor="@color/msdk_inner_bg_color_000000"
+                android:textSize="@dimen/msdk_bind_ui_text_size_10" />
+
+            <TextView
+                android:id="@+id/msdk_bind_resend"
+                android:layout_marginLeft="@dimen/msdk_bind_space_positive_7_5"
+                android:layout_width="wrap_content"
+                android:textColor="@color/msdk_clickable_text_color_2d98d3"
+                android:textSize="@dimen/msdk_bind_ui_text_size_10"
+                android:layout_height="wrap_content"
+                android:text="@string/msdk_bind_resend"/>
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/msdk_bind_resent_countdown"
+                android:layout_marginLeft="@dimen/msdk_bind_space_positive_7_5"
+                android:layout_width="wrap_content"
+                android:textColor="@color/msdk_clickable_text_color_2d98d3"
+                android:textSize="@dimen/msdk_bind_ui_text_size_10"
+                android:layout_height="wrap_content"
+                android:text="60"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/msdk_bind_receive_email_check_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/msdk_bind_not_get_code"
+            android:layout_marginTop="@dimen/msdk_bind_space_positive_2"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                style="@style/MSDK.Bind.Checkbox"
+                android:id="@+id/msdk_bind_ui_receive_email_notice_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></CheckBox>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/msdk_bind_space_positive_5"
+                android:text="@string/msdk_bind_receive_email_notice"
+                android:textSize="@dimen/msdk_bind_ui_text_size_10">
+
+            </TextView>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/msdk_bind_ui_email_confirm_button"
+            style="@style/MSDK.Bind.Button.Normal"
+            android:layout_width="@dimen/msdk_bind_next_button_with"
+            android:layout_height="@dimen/msdk_bind_next_button_height"
+            android:layout_below="@id/msdk_bind_receive_email_check_group"
+            android:layout_marginTop="@dimen/msdk_bind_space_positive_22"
+            android:text="@string/msdk_bind_button_confirm" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

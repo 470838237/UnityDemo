@@ -1,0 +1,32 @@
+{
+    "group": "GRobot",
+    "libs": [],
+    "frameworks": [
+        "Foundation.framework",
+        "CoreData.framework",
+        "CoreText.framework",
+        "ImageIO.framework",
+        "WebKit.framework"
+	],
+    "headerpaths": [],
+    "files": [   
+         "Plugins/iOS/GCloudSDK/GRobot/GRobotResource.bundle"
+    ],
+    "folders": [],
+    "excludes": [],
+    "compiler_flags": [],
+    "build_settings":
+    {
+        "OTHER_LDFLAGS": ["-ObjC"]
+    },
+    "Info.plist":
+    {
+        "NSMicrophoneUsageDescription":"Apply Microphone permission",
+        "NSPhotoLibraryAddUsageDescription":"Apply Photo Library permission",
+        "NSPhotoLibraryUsageDescription":"Apply Photo Library permission",
+        "GRobot":
+        {
+            "XYGameId":"{XY_GAME_ID}"
+        }
+    }
+}

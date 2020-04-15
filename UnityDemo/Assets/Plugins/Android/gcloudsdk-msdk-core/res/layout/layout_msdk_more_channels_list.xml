@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/msdk_login_ui_bg_container"
+    style="@style/MSDK.Login.Window.Outer.Background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
+
+    <RelativeLayout style="@style/MSDK.Login.Window.Outer.List.Background">
+
+        <ListView
+            android:id="@+id/msdk_login_ui_more_channels_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/msdk_login_space_positive_140"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/msdk_login_space_positive_35"
+            android:layout_marginRight="@dimen/msdk_login_space_positive_35"
+            android:background="@color/inner_bg_color"
+            android:listSelector="@color/button_bg_blue_color"
+            android:layout_marginTop="@dimen/msdk_login_space_positive_0_5"
+            android:divider="@drawable/msdk_login_ui_divider_line"
+            android:dividerHeight="@dimen/msdk_login_space_positive_0_5"
+            android:scrollbars="none">
+
+        </ListView>
+
+
+        <View
+            android:id="@+id/msdk_login_ui_more_channels_list_diving_line"
+            style="@style/MSDK.Login.Horizontal.Line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/msdk_login_space_positive_0_5"
+            android:layout_below="@id/msdk_login_ui_more_channels_list_view"
+            android:layout_centerVertical="true" />
+
+        <Button
+            android:id="@+id/msdk_login_ui_more_channels_cancel_button"
+            style="@style/MSDK.Login.Cancel.Button.Normal.Transparent"
+            android:layout_below="@id/msdk_login_ui_more_channels_list_diving_line"
+            android:text="@string/cancel"
+            android:textColor="@color/clickable_text_color"
+            android:textSize="@dimen/msdk_login_textsize_16"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>

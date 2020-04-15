@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/msdk_login_ui_toast_textview"
+        android:layout_width="@dimen/msdk_login_toast_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/msdk_login_ui_toast_bg"
+        android:gravity="center"
+        android:text="@string/please_enter_mobile_email"
+        android:maxLines="4"
+        android:minHeight="@dimen/msdk_login_toast_height"
+        android:padding="@dimen/msdk_login_space_positive_15"
+        android:textColor="@color/title_text_white_color"
+        android:textSize="@dimen/msdk_login_textsize_14" />
+
+</LinearLayout>

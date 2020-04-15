@@ -160,6 +160,13 @@ namespace MidasPay {
 
 
         ///<summary>
+        ///物品列表，garena测拉物品时可选性传入
+        ///</summary>
+        [JsonProp("productList")]
+        public List<string> productList;
+
+
+        ///<summary>
         ///指定的货币类型。米大师后台会根据货币类型来过滤物品。
         ///</summary>
         [JsonProp("currencyType")]

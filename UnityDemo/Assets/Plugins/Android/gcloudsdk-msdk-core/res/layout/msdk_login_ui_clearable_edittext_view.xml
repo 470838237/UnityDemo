@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.tencent.gcloud.msdk.api.login.ui.MSDKLoginUIEditTextView
+        style="@style/MSDK.Login.EditText.Normal"
+        android:id="@+id/etv_input"
+        android:inputType="text"
+        android:singleLine="true"/>
+
+    <!-- ICON -->
+    <ImageView
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/msdk_login_space_positive_11"
+        android:id="@+id/iv_icon"
+        android:src="@drawable/msdk_img_icon_delete"
+        android:layout_width="@dimen/msdk_icon_delete_height"
+        android:layout_height="@dimen/msdk_icon_delete_width"
+        android:visibility="gone"/>
+</RelativeLayout>

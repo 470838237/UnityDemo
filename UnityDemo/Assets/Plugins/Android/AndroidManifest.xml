@@ -1,28 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-    package="com.war.legends">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tencent.dm"
+    android:installLocation="preferExternal"
+    android:theme="@android:style/Theme.NoTitleBar"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <!-- TODO SDK接入必须权限模块 START -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--google支付权限-->
-    <uses-permission android:name="com.android.vending.BILLING" />
-    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="28" />
 
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <application android:name="com.honor.platform.HpApplication"
-	    android:usesCleartextTraffic="true"
-		android:icon="@drawable/ic_launcher"
-		android:label="@string/app_name">
+    <application
+        android:name="com.honor.platform.HpApplication"
+        android:allowBackup="false"
+        android:usesCleartextTraffic="true">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <!--Add_SkipPermissions_Code_Here-->
 
-			
-        <provider
-            android:name="com.facebook.internal.FacebookInitProvider"
-            android:authorities="com.war.legends.FacebookInitProvider"
-            android:exported="false" />
+        <activity
+            android:name="com.tencent.dm.MainActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+            android:label="@string/app_name"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="unityplayer.ForwardNativeEventsToDalvik"
+                android:value="false" />
+        </activity>
 
-      
     </application>
+
 
 </manifest>

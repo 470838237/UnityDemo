@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/msdk_login_ui_more_channels_list_item_text"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/msdk_login_space_positive_39_5"
+    android:layout_centerInParent="true"
+    android:gravity="center"
+    android:textColor="@color/title_text_white_color"
+    android:textSize="@dimen/msdk_login_textsize_14">
+
+</TextView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tencent.tdm"
+    android:versionCode="1055"
+    android:versionName="1.8.000.1055" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="28" />
+    <!-- 获取设备信息 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 网络通信 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取MAC地址 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 写外部存储设备，保存灯塔配置信息 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application>
+        <meta-data
+            android:name="GCloud.TDM.LogLevel"
+            android:value="1" />
+        <meta-data
+            android:name="APPKEY_DENGTA"
+            android:value="0M3004MXNM1Z8IPE" />
+    </application>
+
+</manifest>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auto_login_in_progress">Auto Login...</string>
+    <string name="cancel">Cancel</string>
+    <string name="count_down_start_value">60s</string>
+    <string name="entered_password_contain_invalid_charaters">Invalid Characters in the password</string>
+    <string name="forgot_password">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="login_tencent_game_passport">Tencent Game Passport</string>
+    <string name="login_tencent_game_passport_register_account">Register Account</string>
+    <string name="login_tencent_game_passport_reset_password">Reset Password</string>
+    <string name="original_account">Original Account</string>
+    <string name="please_enter_login_password">Password (8 characters at least)</string>
+    <string name="please_enter_login_password_again">Password again</string>
+    <string name="please_enter_mobile_email">Phone or email</string>
+    <string name="please_enter_valid_email_mobile_number">Please enter correct phone or email</string>
+    <string name="please_enter_verification_code">Verify code</string>
+    <string name="register">Register</string>
+    <string name="resend_verification_code">Retry</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="reset_password_failed">Reset password failed</string>
+    <string name="reset_password_success">Reset password successfully</string>
+    <string name="send_verification_code">Verify Code</string>
+    <string name="send_verification_code_ing">Send verify code...</string>
+    <string name="switch_account">Switch Account</string>
+    <string name="switch_account_description">The account pulled up is different from the original one. Please choose which to login:</string>
+    <string name="switch_user_failed">Switch account failed</string>
+    <string name="switch_user_success">Switch account successfully</string>
+    <string name="third_channel_account_login">Third Party Account</string>
+    <string name="two_password_are_different">Those two passwords entered are different. Please enter again.</string>
+</resources>

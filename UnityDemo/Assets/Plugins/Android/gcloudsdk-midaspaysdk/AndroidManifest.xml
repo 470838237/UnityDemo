@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.tencent.midas.pay"
+          android:versionCode="1"
+          android:versionName="1.0" >
+
+	<!-- TODO midas需要的权限 （必要）START -->
+    <!-- 网络请求 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 检测网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取设备WIFI连接状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- Midas需要，向SD卡写入文件 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 获取机型信息 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- TODO midas需要的权限 （必要）END -->
+
+
+    <!-- TODO midas需要的权限 （可选）START -->
+    <!-- 发送短信，话费渠道的运营商基地子渠道需要上行短信来扣费 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- TODO midas需要的权限 （可选）END -->
+
+    
+
+    <!-- TODO SDK接入 接入支付需要设置屏幕兼容声明 START -->
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true" />
+    <!-- TODO SDK接入 接入支付需要设置屏幕兼容声明 END -->
+	
+	
+    <application>
+
+        <!-- TODO Midas activity start -->
+        <!-- 请务必设置屏幕方向! midas当前不支持屏幕旋转 android:screenOrientation="landscape" android:screenOrientation="landscape" -->
+        <!-- screenSize在sdk13以上使用，如果sdk版本不是13以上，请删除该属性 -->
+        <!-- midas common activity -->
+        <activity
+            android:name="com.tencent.midas.proxyactivity.APMidasPayProxyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:hardwareAccelerated="true"
+			android:process=":midasPay"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- wechat -->
+        <activity
+            android:name="com.tencent.midas.wx.APMidasWXPayActivity"
+            android:exported="true"
+			android:process=":midasPay"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- Midas web -->
+        <activity
+            android:name="com.tencent.midas.jsbridge.APWebJSBridgeActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <!-- QQ钱包 -->
+        <activity
+            android:name="com.tencent.midas.qq.APMidasQQWalletActivity"
+            android:launchMode="singleTop"
+			android:process=":midasPay"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            >
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:scheme="qwallet100703379"></data>
+            </intent-filter>
+
+        </activity>
+
+        <!-- Midas activity end  -->
+		
+    </application>
+
+    
+
+</manifest>

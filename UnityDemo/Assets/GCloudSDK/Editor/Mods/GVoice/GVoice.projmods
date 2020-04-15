@@ -1,0 +1,30 @@
+{
+    "group": "GVoice",
+    "libs": [
+        "libc++.tbd"
+    ],
+    "frameworks": [
+        "AudioToolbox.framework",
+        "AVFoundation.framework", 
+        "CoreAudio.framework",
+        "Security.framework",
+        "CoreTelephony.framework",
+        "SystemConfiguration.framework"
+    ],
+    "files": [   
+         "../../../../Plugins/iOS/GVoice/GCloudVoice.bundle"
+    ],
+    "folders": ["Bundle"],
+    "excludes": [
+    ],
+    "headerpaths":[],
+    "build_settings":
+    {
+
+    },
+    "system_capabilities": {
+    },
+    "Info.plist":{
+        "NSMicrophoneUsageDescription":"Apply Microphone Permission"
+    }
+}

@@ -29,6 +29,8 @@ namespace MidasPay
 		private MidasGetIntroPriceCallback mMidasGetIntroPriceCallback;
 		private MidasGetInfoCallback mMidasGetInfoCallback;
         private MidasReprovideCallback mMidasReprovidetCallback;
+		private MidasQueryInventoryCallback mMidasQueryInventoryCallback;
+		private MidasQueryPromotionCallback mMidasQueryPromotionCallback;
         
 
 #if UNITY_EDITOR
@@ -59,6 +61,9 @@ namespace MidasPay
 
         [DllImport ("__Internal")]
 		private static extern void midasSdkGetProductInfo(string channel,string products);
+
+        [DllImport ("__Internal")]
+		private static extern void midasSdkGetGrnProductInfo(string bizType, string channel,string jsonParams);
 		
 		[DllImport ("__Internal")]
 		private static extern void midasSdkGetInfo(string type, string bizType, string jsonParams);
@@ -70,7 +75,7 @@ namespace MidasPay
 		private static extern void midasSdkReprovide();
 #endif
 
-        private MidasPayService ()
+		private MidasPayService ()
 		{
 		}
 
@@ -527,7 +532,7 @@ namespace MidasPay
 		
 	
 		// for garena
-		public void GetGarenaProductInfo(APMidasGameRequest request, MidasGetLocalPriceCallback callback)
+		public void GetGarenaProductInfo(APMidasBaseRequest request, MidasGetLocalPriceCallback callback)
 		{
 			if (!mHasInited)
 			{
@@ -537,6 +542,7 @@ namespace MidasPay
 
 			mMidasGetProductCallback = callback;
 			string reqString = request.ToString();
+			ULog.Log("GetGarenaProductInfo with json : " + reqString);
 #if UNITY_EDITOR
 			ULog.Log("use simulator");
 #elif UNITY_ANDROID
@@ -546,11 +552,34 @@ namespace MidasPay
 			else{
 				helper.CallStatic("GetProductInfo",reqString);
 			}
+#elif UNITY_IOS
+
+            string bizType = request.GetType().Name;
+			ULog.Log ("PayType = " + bizType);
+
+			midasSdkGetGrnProductInfo(bizType, "os_garena", reqString);
+#endif
+		}
+		
+		public void ScanGoogleInventory(int serverId, int roleId, MidasQueryPromotionCallback callback)
+		{
+			mMidasQueryPromotionCallback = callback;
+
+#if UNITY_EDITOR
+			ULog.Log("use simulator");
+#elif UNITY_ANDROID
+			helper = new AndroidJavaClass (helperClass);
+			if (helper == null) {
+			}
+			else{
+				helper.CallStatic("ScanGoogleInventory",serverId, roleId);
+			}
+#elif UNITY_IOS
 #endif
 		}
 
-        // 接收到Java/OC发来的消息后，这个方法会被调用，用以回调C#层的游戏
-        public  void MidasPayCallback (string result)
+		// 接收到Java/OC发来的消息后，这个方法会被调用，用以回调C#层的游戏
+		public  void MidasPayCallback (string result)
 		{
 			if (mMidasPayCallback != null) {
 				APMidasResponse resp = new APMidasResponse (result);
@@ -638,6 +667,22 @@ namespace MidasPay
                 mMidasReprovidetCallback.OnMidasReprovideFinished(jsonResult);
             }
         }
+		
+		public void MidasQueryPurchaseInventoryCallback(string result)
+		{
+			if (mMidasQueryInventoryCallback != null)
+			{
+				mMidasQueryInventoryCallback.OnQueryInventoryCallback(result);
+			}
+		}
+	
+		public void MidasQueryPromotionCallback(string result)
+		{
+			if (mMidasQueryPromotionCallback != null)
+			{
+				mMidasQueryPromotionCallback.OnQueryPromotionCallback(result);
+			}
+		}
 
 
     }
@@ -700,6 +745,11 @@ namespace MidasPay
         {
             MidasPayService.Instance.MidasReProvidetCallback(result);
         }
+		public void MidasQueryPromotionCallback(string result)
+		{	
+			MidasPayService.Instance.MidasQueryPromotionCallback(result);
+		}
+		
     }
 	
 	

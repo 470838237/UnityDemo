@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="dialog_text_color">#914A20</color>
+    <color name="dialog_title_color">#914A20</color>
+    <color name="toast_color">#FFE9A8</color>
+    <color name="tool_title_color">#FFE9A7</color>
+    <string name="app_name">XYSDKLibrary</string>
+    <string name="dialog_photo_permission_tips">请开启相册权限</string>
+    <string name="dialog_save_photo_fail">保存失败</string>
+    <string name="dialog_save_photo_suc">已保存到手机相册</string>
+    <style name="Theme_RecordingDialog" parent="@android:style/Theme.Dialog" ns1:ignore="ResourceName">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>    <!--半透明-->
+        <item name="android:backgroundDimEnabled">false</item>  <!--背景变暗-->
+    </style>
+    <declare-styleable name="CircleImageView">
+        <attr format="dimension" name="border_width"/>
+        <attr format="color" name="border_color"/>
+    </declare-styleable>
+    <declare-styleable name="CircleProgressBar">
+
+        <attr format="boolean" name="antiAlias"/>
+        <attr format="integer|reference" name="startAngle"/>
+        <attr format="integer|reference" name="sweepAngle"/>
+
+        <attr format="float|reference" name="maxValue"/>
+        <attr format="float|reference" name="minValue"/>
+        <attr format="float|reference" name="progress"/>
+
+        <!-- 圆弧宽度 -->
+        <attr format="dimension|reference" name="progressWidth"/>
+        <attr format="color|reference" name="progressColors"/>
+        <!-- 背景圆弧颜色 -->
+        <attr format="color|reference" name="bgArcColor"/>
+        <!-- 背景圆弧宽度 -->
+        <attr format="dimension|reference" name="bgArcWidth"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+<!--HttpDNS-->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">182.254.116.117</domain>
+        <domain includeSubdomains="false">119.29.29.29</domain>
+    </domain-config>
+<!--MSDKCore-->
+        <base-config cleartextTrafficPermitted="true">
+            <trust-anchors>
+                <certificates src="system" />
+            </trust-anchors>
+        </base-config>
+    
+</network-security-config>

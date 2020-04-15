@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="allin_continue_download">继续下载</string>
+    <string name="allin_continue_upload">继续上传</string>
+    <string name="allin_download_fail">下载失败,点击按钮继续下载</string>
+    <string name="allin_download_pendding">下载等待中(%s)</string>
+    <string name="allin_download_success">下载完成</string>
+    <string formatted="false" name="allin_downloading_process">下载更新中(%s)</string>
+    <string name="allin_goto_download">前往下载</string>
+    <string name="allin_goto_install">立即安装</string>
+    <string formatted="true" name="allin_install_tip_message">新版本已下载，请安装</string>
+    <string name="allin_no_storage_permission">您拒绝了读取存储权限，无法选择图片</string>
+    <string name="allin_sdcard_space_i_know">我知道了</string>
+    <string name="allin_sdcard_space_i_know_quit">我知道了,退出游戏</string>
+    <string formatted="true" name="allin_sdcard_space_notenough">您的存储空间不足,需要下载游戏大小为(%s),请您清理下手机</string>
+    <string formatted="true" name="allin_update_tip_message">检测到新的游戏版本请更新游戏(%s)</string>
+    <string name="allin_upload_fail">上传失败</string>
+    <string formatted="false" name="allin_uploading_process">文件上传中(%s)</string>
+    <string name="app_name">分享测试APP</string>
+    <string name="gateway_alipay">支付宝支付</string>
+    <string name="gateway_kwai">快币支付</string>
+    <string name="gateway_pay">确认支付</string>
+    <string name="gateway_pay_loading">加载中...</string>
+    <string name="gateway_title">选择付款方式</string>
+    <string name="gateway_wechat">微信支付</string>
+    <string name="kwai_certification_bind_fail">绑定错误</string>
+    <string name="kwai_certification_error_no_network">用户设备当前没有网络</string>
+    <string name="kwai_certification_error_no_param">请求参数不足</string>
+    <string name="kwai_certification_error_timeout">请求失败，网络超时</string>
+    <string name="kwai_certification_game_play_time_title">游戏时间提示</string>
+    <string name="kwai_certification_login_fail">登录失败</string>
+    <string name="kwai_certification_relax_tip_logout_real_name">您本次游戏时长已有%s小时,需保持下线15分钟</string>
+    <string name="kwai_certification_relax_tip_logout_unreal_name">您本次游戏时长已有%s小时,需保持下线15分钟。实名认证后可延长游戏时间。</string>
+    <string name="kwai_certification_relax_tip_one_day_real_name">您今日累积游戏时长已有%s小时,建议您注意劳逸结合</string>
+    <string name="kwai_certification_relax_tip_one_day_unreal_name">您今日累积游戏时长已有%s小时,建议您注意劳逸结合。实名认证后可延长游戏时间。</string>
+    <string name="kwai_certification_relax_tip_real_name">您本次游戏时长已有%s小时,建议您注意劳逸结合</string>
+    <string name="kwai_certification_relax_tip_unreal_name">您本次游戏时长已有%s小时,建议您注意劳逸结合。实名认证后可延长游戏时间。</string>
+    <string name="kwai_certification_sure">确定</string>
+    <string name="kwai_opensdk_bind_fail_has_bind_ther_account">绑定失败，快手账号已绑定其他账号</string>
+    <string name="kwai_opensdk_bind_fail_this_account_has_bind">绑定失败,该账号已绑定其他快手账号</string>
+    <string name="kwai_opensdk_bind_faild">绑定失败</string>
+    <string name="kwai_opensdk_bind_success">绑定成功</string>
+    <string name="kwai_opensdk_binding">绑定中</string>
+    <string name="kwai_opensdk_certification_faild_not_login">实名认证失败，用户未登录</string>
+    <string name="kwai_opensdk_certification_faild_not_need_auto_check">不需要登录的时候自动唤起实名认证</string>
+    <string name="kwai_opensdk_certification_faild_not_spport_tourist">游客登录不支持实名认证</string>
+    <string name="kwai_opensdk_check_network">请检查网络是否正常</string>
+    <string name="kwai_opensdk_common_please_download_sogame">请下载快手小游戏APP</string>
+    <string name="kwai_opensdk_download_success">下载完成</string>
+    <string formatted="false" name="kwai_opensdk_downloding">正在下载%d%%</string>
+    <string name="kwai_opensdk_game_update_message">游戏版本过低，请前往下载最新版本(%s)</string>
+    <string name="kwai_opensdk_game_update_tip">游戏更新提示</string>
+    <string name="kwai_opensdk_goto_download">前往下载</string>
+    <string name="kwai_opensdk_http_error_param">请求参数有误，请稍后重试</string>
+    <string name="kwai_opensdk_http_timeout">请求超时，请稍后重试</string>
+    <string name="kwai_opensdk_live_grant_fail">直播授权失败</string>
+    <string name="kwai_opensdk_live_grant_type">选择直播授权方式</string>
+    <string name="kwai_opensdk_live_granting">授予直播权限中</string>
+    <string name="kwai_opensdk_login_error">登录失败,errorCode:%s</string>
+    <string name="kwai_opensdk_login_fail">登录失败</string>
+    <string name="kwai_opensdk_login_user_error">登录身份异常</string>
+    <string name="kwai_opensdk_login_user_expired">登录信息失效</string>
+    <string name="kwai_opensdk_logining">登录中</string>
+    <string name="kwai_opensdk_no_token">用户未登录！</string>
+    <string name="kwai_opensdk_server_bind_error">服务器执行绑定失败</string>
+    <string name="kwai_opensdk_server_error">服务器异常，请稍后重试</string>
+    <string name="kwai_opensdk_server_error_param">参数错误!</string>
+    <string name="kwai_opensdk_server_inner_error">服务器内部错误</string>
+    <string name="kwai_opensdk_server_login_expired">授权失败，登录信息失效</string>
+    <string name="kwai_opensdk_ssl_error_negative_text">退出</string>
+    <string name="kwai_opensdk_ssl_error_positive_text">继续</string>
+    <string name="kwai_opensdk_ssl_error_tip_content">安全连接证书校验无效，将无法保证访问数据的安全性，可能存在风险，请选择是否继续？</string>
+    <string name="kwai_opensdk_ssl_error_tip_tile">安全警告</string>
+    <string name="kwai_opensdk_sure">确定</string>
+    <string name="kwai_opensdk_token_expired">登录信息已过期，请重新登录</string>
+    <string name="kwai_opensdk_user_center">用户中心</string>
+    <string name="kwai_opensdk_user_proto">用户服务协议</string>
+    <string name="kwai_opensdk_watch_live_grant_fail">观看直播授权失败</string>
+    <string name="kwai_opensdk_watch_live_grant_type">选择观看直播授权方式</string>
+    <string name="kwai_opensdk_watch_live_granting">授予观看直播权限中</string>
+    <string name="kwai_opensdk_welcome">欢迎进入游戏</string>
+    <string name="kwai_opensdk_welcome_user">%s, 欢迎进入游戏</string>
+    <string name="kwai_share_error">参数错误</string>
+    <string name="kwai_share_fun_not_support">分享发生异常</string>
+    <string name="kwai_share_success">分享成功</string>
+    <string name="loading">加载中...</string>
+    <style name="KSFullScreenDialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimAmount">0</item>
+    </style>
+    <style name="Kwai.Theme.CustomTranslucent" parent="android:style/Theme.Translucent">
+
+        <item name="android:backgroundDimEnabled">true</item>
+
+        <item name="android:backgroundDimAmount">0.5</item>
+
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+    <style name="KwaiCommonAlertDialog">
+        <item name="android:fullDark">@android:color/transparent</item>
+        <item name="android:topDark">@android:color/transparent</item>
+        <item name="android:centerDark">@android:color/transparent</item>
+        <item name="android:bottomDark">@android:color/transparent</item>
+        <item name="android:fullBright">@android:color/transparent</item>
+        <item name="android:topBright">@android:color/transparent</item>
+        <item name="android:centerBright">@android:color/transparent</item>
+        <item name="android:bottomBright">@android:color/transparent</item>
+        <item name="android:bottomMedium">@android:color/transparent</item>
+        <item name="android:centerMedium">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="Share.Kwai.Theme.CustomTranslucent" parent="android:style/Theme.Translucent">
+
+    <item name="android:backgroundDimEnabled">true</item>
+
+    <item name="android:backgroundDimAmount">0.5</item>
+
+    <item name="android:windowNoTitle">true</item>
+
+    <item name="android:background">@android:color/transparent</item>
+
+  </style>
+    <style name="dialog_style" parent="android:style/Theme.Translucent">
+        <!--是否悬浮在activity上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--透明是否-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@null</item>
+        <!--设置没有窗口标题、dialog标题等各种标题-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:title">@null</item>
+        <item name="android:dialogTitle">@null</item>
+    </style>
+</resources>

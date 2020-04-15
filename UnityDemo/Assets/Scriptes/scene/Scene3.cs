@@ -22,13 +22,6 @@ public class Scene3 : BaseScene
 
     void OnEnable()
     {
-        List<string> tags = new List<string>();
-        tags.Add("vipLevel");
-        tags.Add("serverId");
-        tags.Add("version");
-        tags.Add("level");
-        HonorSDKImpl.GetInstance().AiHelpShowElva("serverId", tags);
-
 
         HonorSDKImpl.GetInstance().GetServerList(delegate(ServerList list)
         {
@@ -128,24 +121,8 @@ public class Scene3 : BaseScene
             return;
         }
         //判断是否支持切换账号
-        HonorSDKImpl.GetInstance().SwitchAccount(delegate (UserInfo userInfo)
-        {
-            Debug.Log("HonorSDK:SwitchAccount.success = " + userInfo.success);
-            if (userInfo.success)
-            {
-                Debug.Log("HonorSDK:SwitchAccount.accessToken = " + userInfo.accessToken
-                           + ",nickName =" + userInfo.nickName
-                           + ",uid =" + userInfo.uid
-                           );
-                //退出到选服界面
-                LoadTest.Instance.ChangeScene(2);
-            }
-            else
-            {
-                //切换失败继续游戏
-                Debug.Log("HonorSDK:SwitchAccount.message = " + userInfo.message);
-            }
-        });
+     
+        HonorSDKImpl.GetInstance().SwitchAccount();
     }
 
     private void Logout()

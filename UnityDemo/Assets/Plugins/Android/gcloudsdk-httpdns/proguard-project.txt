@@ -1,0 +1,2 @@
+-keep public class com.tencent.msdk.dns.base.jni.Jni {*;}
+-keep public class com.tencent.gcloud.httpdns.** {*;}

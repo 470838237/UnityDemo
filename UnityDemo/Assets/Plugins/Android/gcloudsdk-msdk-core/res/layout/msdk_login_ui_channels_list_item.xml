@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MSDK.Login.Channel"
+    android:id="@+id/msdk_login_ui_channels_horizontal_list_item"
+    android:layout_weight="1"
+    android:clickable="true">
+
+</ImageView>

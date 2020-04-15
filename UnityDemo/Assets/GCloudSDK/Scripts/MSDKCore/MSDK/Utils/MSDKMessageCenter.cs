@@ -2,7 +2,7 @@
 //
 // File: MSDKMessageCenter
 // Module: MSDK
-// Date: 2020-03-20
+// Date: 2020-03-31
 // Hash: e53f22b65110b0c4927f0eccdbc59f95
 // Author: mingyiwang@tencent.com
 //

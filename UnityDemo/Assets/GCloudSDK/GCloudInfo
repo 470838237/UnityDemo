@@ -54,13 +54,18 @@
         }, 
         "CppVersion": "C11", 
         "Engine": "Unity", 
-        "GCloudSDKVersion": "2.0.15", 
+        "GCloudSDKVersion": "2.0.15.1", 
         "ITOPSubplugins": [], 
         "InputPlugins": {
-            "GCloudCore": "/data1/gcloud_plugins/release_plugins/master/GCloudCore/1.1.00.1655", 
+            "APM": "/data1/gcloud_plugins/release_plugins/master/APM/1.0.00.00167", 
+            "GCloud": "/data1/gcloud_plugins/release_plugins/master/GCloud/2.0.14.200383", 
+            "GCloudCore": "/data1/gcloud_plugins/release_plugins/master/GCloudCore/1.1.00.1670", 
+            "GVoice": "/data1/gcloud_plugins/release_plugins/master/GVoice/2.5.00.247", 
+            "GameBot": "/data1/gcloud_plugins/release_plugins/master/GameBot/3.1.1.20032315", 
+            "HttpDNS": "/data1/gcloud_plugins/release_plugins/master/HttpDNS/1.0.01.52", 
             "MSDKBeacon": "/data1/gcloud_plugins/release_plugins/master/MSDKBeacon/5.7.001.940", 
             "MSDKBugly": "/data1/gcloud_plugins/release_plugins/master/MSDKBugly/5.8.000.1255", 
-            "MSDKCore": "/data1/gcloud_plugins/release_plugins/master/MSDKCore/5.9.000.2035", 
+            "MSDKCore": "/data1/gcloud_plugins/release_plugins/master/MSDKCore/5.9.001.2037", 
             "MSDKKwai": "/data1/gcloud_plugins/release_plugins/master/MSDKKwai/5.8.000.1271", 
             "MSDKLBS": "/data1/gcloud_plugins/release_plugins/master/MSDKLBS/5.7.001.940", 
             "MSDKQQ": "/data1/gcloud_plugins/release_plugins/master/MSDKQQ/5.8.000.1271", 
@@ -69,13 +74,21 @@
             "MSDKWeChat": "/data1/gcloud_plugins/release_plugins/master/MSDKWeChat/5.9.000.2018", 
             "MSDKWebView": "/data1/gcloud_plugins/release_plugins/master/MSDKWebView/5.9.000.2018", 
             "MSDKXG": "/data1/gcloud_plugins/release_plugins/master/MSDKXG/5.9.000.2018", 
-            "MidasLocal": "/data1/gcloud_plugins/release_plugins/master/MidasLocal/1.0.4.17", 
-            "TDM": "/data1/gcloud_plugins/release_plugins/master/TDM/1.8.000.1055"
+            "MidasLocal": "/data1/gcloud_plugins/release_plugins/master/MidasLocal/1.0.4.18", 
+            "TDM": "/data1/gcloud_plugins/release_plugins/master/TDM/1.8.000.1055", 
+            "TGPA": "/data1/gcloud_plugins/release_plugins/master/TGPA/2.1.4.360", 
+            "TRI": "/data1/gcloud_plugins/release_plugins/master/TRI/1.0.00.00106", 
+            "TssSDK": "/data1/gcloud_plugins/release_plugins/master/TssSDK/4.2.025.63958"
         }, 
-        "OutputDir": "/data1/tmp/sdkcompress/3285c1a5102d2795c33341fa8b8255f2", 
-        "PluginVersion": "2.0.15", 
+        "OutputDir": "/data1/tmp/sdkcompress/0530df6444dbe5841d75253314952bf6", 
+        "PluginVersion": "2.0.15.1", 
         "Plugins": [
+            "APM", 
+            "GCloud", 
             "GCloudCore", 
+            "GVoice", 
+            "GameBot", 
+            "HttpDNS", 
             "MSDKBeacon", 
             "MSDKBugly", 
             "MSDKCore", 
@@ -88,7 +101,10 @@
             "MSDKWebView", 
             "MSDKXG", 
             "MidasLocal", 
-            "TDM"
+            "TDM", 
+            "TGPA", 
+            "TRI", 
+            "TssSDK"
         ], 
         "SupportPlatform": [
             "iOS", 
@@ -98,12 +114,17 @@
         ], 
         "UnityVersion": "2018"
     }, 
-    "PackageTime": "2020-04-02 14:34:36", 
+    "PackageTime": "2020-04-14 11:13:19", 
     "PackageVersions": {
-        "GCloudCore": "1.1.00.1655", 
+        "APM": "1.0.00.00167", 
+        "GCloud": "2.0.14.200383", 
+        "GCloudCore": "1.1.00.1670", 
+        "GVoice": "2.5.00.247", 
+        "GameBot": "3.1.1.20032315", 
+        "HttpDNS": "1.0.01.52", 
         "MSDKBeacon": "5.7.001.940", 
         "MSDKBugly": "5.8.000.1255", 
-        "MSDKCore": "5.9.000.2035", 
+        "MSDKCore": "5.9.001.2037", 
         "MSDKKwai": "5.8.000.1271", 
         "MSDKLBS": "5.7.001.940", 
         "MSDKQQ": "5.8.000.1271", 
@@ -112,8 +133,11 @@
         "MSDKWeChat": "5.9.000.2018", 
         "MSDKWebView": "5.9.000.2018", 
         "MSDKXG": "5.9.000.2018", 
-        "MidasLocal": "1.0.4.17", 
-        "TDM": "1.8.000.1055"
+        "MidasLocal": "1.0.4.18", 
+        "TDM": "1.8.000.1055", 
+        "TGPA": "2.1.4.360", 
+        "TRI": "1.0.00.00106", 
+        "TssSDK": "4.2.025.63958"
     }, 
     "ReplaceInfo": [
         {
@@ -465,6 +489,12 @@
             "ReplaceStr": "com.tencent.dm"
         }, 
         {
+            "File": "/Plugins/Android/gcloudsdk-gamebot/AndroidManifest.xml", 
+            "KeyStr": "{XY_GAME_ID}", 
+            "LineNum": 16, 
+            "ReplaceStr": "{XY_GAME_ID}"
+        }, 
+        {
             "File": "/Plugins/Android/gcloudsdk-msdk-system/AndroidManifest.xml", 
             "KeyStr": "{BUNDLE_ID}", 
             "LineNum": 14, 
@@ -543,6 +573,12 @@
             "ReplaceStr": "{HW_APPID}"
         }, 
         {
+            "File": "/Plugins/Android/gcloudsdk-gcloud/AndroidManifest.xml", 
+            "KeyStr": "{BUNDLE_ID}", 
+            "LineNum": 38, 
+            "ReplaceStr": "com.tencent.dm"
+        }, 
+        {
             "File": "/Plugins/Android/gcloudsdk-msdk-qq/AndroidManifest.xml", 
             "KeyStr": "{QQ_APPID}", 
             "LineNum": 30, 
@@ -583,6 +619,12 @@
             "KeyStr": "{GAME_KEY}", 
             "LineNum": 36, 
             "ReplaceStr": "357fbfe4cba42277b56ad735cbb9d43d"
+        }, 
+        {
+            "File": "/GCloudSDK/Editor/Mods/GameBot/GRobot.projmods", 
+            "KeyStr": "{XY_GAME_ID}", 
+            "LineNum": 29, 
+            "ReplaceStr": "{XY_GAME_ID}"
         }, 
         {
             "File": "/Plugins/Android/mainTemplate.gradle", 

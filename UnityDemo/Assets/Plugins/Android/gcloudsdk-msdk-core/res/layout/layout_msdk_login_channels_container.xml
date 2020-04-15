@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/msdk_login_ui_third_channel_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/msdk_login_space_positive_35"
+        android:layout_marginRight="@dimen/msdk_login_space_positive_35"
+        android:orientation="horizontal">
+
+        <View
+            style="@style/MSDK.Login.Horizontal.Line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/msdk_login_space_positive_0_5"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:layout_toLeftOf="@+id/msdk_login_ui_third_channel_login_text"
+
+            />
+
+        <TextView
+            android:id="@+id/msdk_login_ui_third_channel_login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/third_channel_account_login"
+            android:textColor="@color/hint_text_color"
+            android:textSize="@dimen/msdk_login_textsize_9" />
+
+        <View
+            style="@style/MSDK.Login.Horizontal.Line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/msdk_login_space_positive_0_5"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@+id/msdk_login_ui_third_channel_login_text"
+
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/msdk_login_ui_third_channel_divider"
+        android:layout_height="@dimen/msdk_login_space_positive_56">
+
+        <LinearLayout android:id="@+id/msdk_login_ui_channels_horizontal_list"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

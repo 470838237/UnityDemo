@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/msdk_login_ui_bg_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    style="@style/MSDK.Login.Window.Outer.Background">
+
+    <FrameLayout
+        android:clickable="true"
+        android:id="@+id/msdk_login_ui_main_container"
+        style="@style/MSDK.Login.Window.Inner">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/msdk_login_ui_title"
+        android:layout_width="@dimen/msdk_login_window_title_width"
+        android:layout_height="@dimen/msdk_login_window_title_height"
+        android:layout_alignTop="@id/msdk_login_ui_main_container"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/msdk_login_ui_title_text_bg"
+        android:gravity="center"
+        android:text="@string/login_tencent_game_passport"
+        android:textColor="@color/title_text_white_color"
+        android:textSize="@dimen/msdk_login_textsize_16"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/msdk_login_ui_back"
+        android:layout_alignTop="@id/msdk_login_ui_main_container"
+        android:layout_alignLeft="@id/msdk_login_ui_main_container"
+        android:layout_width="@dimen/msdk_login_space_positive_40"
+        android:layout_height="@dimen/msdk_login_space_positive_40"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="@dimen/msdk_icon_back_width"
+            android:layout_height="@dimen/msdk_icon_back_height"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/mdsk_img_icon_back" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/msdk_login_ui_close"
+        android:layout_alignTop="@id/msdk_login_ui_main_container"
+        android:layout_alignRight="@id/msdk_login_ui_main_container"
+        android:layout_height="@dimen/msdk_login_space_positive_40"
+        android:layout_width="@dimen/msdk_login_space_positive_40"
+        >
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="@dimen/msdk_icon_close_width"
+            android:layout_height="@dimen/msdk_icon_close_height"
+            android:scaleType="fitXY"
+            android:src="@drawable/msdk_img_icon_close" />
+
+    </RelativeLayout>
+
+
+    <ViewStub
+        android:id="@+id/msdk_login_ui_mobile_email_viewstub"
+        android:layout_width="@dimen/msdk_login_window_inner_landscape_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/msdk_login_ui_title"
+        android:layout_centerHorizontal="true" />
+
+    <ViewStub
+        android:id="@+id/msdk_login_ui_channels_viewstub"
+        android:layout_width="@dimen/msdk_login_window_inner_landscape_width"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/msdk_login_space_positive_17"
+        android:layout_alignTop="@id/msdk_login_ui_title"
+        android:layout_marginTop="230dp"
+        android:layout_centerHorizontal="true" />
+
+    <ViewStub
+        android:id="@+id/msdk_login_ui_forgot_password_viewstub"
+        android:layout_width="@dimen/msdk_login_window_inner_landscape_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/msdk_login_ui_title"
+        android:layout_centerHorizontal="true" />
+
+    <ViewStub
+        android:id="@+id/msdk_login_ui_register_account_viewstub"
+        android:layout_width="@dimen/msdk_login_window_inner_landscape_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/msdk_login_ui_title"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+    <ViewStub
+        android:id="@+id/msdk_login_ui_switch_account_viewstub"
+        android:layout_width="@dimen/msdk_login_window_inner_landscape_width"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <RelativeLayout
+        android:id="@+id/msdk_login_ui_progressbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:clickable="true">
+
+        <ProgressBar
+            android:id="@+id/msdk_login_ui_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            android:indeterminateDrawable="@drawable/msdk_login_ui_progress_indeterminate"/>
+
+        <TextView
+            android:id="@+id/msdk_login_ui_progressbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/msdk_login_ui_progressbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/msdk_login_space_positive_5"
+            android:textColor="@color/title_text_white_color" />
+    </RelativeLayout>
+
+</RelativeLayout>

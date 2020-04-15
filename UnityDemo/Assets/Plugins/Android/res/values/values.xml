@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
-	<string name="app_name">荣耀之歌</string>
-    <string name="facebook_app_id">969650443399198</string>
-    <string name="fb_login_protocol_scheme">fb969650443399198</string>
-    <string name="google_server_client_id">157330188126-jpbbc09vtinloqb99c9q0s34tub8hm97.apps.googleusercontent.com</string>
+	<string name="app_name">数码宝贝：新世纪</string>
+  
 </resources>

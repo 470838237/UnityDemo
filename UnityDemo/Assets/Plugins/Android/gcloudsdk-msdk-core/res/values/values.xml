@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_gray">#646464</color>
+    <color name="blue_ff">#0582FF</color>
+    <color name="button_bg_blue_color">#4485fb</color>
+    <color name="button_bg_pressed_color">#5993fd</color>
+    <color name="button_bg_purple_color">#A950F5</color>
+    <color name="button_border_color">#74a5ff</color>
+    <color name="clickable_text_color">#74a5ff</color>
+    <color name="dividing_line_color">#36558c</color>
+    <color name="edit_text_bg_color">#243553</color>
+    <color name="edit_text_border_color">#316B7E</color>
+    <color name="edit_text_color">#dee9ff</color>
+    <color name="hint_text_color">#486394</color>
+    <color name="inner_bg_color">#000c22</color>
+    <color name="main_border_color">#36558c</color>
+    <color name="msdk_button_bg_color_13c9c5">#13c9c5</color>
+    <color name="msdk_button_bg_color_397afe">#397afe</color>
+    <color name="msdk_button_bg_disabled_color_bcbcbc">#bcbcbc</color>
+    <color name="msdk_clickable_text_color_2d98d3">#2d98d3</color>
+    <color name="msdk_container_bg_color_13c9c6">#13c9c6</color>
+    <color name="msdk_container_bg_color_397aff">#397aff</color>
+    <color name="msdk_inner_bg_color_000000">#000000</color>
+    <color name="msdk_inner_bg_color_2c2c2c">#0d2c2c2c</color>
+    <color name="msdk_inner_bg_color_ffffff">#ffffff</color>
+    <color name="msdk_inner_bg_color_ffffffff">#00ffffff</color>
+    <color name="msdk_notice_text_color_e93a29">#e93a29</color>
+    <color name="title_bg_blue_color">#000c22</color>
+    <color name="title_text_white_color">#dee9ff</color>
+    <color name="toast_bg_color">#4D000000</color>
+    <color name="transparent_black_50">#80000000</color>
+    <color name="transparent_color">#00000000</color>
+    <dimen name="msdk_bind_edittext_with">267.75dp</dimen>
+    <dimen name="msdk_bind_home_page_height">330.50dp</dimen>
+    <dimen name="msdk_bind_home_page_outer_height">340.50dp</dimen>
+    <dimen name="msdk_bind_home_page_outer_width">322.50dp</dimen>
+    <dimen name="msdk_bind_home_page_width">312.50dp</dimen>
+    <dimen name="msdk_bind_icon_height">18.0dp</dimen>
+    <dimen name="msdk_bind_icon_width">18.0dp</dimen>
+    <dimen name="msdk_bind_next_button_height">30.25dp</dimen>
+    <dimen name="msdk_bind_next_button_with">269.25dp</dimen>
+    <dimen name="msdk_bind_space_positive_10">10.0dp</dimen>
+    <dimen name="msdk_bind_space_positive_15">15.0dp</dimen>
+    <dimen name="msdk_bind_space_positive_2">2dp</dimen>
+    <dimen name="msdk_bind_space_positive_22">22.00dp</dimen>
+    <dimen name="msdk_bind_space_positive_27">27.00dp</dimen>
+    <dimen name="msdk_bind_space_positive_31_5">31.50dp</dimen>
+    <dimen name="msdk_bind_space_positive_35">35.0dp</dimen>
+    <dimen name="msdk_bind_space_positive_40">40.0dp</dimen>
+    <dimen name="msdk_bind_space_positive_43">43.0dp</dimen>
+    <dimen name="msdk_bind_space_positive_43_75">43.75dp</dimen>
+    <dimen name="msdk_bind_space_positive_5">5dp</dimen>
+    <dimen name="msdk_bind_space_positive_58">58dp</dimen>
+    <dimen name="msdk_bind_space_positive_72">72.0dp</dimen>
+    <dimen name="msdk_bind_space_positive_73">73.0dp</dimen>
+    <dimen name="msdk_bind_space_positive_7_5">7.50dp</dimen>
+    <dimen name="msdk_bind_space_positive_8_5">8.50dp</dimen>
+    <dimen name="msdk_bind_space_positive_90">90.0dp</dimen>
+    <dimen name="msdk_bind_ui_text_size_10">10.00sp</dimen>
+    <dimen name="msdk_bind_ui_text_size_12_5">12.50sp</dimen>
+    <dimen name="msdk_bind_ui_text_size_15">15.00sp</dimen>
+    <dimen name="msdk_bind_ui_text_size_17_5">17.50sp</dimen>
+    <dimen name="msdk_bind_ui_text_size_22_5">22.50sp</dimen>
+    <dimen name="msdk_bind_ui_text_size_30">30.00sp</dimen>
+    <dimen name="msdk_bind_verify_code_view_height">48.00dp</dimen>
+    <dimen name="msdk_bind_verify_code_view_width">24.00dp</dimen>
+    <dimen name="msdk_icon_back_height">18dp</dimen>
+    <dimen name="msdk_icon_back_width">18dp</dimen>
+    <dimen name="msdk_icon_close_height">18dp</dimen>
+    <dimen name="msdk_icon_close_width">18dp</dimen>
+    <dimen name="msdk_icon_delete_height">18dp</dimen>
+    <dimen name="msdk_icon_delete_width">18dp</dimen>
+    <dimen name="msdk_login_btn_long_width">240.0dp</dimen>
+    <dimen name="msdk_login_btn_normal_height">35.0dp</dimen>
+    <dimen name="msdk_login_btn_normal_width">240.0dp</dimen>
+    <dimen name="msdk_login_btn_normal_width_half">130.0dp</dimen>
+    <dimen name="msdk_login_channel">32.0dp</dimen>
+    <dimen name="msdk_login_edit_text_normal_height">35.0dp</dimen>
+    <dimen name="msdk_login_edit_text_normal_width">240.0dp</dimen>
+    <dimen name="msdk_login_edit_text_small_width">140.0dp</dimen>
+    <dimen name="msdk_login_line_height">0.5dp</dimen>
+    <dimen name="msdk_login_space_0">0dp</dimen>
+    <dimen name="msdk_login_space_negative_0_5">-0.5dp</dimen>
+    <dimen name="msdk_login_space_negative_10">-10.0dp</dimen>
+    <dimen name="msdk_login_space_negative_11">-11.0dp</dimen>
+    <dimen name="msdk_login_space_negative_12">-12.0dp</dimen>
+    <dimen name="msdk_login_space_negative_13">-13.0dp</dimen>
+    <dimen name="msdk_login_space_negative_140">-140.0dp</dimen>
+    <dimen name="msdk_login_space_negative_15">-15.0dp</dimen>
+    <dimen name="msdk_login_space_negative_16">-16.0dp</dimen>
+    <dimen name="msdk_login_space_negative_17">-17.0dp</dimen>
+    <dimen name="msdk_login_space_negative_18">-18.0dp</dimen>
+    <dimen name="msdk_login_space_negative_20">-20.0dp</dimen>
+    <dimen name="msdk_login_space_negative_35">-35.0dp</dimen>
+    <dimen name="msdk_login_space_negative_40">-40.0dp</dimen>
+    <dimen name="msdk_login_space_negative_5">-5.0dip</dimen>
+    <dimen name="msdk_login_space_negative_50">-50.0dp</dimen>
+    <dimen name="msdk_login_space_negative_56">-56.0dp</dimen>
+    <dimen name="msdk_login_space_negative_72">-72.0dp</dimen>
+    <dimen name="msdk_login_space_negative_76">-76.0dp</dimen>
+    <dimen name="msdk_login_space_positive_0_5">0.5dp</dimen>
+    <dimen name="msdk_login_space_positive_10">10.0dp</dimen>
+    <dimen name="msdk_login_space_positive_11">11.0dp</dimen>
+    <dimen name="msdk_login_space_positive_12">12.0dp</dimen>
+    <dimen name="msdk_login_space_positive_13">13.0dp</dimen>
+    <dimen name="msdk_login_space_positive_140">140.0dp</dimen>
+    <dimen name="msdk_login_space_positive_15">15.0dp</dimen>
+    <dimen name="msdk_login_space_positive_16">16.0dp</dimen>
+    <dimen name="msdk_login_space_positive_17">17.0dp</dimen>
+    <dimen name="msdk_login_space_positive_18">18.0dp</dimen>
+    <dimen name="msdk_login_space_positive_20">20.0dp</dimen>
+    <dimen name="msdk_login_space_positive_35">35.0dp</dimen>
+    <dimen name="msdk_login_space_positive_39_5">39.5dp</dimen>
+    <dimen name="msdk_login_space_positive_40">40.0dp</dimen>
+    <dimen name="msdk_login_space_positive_5">5.0dip</dimen>
+    <dimen name="msdk_login_space_positive_50">50.0dp</dimen>
+    <dimen name="msdk_login_space_positive_56">56.0dp</dimen>
+    <dimen name="msdk_login_space_positive_72">72.0dp</dimen>
+    <dimen name="msdk_login_space_positive_76">76.0dp</dimen>
+    <dimen name="msdk_login_textsize_12">12sp</dimen>
+    <dimen name="msdk_login_textsize_14">14sp</dimen>
+    <dimen name="msdk_login_textsize_16">16sp</dimen>
+    <dimen name="msdk_login_textsize_9">9sp</dimen>
+    <dimen name="msdk_login_toast_height">45.0dp</dimen>
+    <dimen name="msdk_login_toast_width">160.0dp</dimen>
+    <dimen name="msdk_login_window_inner_landscape_height">300dp</dimen>
+    <dimen name="msdk_login_window_inner_landscape_width">350dp</dimen>
+    <dimen name="msdk_login_window_outer_landscape_height">300dp</dimen>
+    <dimen name="msdk_login_window_outer_landscape_width">350dp</dimen>
+    <dimen name="msdk_login_window_outer_list_landscape_height">190dp</dimen>
+    <dimen name="msdk_login_window_outer_list_landscape_width">350dp</dimen>
+    <dimen name="msdk_login_window_title_height">40.0dp</dimen>
+    <dimen name="msdk_login_window_title_width">350.0dp</dimen>
+    <string name="auto_login_in_progress">自动登录中...</string>
+    <string name="cancel">取消</string>
+    <string name="count_down_start_value">60s</string>
+    <string name="entered_password_contain_invalid_charaters">输入的密码包含非法字符</string>
+    <string name="forgot_password">忘记密码？</string>
+    <string name="login">登录</string>
+    <string name="login_tencent_game_passport">腾讯游戏通行证</string>
+    <string name="login_tencent_game_passport_register_account">腾讯游戏通行证 -- 注册账号</string>
+    <string name="login_tencent_game_passport_reset_password">腾讯游戏通行证 -- 重置密码</string>
+    <string name="msdk_bind_account_exists">* This email address has been registered, please use another one</string>
+    <string name="msdk_bind_and">%1$s and %2$s</string>
+    <string name="msdk_bind_button_confirm">CONFIRM</string>
+    <string name="msdk_bind_button_next">NEXT</string>
+    <string name="msdk_bind_email_hint">Gameplayer@gmail.com</string>
+    <string name="msdk_bind_enter_valid_verification_code">* Please enter a valid verification code</string>
+    <string name="msdk_bind_enter_verification_code">Enter verification code</string>
+    <string name="msdk_bind_enter_your_email">Enter your email</string>
+    <string name="msdk_bind_not_get_verification_code">Didn\'t get the code?</string>
+    <string name="msdk_bind_please_enter_valid_email">* Please enter a valid email address.</string>
+    <string name="msdk_bind_please_enter_valid_verifycode">* Please enter a valid verification code.</string>
+    <string name="msdk_bind_privacy_policy">Privacy Policy</string>
+    <string name="msdk_bind_receive_email_notice">Receive news and updates.</string>
+    <string name="msdk_bind_resend">Resend</string>
+    <string name="msdk_bind_terms_of_service">Terms of Service</string>
+    <string name="msdk_bind_verification_sent_notification">A verification code has been sent to your email %1$s</string>
+    <string name="msdk_bind_you_are_all_set">You\'re all set!</string>
+    <string name="original_account">原账号</string>
+    <string name="please_enter_login_password">请输入登录密码（最少8位）</string>
+    <string name="please_enter_login_password_again">请再次输入登录密码</string>
+    <string name="please_enter_mobile_email">请输入手机号码或邮箱</string>
+    <string name="please_enter_valid_email_mobile_number">请输入正确格式的邮箱或者手机号</string>
+    <string name="please_enter_verification_code">请输入验证码</string>
+    <string name="register">注册</string>
+    <string name="resend_verification_code">重新获取</string>
+    <string name="reset_password">重置密码</string>
+    <string name="reset_password_failed">重置密码失败</string>
+    <string name="reset_password_success">重置密码成功</string>
+    <string name="send_verification_code">发送验证码</string>
+    <string name="send_verification_code_ing">发送验证码...</string>
+    <string name="switch_account">切换账号</string>
+    <string name="switch_account_description">您当前拉起的账号与你本地的账号不一致，请选择使用哪个账号登陆：</string>
+    <string name="switch_user_failed">切换账号失败</string>
+    <string name="switch_user_success">切换账号成功</string>
+    <string name="third_channel_account_login">第三方账号登录</string>
+    <string name="two_password_are_different">两次输入的密码不同，请重新输入</string>
+    <style name="ADCustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="DialogTransparentFullScreen">
+        <item name="android:windowFullscreen">true</item>
+        <!-- 全屏 -->
+        <item name="android:colorBackground">@color/transparent_color</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/transparent_color</item>
+        <item name="android:windowBackground">@color/transparent_color</item>
+    </style>
+    <style name="MSDK"/>
+    <style name="MSDK.Bind.Button.Normal" parent="@style/MSDK">
+        <item name="android:background">@drawable/msdk_bind_ui_button_enabled_bg</item>
+        <item name="android:textColor">@color/msdk_inner_bg_color_ffffff</item>
+        <item name="android:textSize">@dimen/msdk_bind_ui_text_size_12_5</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MSDK.Bind.Button.Normal.Clickable" parent="@style/MSDK">
+        <item name="android:background">@drawable/msdk_bind_ui_button_selector</item>
+        <item name="android:textColor">@color/msdk_inner_bg_color_ffffff</item>
+        <item name="android:textSize">@dimen/msdk_bind_ui_text_size_12_5</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MSDK.Bind.Checkbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/msdk_bind_checkbox_selector</item>
+    </style>
+    <style name="MSDK.Bind.Window.Inner" parent="@style/MSDK">
+        <item name="android:background">@drawable/msdk_bind_ui_inner_window_bg</item>
+        <item name="android:layout_width">@dimen/msdk_bind_home_page_outer_width</item>
+        <item name="android:layout_height">@dimen/msdk_bind_home_page_outer_height</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <style name="MSDK.Bind.Window.Outer.Background" parent="@style/MSDK">
+        <item name="android:background">@drawable/msdk_bind_ui_gradient_bg</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="MSDK.Login.Button.Normal.Blue" parent="@style/MSDK">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/msdk_login_btn_normal_height</item>
+        <item name="android:background">@drawable/msdk_login_ui_button_blue</item>
+        <item name="android:textColor">@color/title_text_white_color</item>
+        <item name="android:textSize">@dimen/msdk_login_textsize_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MSDK.Login.Button.Normal.Blue.Half" parent="@style/MSDK.Login.Button.Normal.Blue">
+        <item name="android:layout_width">@dimen/msdk_login_btn_normal_width_half</item>
+    </style>
+    <style name="MSDK.Login.Button.Normal.Purple.Half" parent="@style/MSDK.Login.Button.Normal.Blue">
+        <item name="android:layout_width">@dimen/msdk_login_btn_normal_width_half</item>
+        <item name="android:background">@drawable/msdk_login_ui_button_purple_half</item>
+    </style>
+    <style name="MSDK.Login.Cancel.Button.Normal.Transparent" parent="@style/MSDK">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/msdk_login_space_positive_50</item>
+        <item name="android:background">@color/transparent_color</item>
+    </style>
+    <style name="MSDK.Login.Channel" parent="@style/MSDK">
+        <item name="android:layout_width">@dimen/msdk_login_channel</item>
+        <item name="android:layout_height">@dimen/msdk_login_channel</item>
+    </style>
+    <style name="MSDK.Login.EditText.Normal" parent="android:Widget.EditText">
+        <item name="android:textSize">@dimen/msdk_login_textsize_14</item>
+        <item name="android:paddingLeft">@dimen/msdk_login_space_positive_13</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/msdk_login_edit_text_normal_height</item>
+        <item name="android:background">@drawable/msdk_login_ui_edit_text_bg</item>
+        <item name="android:textColorHint">@color/hint_text_color</item>
+        <item name="android:textColor">@color/edit_text_color</item>
+        <item name="android:textCursorDrawable">@drawable/msdk_img_icon_input_active</item>
+    </style>
+    <style name="MSDK.Login.EditText.Normal.Half" parent="@style/MSDK.Login.EditText.Normal">
+        <item name="android:layout_width">@dimen/msdk_login_edit_text_small_width</item>
+    </style>
+    <style name="MSDK.Login.Horizontal.Line" parent="@style/MSDK">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/msdk_login_line_height</item>
+        <item name="android:background">@color/dividing_line_color</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+    <style name="MSDK.Login.TextView.Normal.Small" parent="@style/MSDK">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/clickable_text_color</item>
+        <item name="android:textSize">@dimen/msdk_login_textsize_12</item>
+    </style>
+    <style name="MSDK.Login.Translucent.Background" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/bg_gray</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowIsFloating">true</item>
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name="android:backgroundDimEnabled">true</item>-->
+    </style>
+    <style name="MSDK.Login.Window.Inner" parent="@style/MSDK">
+        <item name="android:background">@drawable/msdk_login_ui_inner_window_bg</item>
+        <item name="android:layout_width">@dimen/msdk_login_window_inner_landscape_width</item>
+        <item name="android:layout_height">@dimen/msdk_login_window_inner_landscape_height</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <style name="MSDK.Login.Window.Outer.Background" parent="@style/MSDK">
+        <item name="android:background">@color/transparent_black_50</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="MSDK.Login.Window.Outer.List.Background" parent="@style/MSDK.Login.Window.Inner">
+        <item name="android:layout_height">@dimen/msdk_login_window_outer_list_landscape_height</item>
+        <item name="android:layout_width">@dimen/msdk_login_window_outer_list_landscape_width</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="MSDK.VerificationCode.TextView" parent="@style/MSDK">
+        <item name="android:layout_height">@dimen/msdk_bind_verify_code_view_height</item>
+        <item name="android:layout_width">@dimen/msdk_bind_verify_code_view_width</item>
+        <item name="android:background">@color/msdk_inner_bg_color_ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/msdk_inner_bg_color_000000</item>
+        <item name="android:textSize">@dimen/msdk_bind_ui_text_size_22_5</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <declare-styleable name="MSDKLoginUIClearableEditTextView">
+        <attr format="string" name="text"/>
+        <attr format="string" name="hint_text"/>
+    </declare-styleable>
+</resources>

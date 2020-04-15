@@ -1,0 +1,15 @@
+{
+    "group": "GPM",
+    "libs": ["libresolv.tbd"],
+    "frameworks": [],
+    "headerpaths": [],
+    "files":   [],
+    "folders": [],    
+    "excludes": [],
+    "compiler_flags": [],
+    "linker_flags": [],
+	"build_settings":
+    {
+        "OTHER_LDFLAGS": ["-ObjC"]
+    }
+}

@@ -1,0 +1,5 @@
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile rootProject.ext.androidSupportDependencies.appCompat
+	compile rootProject.ext.presentationDependencies.recyclerView
+}

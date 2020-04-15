@@ -1,5 +1,7 @@
 ﻿using HonorSDK;
-using System.Diagnostics;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Scene1 : BaseScene
 {
@@ -23,7 +25,24 @@ public class Scene1 : BaseScene
 
     private void Init()
     {
-
+        HonorSDKImpl.GetInstance().RegisterSwitchAccountListener(delegate (UserInfo userInfo)
+        {
+            Debug.Log("HonorSDK:SwitchAccount.success = " + userInfo.success);
+            if (userInfo.success)
+            {
+                Debug.Log("HonorSDK:SwitchAccount.accessToken = " + userInfo.accessToken
+                           + ",nickName =" + userInfo.nickName
+                           + ",uid =" + userInfo.uid
+                           );
+                //退出到选服界面
+                LoadTest.Instance.ChangeScene(2);
+            }
+            else
+            {
+                //切换失败继续游戏
+                Debug.Log("HonorSDK:SwitchAccount.message = " + userInfo.message);
+            }
+        });
         Debug.Log("unity.Init");
         HonorSDKImpl.CreateInstance(HonorSDKImpl.ePlat.Android);
         HonorSDKImpl.GetInstance().Init(LoadTest.Instance.sdkObj, delegate (ResultInit initResult)

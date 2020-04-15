@@ -19,7 +19,7 @@ namespace HonorSdk
         /// <summary>
         /// 资源文件路径
         /// </summary>
-        public static string RES_FILE_PATH;
+        public static string RES_FILE_PATH ="res_file_path";
 
         private static HonorSDKImpl instance;
         private  IHonorApi instanceImpl;
@@ -95,8 +95,8 @@ namespace HonorSdk
         /// <returns></returns>
         public virtual string GetGameResUrl()
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
             return "";
         }
 
@@ -110,9 +110,9 @@ namespace HonorSdk
         /// <param name="translateContentListener">成功返回翻译后文本，失败返回原文本</param>
         public virtual void TranslateContent(string srcContent, string targetLan, int id, OnFinish<ResultTranslate> translateContentListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
-            this.translateContentListener = translateContentListener;
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //this.translateContentListener = translateContentListener;
         }
 
         /// <summary>
@@ -121,9 +121,8 @@ namespace HonorSdk
         /// <param name="getHardwareInfoListener">返回cpu gpu信息<see cref="HardwareInfo"/></param>
         public virtual void GetHardwareInfo(OnFinish<HardwareInfo> getHardwareInfoListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
-            this.getHardwareListener = getHardwareInfoListener;
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
 
         }
         /// <summary>
@@ -134,8 +133,8 @@ namespace HonorSdk
         /// <param name="gameRoleId">角色id</param>
         public virtual void UdpPush(string ip, string port, string gameRoleId)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
 
         /// <summary>
@@ -146,8 +145,8 @@ namespace HonorSdk
         /// <param name="recordMaxTime">录音最大时长，超过该时长自动结束录音,单位毫秒</param>
         public virtual void StartRecordVideo(string serverURL, string bit, long recordMaxTime)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
         /// <summary>
         /// 结束录音
@@ -155,8 +154,8 @@ namespace HonorSdk
         /// <param name="stopRecordVideoListener">返回录音结果<see cref="ResultVideoRecord"/></param>
         public virtual void StopRecordVideo(OnFinish<ResultVideoRecord> stopRecordVideoListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
         /// <summary>
         /// 播放录音
@@ -165,8 +164,8 @@ namespace HonorSdk
         /// <param name="playVideoListener">返回播放录音结果<see cref="Result"/></param>
         public virtual void PlayVideo(string videoUrl, OnFinish<Result> playVideoListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
         /// <summary>
         /// 获取热更信息
@@ -175,8 +174,8 @@ namespace HonorSdk
         /// <param name="getDynamicUpdateListener">返回热更信息<see cref="ResultGetDynamic"/></param>
         public virtual void GetDynamicUpdate(string rootDir, OnFinish<ResultGetDynamic> getDynamicUpdateListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
         /// <summary>
         /// 下载热更
@@ -184,8 +183,8 @@ namespace HonorSdk
         /// <param name="downDynamicUpdateListener">返回下载热更结果<see cref="ResultDownload"/></param>
         public virtual void DownDynamicUpdate(OnFinish<ResultDownload> downDynamicUpdateListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
 
         /// <summary>
@@ -193,8 +192,8 @@ namespace HonorSdk
         /// </summary>
         public virtual void RepairUpdateRes()
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
         /// <summary>
         /// 获取强更信息
@@ -202,8 +201,8 @@ namespace HonorSdk
         /// <param name="getForceUpdateListener">返回强更信息<see cref="ResultGetForce"/></param>
         public virtual void GetForceUpdate(OnFinish<ResultGetForce> getForceUpdateListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
 
         /// <summary>
@@ -212,8 +211,8 @@ namespace HonorSdk
         /// <param name="downForceUpdateListener">返回强更下载结果<see cref="ResultDownload"/></param>
         public virtual void DownForceUpdate(OnFinish<ResultDownload> downForceUpdateListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
         /// <summary>
         /// 是否需要obb下载，Android包上架google商店且包体大于100M才需要使用到obb下载功能
@@ -221,8 +220,8 @@ namespace HonorSdk
         /// <returns>true必须要下载，false需要下载</returns>
         public virtual bool HasObbUpdate()
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
             return false;
         }
         /// <summary>
@@ -231,24 +230,23 @@ namespace HonorSdk
         /// <param name="downObbUpdateListener">返回obb下载结果<see cref="ResultObbDownload"/></param>
         public virtual void DownObbUpdate(OnFinish<ResultObbDownload> downObbUpdateListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+           
         }
         /// <summary>
         /// obb下载中断时调用此方法继续下载
         /// </summary>
         public virtual void ContinueUpdateObb()
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
         /// <summary>
         /// obb下载完成后重新加载obb
         /// </summary>
         public virtual void ReloadObb()
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
 
         }
         /// <summary>
@@ -257,8 +255,8 @@ namespace HonorSdk
         /// <param name="getABTestVerListener">返回获取ABTest<see cref="ResultGetABTestVer"/></param>
         public virtual void GetABTestVer(OnFinish<ResultGetABTestVer> getABTestVerListener)
         {
-            handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
-            instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
+            //handler.RegisterCallback(Api.GET_HEADSET_STATE, getHeadsetStateListener);
+            //instanceImpl.GetHeadsetState(notifyWhenHeadsetChanged, getHeadsetStateListener);
         }
 
         const string HEAD_NAME_IS_SUPPORT_ALERT_AGREEMENT = "is_support_alert_agreement";

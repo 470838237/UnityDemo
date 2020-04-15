@@ -2,7 +2,7 @@
 //
 // File: MSDKLogin
 // Module: MSDK
-// Date: 2020-03-20
+// Date: 2020-03-31
 // Hash: da438a765fe58470082c279d743ca7a9
 // Author: mingyiwang@tencent.com
 //

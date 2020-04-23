@@ -120,8 +120,12 @@ namespace HonorSDK
         /// <param name="cloudInfo"></param>
         /// <param name="tdirInfo"></param>
 
-        public virtual void InitGCloud(InitializeInfo cloudInfo, TdirInitInfo tdirInfo) {
+        public virtual void InitGCloud(InitializeInfo cloudInfo) {
             
+        }
+
+        public virtual void InitTdir(TdirInitInfo tdirInfo) {
+
         }
 
         /// <summary>
@@ -197,6 +201,7 @@ namespace HonorSDK
 		/// <param name="extraJson">扩展字段</param>
         public virtual string LoadNoticeData(OnFinish<MSDKNoticeRet> callback, string noticeGroup, string language, int region, string partition, string extra)
         {
+
             return "";
         }
 

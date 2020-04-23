@@ -25,7 +25,7 @@ namespace HonorSDK
             parentImpl.Init(gameObject, initListener, gameResVersion, configs);
 
         }
-        public override void InitGCloud(InitializeInfo cloudInfo, TdirInitInfo tdirInfo)
+        public override void InitGCloud(InitializeInfo cloudInfo)
         {
             MSDKLogin.LoginRetEvent += OnLoginRetEvent;
             MSDKLogin.LoginBaseRetEvent += OnLoginBaseRetEvent;
@@ -34,7 +34,6 @@ namespace HonorSDK
             MSDKPush.PushNotificationEvent += OnPushNotificationEvent;
             MSDKCrash.CrashBaseRetEvent += OnCrashBaseRetEvent;
             IGCloud.Instance.Initialize(cloudInfo);
-            tdir.Initialize(tdirInfo);
             RegisterDirCallback();
             inited = true;
             MSDKPush.RegisterPush("XG");
@@ -95,6 +94,12 @@ namespace HonorSDK
                 return tdir.QueryTree(treeId);
             }
             return -1;
+        }
+
+        public override void InitTdir(TdirInitInfo tdirInfo)
+        {
+            if (tdir != null)
+                tdir.Initialize(tdirInfo);
         }
 
         private OnFinish<Wrapper<NodeWrapper>> queryLeafCallback;
@@ -739,7 +744,7 @@ namespace HonorSDK
         public override string GetAuthInfo()
         {
 
-            return null;
+            return parentImpl.GetAuthInfo();
         }
 
         public override void DownloadText(string url, int retry, int timeout, OnFinish<ResultDownloadText> downloadTextListener)
